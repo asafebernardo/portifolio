@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { randomBytes } from 'node:crypto'
+import { mergeSiteRuntimeManifest } from './server/merge-site-runtime.mjs'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { Plugin } from 'vite'
 
@@ -93,7 +94,11 @@ function uploadMiddleware(root: string, viteBase: string) {
       return
     }
 
-    const { prefix, base64 } = parsed as { prefix?: unknown; base64?: unknown }
+    const { prefix, base64, projectId } = parsed as {
+      prefix?: unknown
+      base64?: unknown
+      projectId?: unknown
+    }
     if (prefix !== 'profile' && prefix !== 'project') {
       sendJson(res, 400, { error: 'prefix deve ser "profile" ou "project".' })
       return
@@ -122,6 +127,10 @@ function uploadMiddleware(root: string, viteBase: string) {
       const filePath = path.join(uploadsDir, name)
       fs.writeFileSync(filePath, buf)
       const urlPath = publicUploadFileUrl(viteBase || '/', name)
+      mergeSiteRuntimeManifest(uploadsDir, urlPath, {
+        prefix: prefix as 'profile' | 'project',
+        projectId: typeof projectId === 'string' ? projectId : undefined,
+      })
       sendJson(res, 200, { url: urlPath })
     } catch {
       sendJson(res, 500, { error: 'Não foi possível gravar em public/uploads/.' })

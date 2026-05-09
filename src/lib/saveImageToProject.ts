@@ -1,4 +1,5 @@
 import { portfolioUploadUrl, resolveApiUploadUrl } from './uploadEndpoint'
+import { notifySiteRuntimeManifestStale } from '../site/siteRuntime'
 
 function uploadHeaders(): HeadersInit {
   const secret = import.meta.env.VITE_UPLOAD_SECRET?.trim()
@@ -20,6 +21,13 @@ async function postUpload(url: string, body: string, headers: HeadersInit): Prom
   }
 }
 
+function completeUpload(url: string): string {
+  if (!url.startsWith('data:')) {
+    notifySiteRuntimeManifestStale()
+  }
+  return url
+}
+
 /**
  * 1) POST `/api/upload` (Express: Docker Compose ou proxy no Vite com `npm run dev:full`).
  * 2) Em dev, fallback para `__portfolio-upload` do plugin Vite (`npm run dev` sem API).
@@ -28,10 +36,15 @@ async function postUpload(url: string, body: string, headers: HeadersInit): Prom
 export async function saveImageToProject(
   jpegDataUrl: string,
   prefix: 'profile' | 'project',
+  projectId?: string,
 ): Promise<string> {
   const comma = jpegDataUrl.indexOf(',')
   const base64 = comma >= 0 ? jpegDataUrl.slice(comma + 1) : jpegDataUrl
-  const payload = JSON.stringify({ prefix, base64 })
+  const bodyObj: { prefix: string; base64: string; projectId?: string } = { prefix, base64 }
+  if (prefix === 'project' && projectId?.trim()) {
+    bodyObj.projectId = projectId.trim()
+  }
+  const payload = JSON.stringify(bodyObj)
   const headers = uploadHeaders()
 
   const apiUrl = resolveApiUploadUrl()
@@ -74,7 +87,9 @@ export async function saveImageToProject(
     throw new Error(`Resposta inválida do servidor de upload (${apiUrl}).`)
   }
 
-  if (res.ok && parsed.url) return parsed.url
+  if (res.ok && parsed.url) {
+    return completeUpload(parsed.url)
+  }
 
   if (parsed.error) {
     throw new Error(parsed.error)

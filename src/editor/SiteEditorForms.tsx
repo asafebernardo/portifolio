@@ -103,9 +103,11 @@ function ImageUploadControl({
 
 function ProjectImageUploadBlock({
   image,
+  projectId,
   onImageChange,
 }: {
   image: string
+  projectId: string
   onImageChange: (v: string) => void
 }) {
   const fileRef = useRef<HTMLInputElement>(null)
@@ -120,7 +122,7 @@ function ProjectImageUploadBlock({
     setUploadBusy(true)
     try {
       const dataUrl = await fileToProjectImageDataUrl(file)
-      const url = await saveImageToProject(dataUrl, 'project')
+      const url = await saveImageToProject(dataUrl, 'project', projectId)
       onImageChange(url)
     } catch (err) {
       setUploadErr(err instanceof Error ? err.message : 'Erro ao processar a imagem.')
@@ -443,6 +445,7 @@ export function ProjectsPtForm({
           />
           <ProjectImageUploadBlock
             image={p.image}
+            projectId={p.id}
             onImageChange={(v) => {
               const next = [...projects]
               next[pi] = { ...next[pi]!, image: v }

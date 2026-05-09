@@ -9,6 +9,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { randomBytes } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
+import { mergeSiteRuntimeManifest } from './merge-site-runtime.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const repoRoot = path.resolve(__dirname, '..')
@@ -56,7 +57,7 @@ app.post('/api/upload', (req, res) => {
     return
   }
 
-  const { prefix, base64 } = parsed
+  const { prefix, base64, projectId } = parsed
   if (prefix !== 'profile' && prefix !== 'project') {
     sendJson(res, 400, { error: 'prefix deve ser "profile" ou "project".' })
     return
@@ -84,7 +85,12 @@ app.post('/api/upload', (req, res) => {
     const name = `${prefix}-${Date.now()}-${randomBytes(4).toString('hex')}.jpeg`
     const filePath = path.join(UPLOAD_DIR, name)
     fs.writeFileSync(filePath, buf)
-    sendJson(res, 200, { url: publicUploadUrl(name) })
+    const urlPath = publicUploadUrl(name)
+    mergeSiteRuntimeManifest(UPLOAD_DIR, urlPath, {
+      prefix,
+      projectId: typeof projectId === 'string' ? projectId : undefined,
+    })
+    sendJson(res, 200, { url: urlPath })
   } catch {
     sendJson(res, 500, { error: 'Não foi possível gravar o ficheiro.' })
   }
