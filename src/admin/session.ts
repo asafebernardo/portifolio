@@ -3,15 +3,19 @@ const SESSION_MS = 8 * 60 * 60 * 1000
 
 type SessionPayload = { until: number }
 
+function envTrim(key: 'VITE_ADMIN_USERNAME' | 'VITE_ADMIN_PASSWORD'): string {
+  const v = import.meta.env[key]
+  return typeof v === 'string' ? v.trim() : ''
+}
+
 export function isAdminPasswordConfigured(): boolean {
-  const p = import.meta.env.VITE_ADMIN_PASSWORD
-  return typeof p === 'string' && p.length > 0
+  return envTrim('VITE_ADMIN_PASSWORD').length > 0
 }
 
 export function login(username: string, password: string): boolean {
   if (!isAdminPasswordConfigured()) return false
-  const expectedUser = import.meta.env.VITE_ADMIN_USERNAME ?? 'admin'
-  const expectedPass = import.meta.env.VITE_ADMIN_PASSWORD ?? ''
+  const expectedUser = envTrim('VITE_ADMIN_USERNAME') || 'admin'
+  const expectedPass = envTrim('VITE_ADMIN_PASSWORD')
   if (username !== expectedUser || password !== expectedPass) return false
   const payload: SessionPayload = { until: Date.now() + SESSION_MS }
   sessionStorage.setItem(SESSION_KEY, JSON.stringify(payload))

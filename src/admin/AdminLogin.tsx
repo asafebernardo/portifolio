@@ -17,7 +17,9 @@ export default function AdminLogin() {
     e.preventDefault()
     setError(null)
     if (!isAdminPasswordConfigured()) {
-      setError('Defina VITE_ADMIN_PASSWORD no arquivo .env e reinicie o servidor.')
+      setError(
+        'VITE_ADMIN_PASSWORD não está no bundle do site. No deploy, essa variável precisa existir na etapa de BUILD (npm run build / Docker build-args), não só nas variáveis de runtime do painel. Em desenvolvimento: .env + reiniciar npm run dev.',
+      )
       return
     }
     if (!login(user, pass)) {
@@ -33,9 +35,7 @@ export default function AdminLogin() {
         <p className={styles.kicker}>Área restrita</p>
         <h1 className={styles.title}>Editor do site</h1>
         <p className={styles.hint}>
-          Credenciais vêm do <code>.env</code> (VITE_ADMIN_USERNAME / VITE_ADMIN_PASSWORD). Reinicie o{' '}
-          <code>npm run dev</code> após alterar o .env. Depois de entrar, você volta ao site com o painel de edição — os
-          textos são alterados no <strong>painel lateral</strong>, não clicando direto nos elementos da página.
+          
         </p>
         <form className={styles.form} onSubmit={onSubmit}>
           <label className={styles.field}>

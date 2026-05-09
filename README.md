@@ -90,6 +90,12 @@ npm run build
 
 Output goes to `dist/`. Deploy that folder to any static host (GitHub Pages, Netlify, Vercel, etc.). Configure `VITE_*` variables in your platform’s build environment.
 
+### Admin login not working after deploy?
+
+Vite **inlines** `import.meta.env.VITE_*` when `vite build` runs. Environment variables you add only on the **running** container or static host **runtime** settings **do not** reach the compiled JS — the admin password in the browser stays whatever it was at build time (often empty).
+
+**Fix:** Set `VITE_ADMIN_USERNAME` and `VITE_ADMIN_PASSWORD` in the **build** step (CI “build environment”, Docker `ARG`/`--build-arg`, Netlify/Vercel “Environment variables” scoped to **Build**, etc.), then **rebuild and redeploy**. Verify with `npm run build && npm run preview` locally while your shell exports the same `VITE_*` values.
+
 ## Docker
 
 The repo includes a **multi-stage** `Dockerfile` (Node build + `nginx` serving `dist/` with SPA fallback for client-side routes).
