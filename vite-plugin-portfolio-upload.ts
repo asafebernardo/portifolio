@@ -21,6 +21,17 @@ function publicUploadFileUrl(viteBase: string, filename: string): string {
   return out.replace(/\/{2,}/g, '/')
 }
 
+function normalizeRequestPathname(raw: string | undefined): string {
+  try {
+    const pathOnly = raw?.split('?')[0] ?? '/'
+    const decoded = decodeURIComponent(pathOnly)
+    const collapsed = decoded.replace(/\/+/g, '/')
+    return collapsed.length ? collapsed : '/'
+  } catch {
+    return '/'
+  }
+}
+
 function isJpeg(buf: Buffer): boolean {
   return buf.length >= 3 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff
 }
@@ -62,8 +73,9 @@ function uploadMiddleware(root: string, viteBase: string) {
   const routePath = uploadRoutePath(viteBase)
 
   return async (req: IncomingMessage, res: ServerResponse, next: () => void) => {
-    const pathname = req.url?.split('?')[0] ?? ''
-    if (req.method !== 'POST' || pathname !== routePath) {
+    const pathname = normalizeRequestPathname(req.url)
+    const method = (req.method ?? 'GET').toUpperCase()
+    if (method !== 'POST' || pathname !== routePath) {
       next()
       return
     }
