@@ -4,8 +4,22 @@ import { randomBytes } from 'node:crypto'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { Plugin } from 'vite'
 
-const ROUTE = '/__portfolio-upload'
 const MAX_BODY_BYTES = 15 * 1024 * 1024
+
+function slashBase(viteBase: string): string {
+  return viteBase.replace(/\/$/, '') || ''
+}
+
+function uploadRoutePath(viteBase: string): string {
+  const b = slashBase(viteBase)
+  return b ? `${b}/__portfolio-upload` : '/__portfolio-upload'
+}
+
+function publicUploadFileUrl(viteBase: string, filename: string): string {
+  const prefix = viteBase.endsWith('/') ? viteBase : `${viteBase || '/'}/`
+  const out = `${prefix}uploads/${filename}`
+  return out.replace(/\/{2,}/g, '/')
+}
 
 function isJpeg(buf: Buffer): boolean {
   return buf.length >= 3 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff
@@ -42,13 +56,14 @@ function sendJson(res: ServerResponse, status: number, body: Record<string, unkn
   res.end(JSON.stringify(body))
 }
 
-function uploadMiddleware(root: string) {
+function uploadMiddleware(root: string, viteBase: string) {
   const publicDir = path.join(root, 'public')
   const uploadsDir = path.join(publicDir, 'uploads')
+  const routePath = uploadRoutePath(viteBase)
 
-  return async (req, res, next) => {
-    const url = req.url?.split('?')[0] ?? ''
-    if (url !== ROUTE || req.method !== 'POST') {
+  return async (req: IncomingMessage, res: ServerResponse, next: () => void) => {
+    const pathname = req.url?.split('?')[0] ?? ''
+    if (req.method !== 'POST' || pathname !== routePath) {
       next()
       return
     }
@@ -94,7 +109,7 @@ function uploadMiddleware(root: string) {
       const name = `${prefix}-${Date.now()}-${randomBytes(4).toString('hex')}.jpeg`
       const filePath = path.join(uploadsDir, name)
       fs.writeFileSync(filePath, buf)
-      const urlPath = `/uploads/${name}`
+      const urlPath = publicUploadFileUrl(viteBase || '/', name)
       sendJson(res, 200, { url: urlPath })
     } catch {
       sendJson(res, 500, { error: 'Não foi possível gravar em public/uploads/.' })
@@ -105,11 +120,12 @@ function uploadMiddleware(root: string) {
 export function portfolioUploadPlugin(): Plugin {
   return {
     name: 'portfolio-upload',
+    enforce: 'pre',
     configureServer(server) {
-      server.middlewares.use(uploadMiddleware(server.config.root))
+      server.middlewares.use(uploadMiddleware(server.config.root, server.config.base))
     },
     configurePreviewServer(server) {
-      server.middlewares.use(uploadMiddleware(server.config.root))
+      server.middlewares.use(uploadMiddleware(server.config.root, server.config.base))
     },
   }
 }

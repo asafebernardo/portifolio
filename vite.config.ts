@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 import { portfolioUploadPlugin } from './vite-plugin-portfolio-upload'
 
 export default defineConfig({
-  plugins: [react(), portfolioUploadPlugin()],
+  plugins: [portfolioUploadPlugin(), react()],
 })
