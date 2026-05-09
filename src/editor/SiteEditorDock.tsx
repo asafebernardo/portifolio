@@ -121,48 +121,52 @@ export function SiteEditorDock() {
         <>
           <button type="button" className={dock.scrim} aria-label="Fechar editor" onClick={closeDock} />
           <aside className={dock.panel} aria-label="Editor do portfólio">
-            <div className={dock.panelHead}>
-              <div>
-                <p className={dock.kicker}>Editor</p>
-                <h2 className={dock.panelTitle}>Conteúdo (PT → EN automático)</h2>
-                <p className={dock.panelSub}>
-                  Edite em português e salve: o inglês é gerado via API (MyMemory). Use também{' '}
-                  <code>VITE_TRANSLATION_EMAIL</code> no .env para limite maior.
-                </p>
+            <div className={dock.panelTop}>
+              <div className={dock.panelHead}>
+                <div className={dock.panelIntro}>
+                  <p className={dock.kicker}>Editor</p>
+                  <h2 className={dock.panelTitle}>Conteúdo (PT → EN automático)</h2>
+                  <p className={dock.panelSub}>
+                    Edite em português e salve: o inglês é gerado via API (MyMemory). Use também{' '}
+                    <code>VITE_TRANSLATION_EMAIL</code> no .env para limite maior.
+                  </p>
+                </div>
+                <button type="button" className={dock.close} onClick={closeDock} aria-label="Fechar">
+                  ×
+                </button>
               </div>
-              <button type="button" className={dock.close} onClick={closeDock} aria-label="Fechar">
-                ×
-              </button>
-            </div>
 
-            <div className={dock.tabs} role="tablist">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={tab === 'config'}
-                className={`${dock.tab} ${tab === 'config' ? dock.tabOn : ''}`}
-                onClick={() => setTab('config')}
-              >
-                Config & links
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={tab === 'textos'}
-                className={`${dock.tab} ${tab === 'textos' ? dock.tabOn : ''}`}
-                onClick={() => setTab('textos')}
-              >
-                Textos (PT)
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={tab === 'projetos'}
-                className={`${dock.tab} ${tab === 'projetos' ? dock.tabOn : ''}`}
-                onClick={() => setTab('projetos')}
-              >
-                Projetos (PT)
-              </button>
+              <div className={dock.tabsWrap}>
+                <div className={dock.tabs} role="tablist">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={tab === 'config'}
+                    className={`${dock.tab} ${tab === 'config' ? dock.tabOn : ''}`}
+                    onClick={() => setTab('config')}
+                  >
+                    Config & links
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={tab === 'textos'}
+                    className={`${dock.tab} ${tab === 'textos' ? dock.tabOn : ''}`}
+                    onClick={() => setTab('textos')}
+                  >
+                    Textos (PT)
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={tab === 'projetos'}
+                    className={`${dock.tab} ${tab === 'projetos' ? dock.tabOn : ''}`}
+                    onClick={() => setTab('projetos')}
+                  >
+                    Projetos (PT)
+                  </button>
+                </div>
+              </div>
             </div>
 
             <div className={dock.body}>

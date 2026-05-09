@@ -420,6 +420,32 @@ export function ContentPtForm({
   )
 }
 
+function makeUniqueProjectId(existing: ProjectEntry[]): string {
+  const ids = new Set(existing.map((p) => p.id))
+  let base = `projeto-${Date.now()}`
+  let id = base
+  let n = 1
+  while (ids.has(id)) {
+    id = `${base}-${n++}`
+  }
+  return id
+}
+
+function createEmptyProject(existing: ProjectEntry[]): ProjectEntry {
+  return {
+    id: makeUniqueProjectId(existing),
+    title: 'Novo projeto',
+    stack: ['React'],
+    description: '',
+    challenges: '',
+    image: '',
+    demoUrl: '#',
+    codeUrl: '#',
+    category: 'frontend',
+    featured: false,
+  }
+}
+
 export function ProjectsPtForm({
   value: projects,
   onChange,
@@ -430,11 +456,40 @@ export function ProjectsPtForm({
   return (
     <>
       <p className={styles.sectionTitle}>Projetos (PT) — stack e links não são traduzidos automaticamente</p>
+      <button
+        type="button"
+        className={styles.addProject}
+        onClick={() => onChange([...projects, createEmptyProject(projects)])}
+      >
+        + Adicionar projeto
+      </button>
       {projects.map((p, pi) => (
-        <div key={p.id} className={styles.projectCard}>
-          <p className={styles.projectTitle}>
-            {p.id} · stack: {p.stack.join(', ')}
-          </p>
+        <div key={`${p.id}-${pi}`} className={styles.projectCard}>
+          <div className={styles.projectCardHead}>
+            <p className={styles.projectTitle}>
+              {p.id} · stack: {p.stack.join(', ')}
+            </p>
+            <button
+              type="button"
+              className={styles.removeProject}
+              onClick={() => {
+                if (!window.confirm('Remover este projeto da lista?')) return
+                onChange(projects.filter((_, i) => i !== pi))
+              }}
+            >
+              Remover
+            </button>
+          </div>
+          <Field
+            label="ID (slug único, ex.: meu-app)"
+            value={p.id}
+            onChange={(v) => {
+              const next = [...projects]
+              const slug = v.trim()
+              next[pi] = { ...next[pi]!, id: slug.length > 0 ? slug : next[pi]!.id }
+              onChange(next)
+            }}
+          />
           <label className={styles.row}>
             <input
               type="checkbox"
