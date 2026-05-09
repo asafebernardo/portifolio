@@ -1,6 +1,6 @@
 import { useRef, useState, type ChangeEvent } from 'react'
 import type { ProjectEntry, SiteConfig, SiteContent } from '../site/types'
-import { fileToProfilePhotoDataUrl } from '../lib/profileImageUpload'
+import { fileToProfilePhotoDataUrl, fileToProjectImageDataUrl } from '../lib/profileImageUpload'
 import styles from './SiteEditorForms.module.css'
 
 function Field({
@@ -23,6 +23,85 @@ function Field({
         <input value={value} onChange={(e) => onChange(e.target.value)} />
       )}
     </label>
+  )
+}
+
+function ProjectImageUploadBlock({
+  image,
+  onImageChange,
+}: {
+  image: string
+  onImageChange: (v: string) => void
+}) {
+  const fileRef = useRef<HTMLInputElement>(null)
+  const [uploadBusy, setUploadBusy] = useState(false)
+  const [uploadErr, setUploadErr] = useState<string | null>(null)
+
+  async function onPickFile(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    setUploadErr(null)
+    setUploadBusy(true)
+    try {
+      const dataUrl = await fileToProjectImageDataUrl(file)
+      onImageChange(dataUrl)
+    } catch (err) {
+      setUploadErr(err instanceof Error ? err.message : 'Erro ao processar a imagem.')
+    } finally {
+      setUploadBusy(false)
+    }
+  }
+
+  const img = image.trim()
+
+  return (
+    <div className={styles.uploadBlock}>
+      <span className={styles.uploadLabel}>Imagem do card</span>
+      {img ? (
+        <div className={styles.previewRow}>
+          <img src={img} alt="" className={styles.previewImgProject} />
+          <button type="button" className={styles.removePhoto} onClick={() => onImageChange('')}>
+            Remover imagem
+          </button>
+        </div>
+      ) : null}
+      <input
+        ref={fileRef}
+        type="file"
+        accept="image/jpeg,image/png,image/webp,image/gif"
+        className={styles.hiddenFile}
+        onChange={onPickFile}
+      />
+      <button
+        type="button"
+        className={styles.uploadBtn}
+        disabled={uploadBusy}
+        onClick={() => fileRef.current?.click()}
+      >
+        {uploadBusy ? 'Processando…' : 'Upload'}
+      </button>
+      {uploadErr ? (
+        <p className={styles.uploadErr} role="alert">
+          {uploadErr}
+        </p>
+      ) : null}
+      <p className={styles.help}>
+        Redimensionada para caber no navegador após <strong>Salvar tudo + gerar inglês</strong>. Ou use uma URL abaixo.
+      </p>
+      {img.startsWith('data:') ? (
+        <p className={styles.help}>
+          Para usar uma URL em vez do arquivo, clique em <strong>Remover imagem</strong>.
+        </p>
+      ) : (
+        <>
+          <Field label="Ou cole uma URL de imagem (sem upload)" value={img} onChange={onImageChange} />
+          <p className={styles.help}>
+            Ex.: <code>/screenshot.png</code> em <code>public/</code> ou link <code>https://…</code>.
+          </p>
+        </>
+      )}
+    </div>
   )
 }
 
@@ -96,8 +175,8 @@ export function ConfigForm({
             </p>
           ) : null}
           <p className={styles.help}>
-            A foto aparece só na <strong>barra superior</strong>; clique nela para ver em tamanho maior. Guardada neste
-            navegador após <strong>Salvar tudo + gerar inglês</strong>.
+            A foto aparece na <strong>barra superior</strong> e como <strong>ícone da aba</strong> (favicon); clique na
+            miniatura para ampliar. Guardada neste navegador após <strong>Salvar tudo + gerar inglês</strong>.
           </p>
         </div>
 
@@ -140,8 +219,11 @@ export function ContentPtForm({
     <>
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>SEO</h3>
+        <p className={styles.help}>
+          Título da aba: <strong>Asafe Bernardo</strong> (fixo em qualquer idioma). O favicon segue a{' '}
+          <strong>foto de perfil</strong> em Config.
+        </p>
         <div className={styles.grid2}>
-          <Field label="Título (aba)" value={d.meta.title} onChange={(v) => onChange({ ...d, meta: { ...d.meta, title: v } })} />
           <Field
             label="Descrição"
             value={d.meta.description}
@@ -392,6 +474,14 @@ export function ProjectsPtForm({
               onChange(next)
             }}
           />
+          <ProjectImageUploadBlock
+            image={p.image}
+            onImageChange={(v) => {
+              const next = [...projects]
+              next[pi] = { ...next[pi]!, image: v }
+              onChange(next)
+            }}
+          />
           <div className={styles.grid2}>
             <Field label="Demo URL" value={p.demoUrl} onChange={(v) => {
               const next = [...projects]
@@ -401,11 +491,6 @@ export function ProjectsPtForm({
             <Field label="Código URL" value={p.codeUrl} onChange={(v) => {
               const next = [...projects]
               next[pi] = { ...next[pi]!, codeUrl: v }
-              onChange(next)
-            }} />
-            <Field label="Imagem URL" value={p.image} onChange={(v) => {
-              const next = [...projects]
-              next[pi] = { ...next[pi]!, image: v }
               onChange(next)
             }} />
             <Field

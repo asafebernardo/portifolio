@@ -47,6 +47,14 @@
   border: 2px solid var(--border-subtle);
 }
 
+.previewImgProject {
+  width: 140px;
+  height: 79px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 2px solid var(--border-subtle);
+}
+
 .removePhoto {
   padding: 0.4rem 0.75rem;
   border-radius: 999px;
