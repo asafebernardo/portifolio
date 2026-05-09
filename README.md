@@ -90,6 +90,24 @@ npm run build
 
 Output goes to `dist/`. Deploy that folder to any static host (GitHub Pages, Netlify, Vercel, etc.). Configure `VITE_*` variables in your platform’s build environment.
 
+## Docker
+
+The repo includes a **multi-stage** `Dockerfile` (Node build + `nginx` serving `dist/` with SPA fallback for client-side routes).
+
+- **Path to set in your host:** `Dockerfile` (repository root)
+
+Build locally (pass the same `VITE_*` values you use in production):
+
+```bash
+docker build \
+  --build-arg VITE_ADMIN_USERNAME=your_user \
+  --build-arg VITE_ADMIN_PASSWORD=your_password \
+  -t portfolio:local .
+docker run --rm -p 8080:80 portfolio:local
+```
+
+Open `http://localhost:8080`. On your hosting platform, configure **build arguments** or environment for `VITE_*` at image build time; do not commit real credentials in the repo.
+
 ---
 
 Private project—update this README when you add routes, integrations, or deployment steps.
