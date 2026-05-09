@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "title": "Asafe — Full Stack Developer | React & Node.js",
+    "description": "Full Stack developer portfolio — React, Node.js and JavaScript. Modern interfaces, scalable APIs and clean architecture."
+  },
+  "nav": {
+    "ariaMain": "Main",
+    "home": "Home",
+    "projects": "Projects",
+    "skills": "Skills",
+    "architecture": "Architecture",
+    "about": "About",
+    "contact": "Contact",
+    "ctaProjects": "View projects",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "scrimClose": "Close menu",
+    "ariaLanguage": "Site language"
+  },
+  "hero": {
+    "kicker": "Hi, I'm",
+    "title": "",
+    "role": "Full Stack Developer",
+    "description": "I build modern interfaces, scalable APIs and web systems focused on performance, usability and clean architecture.",
+    "ctaProjects": "View projects",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "mockTitle": "dashboard.app",
+    "chartLabel": "Performance",
+    "badgeLive": "Live",
+    "floatApi": { "label": "API", "sub": "REST / JSON" },
+    "floatFe": { "label": "Frontend", "sub": "React" },
+    "floatDb": { "label": "Database", "sub": "SQL / NoSQL" }
+  },
+  "projects": {
+    "kicker": "Selected work",
+    "title": "Projects",
+    "sub": "Cases emphasizing architecture, trade-offs and measurable outcomes — not just pretty screens.",
+    "filters": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Full Stack"
+    },
+    "filterAria": "Filter projects",
+    "featuredCase": "Featured case",
+    "challenges": "Technical challenges",
+    "challengesShort": "Challenges",
+    "demo": "Demo",
+    "code": "Code",
+    "empty": "No projects in this category yet.",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Full Stack"
+    }
+  },
+  "skills": {
+    "kicker": "Stack & practices",
+    "title": "Skills",
+    "sub": "Organized by layer — from what users see to what runs in production.",
+    "groups": [
+      {
+        "title": "Frontend",
+        "items": ["React", "TypeScript", "Next.js", "CSS Modules", "Accessibility", "Web performance"]
+      },
+      {
+        "title": "Backend",
+        "items": ["Node.js", "Express / Fastify", "REST & GraphQL", "WebSockets", "Automated testing"]
+      },
+      {
+        "title": "Database",
+        "items": ["PostgreSQL", "MongoDB", "Redis", "Modeling & indexes", "Migrations"]
+      },
+      {
+        "title": "DevOps / Tools",
+        "items": ["Docker", "CI/CD", "Git", "Cloud (AWS/GCP)", "Observability"]
+      }
+    ]
+  },
+  "architecture": {
+    "kicker": "Delivery flow",
+    "title": "Architecture",
+    "sub": "Layered view — from UI to deploy — with clear contracts between each step.",
+    "pipeline": {
+      "frontend": "Frontend",
+      "api": "API",
+      "database": "Database",
+      "deploy": "Deploy"
+    },
+    "nodes": [
+      { "key": "react", "label": "React", "sub": "UI & state" },
+      { "key": "node", "label": "Node", "sub": "API & domain" },
+      { "key": "auth", "label": "Auth", "sub": "JWT / OAuth" },
+      { "key": "db", "label": "Database", "sub": "Postgres" },
+      { "key": "docker", "label": "Docker", "sub": "Containers" },
+      { "key": "cloud", "label": "Cloud", "sub": "Deploy & CDN" }
+    ]
+  },
+  "about": {
+    "kicker": "About",
+    "title": "Product-minded software engineer",
+    "lead": "I work at the intersection of UX and backend engineering: clear API contracts, predictable frontends and reliable deploys. Readable tests where they matter and documentation that ages well.",
+    "para": "I value continuous feedback, metrics (Core Web Vitals, p99 latency, error rates) and a culture where refactoring is an investment — not a luxury.",
+    "timeline": [
+      {
+        "phase": "Studies",
+        "title": "Strong CS & web foundations",
+        "body": "Algorithms, networking and engineering practices applied to real products."
+      },
+      {
+        "phase": "Projects",
+        "title": "Iterative delivery",
+        "body": "End-to-end apps with reviewable code, performance metrics and documented decisions."
+      },
+      {
+        "phase": "Experience",
+        "title": "Squads at scale",
+        "body": "Collaboration with design and product, architecture reviews and focus on DX."
+      },
+      {
+        "phase": "Goals",
+        "title": "What’s next",
+        "body": "Even more observable distributed systems and blazing-fast interfaces for end users."
+      }
+    ]
+  },
+  "contact": {
+    "kicker": "Contact",
+    "title": "Let’s talk",
+    "sub": "Prefer a form or socials? Pick whatever is fastest for you.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@email.com",
+    "messagePlaceholder": "How can I help?",
+    "submit": "Send message",
+    "feedback": "Thanks — in production this would POST to an endpoint or email service.",
+    "channelsTitle": "Other channels",
+    "channelLabels": {
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "footer": {
+    "note": "© {{year}} {{brand}}. Built with React & attention to detail.",
+    "aria": "Footer",
+    "top": "Top",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "loading": {
+    "role": "Full Stack"
+  },
+  "backToTop": "Back to top"
+}

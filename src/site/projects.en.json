@@ -1,0 +1,69 @@
+[
+  {
+    "id": "saas-metrics",
+    "title": "SaaS metrics platform",
+    "stack": ["React", "Node.js", "PostgreSQL", "Docker"],
+    "description": "Analytics dashboard with auth, RBAC, and near-real-time event ingestion for product squads.",
+    "challenges": "Efficient aggregation modeling, per-tenant caching, and queues for write spikes without hurting reads.",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "fullstack",
+    "featured": true
+  },
+  {
+    "id": "design-system",
+    "title": "Enterprise design system",
+    "stack": ["React", "TypeScript", "Storybook", "CSS Modules"],
+    "description": "Accessible component library with theme tokens and living documentation for distributed teams.",
+    "challenges": "Stable prop contracts across versions, aggressive tree-shaking, and consistent dark/light themes.",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "frontend"
+  },
+  {
+    "id": "payments-api",
+    "title": "Recurring billing API",
+    "stack": ["Node.js", "Express", "Redis", "Stripe"],
+    "description": "Subscription microservice with idempotent webhooks and automated financial reconciliation.",
+    "challenges": "Exactly-once webhook semantics, reconciliation against gateway drift, and trace-based observability.",
+    "image": "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "backend"
+  },
+  {
+    "id": "ecommerce-headless",
+    "title": "Headless e-commerce",
+    "stack": ["Next.js", "Node.js", "MongoDB", "Algolia"],
+    "description": "Fast storefront with instant search and a headless CMS for agile merchandising.",
+    "challenges": "ISR with selective invalidation, dynamic SEO per category, and search index synced with stock.",
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "fullstack"
+  },
+  {
+    "id": "realtime-chat",
+    "title": "Realtime chat",
+    "stack": ["React", "Socket.io", "Node.js", "PostgreSQL"],
+    "description": "Rooms with presence, paginated history, and secure attachments for internal teams.",
+    "challenges": "Socket backpressure, message ordering on flaky networks, and retention policies.",
+    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "fullstack"
+  },
+  {
+    "id": "etl-pipeline",
+    "title": "Serverless ETL pipeline",
+    "stack": ["Node.js", "AWS Lambda", "S3", "Snowflake"],
+    "description": "Partitioned CSV/JSON ingestion with a DLQ and per-run metrics.",
+    "challenges": "Predictable cold starts, warehouse rate limits, and cost per GB under control.",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "backend"
+  }
+]

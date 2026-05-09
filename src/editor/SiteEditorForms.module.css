@@ -1,0 +1,169 @@
+.section {
+  margin-bottom: 1.35rem;
+}
+
+.help {
+  margin: -0.35rem 0 0.85rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.help code {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+}
+
+.uploadBlock {
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px dashed rgba(34, 211, 238, 0.25);
+  background: rgba(34, 211, 238, 0.04);
+}
+
+.uploadLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.previewRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.previewImg {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-subtle);
+}
+
+.removePhoto {
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: transparent;
+}
+
+.removePhoto:hover {
+  border-color: rgba(248, 113, 113, 0.55);
+}
+
+.hiddenFile {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.uploadBtn {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--bg-root);
+  background: linear-gradient(135deg, var(--accent), #67e8f9);
+  box-shadow: 0 6px 20px rgba(34, 211, 238, 0.18);
+}
+
+.uploadBtn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.uploadErr {
+  margin: 0.45rem 0 0;
+  font-size: 0.8rem;
+  color: #fca5a5;
+}
+
+.sectionTitle {
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.65rem;
+}
+
+.field span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.field input,
+.field textarea {
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(7, 8, 13, 0.75);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.field textarea {
+  min-height: 72px;
+  resize: vertical;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.grid2 {
+  display: grid;
+  gap: 0.65rem;
+}
+
+@media (min-width: 520px) {
+  .grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.row input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+}
+
+.projectCard {
+  padding: 0.85rem;
+  margin-bottom: 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.projectTitle {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}

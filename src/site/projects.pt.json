@@ -1,0 +1,69 @@
+[
+  {
+    "id": "saas-metrics",
+    "title": "Plataforma de métricas SaaS",
+    "stack": ["React", "Node.js", "PostgreSQL", "Docker"],
+    "description": "Dashboard analítico com auth, RBAC e ingestão de eventos em tempo quase real para squads de produto.",
+    "challenges": "Modelagem de agregações eficientes, cache por tenant e filas para picos de escrita sem degradar leitura.",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "fullstack",
+    "featured": true
+  },
+  {
+    "id": "design-system",
+    "title": "Design System corporativo",
+    "stack": ["React", "TypeScript", "Storybook", "CSS Modules"],
+    "description": "Biblioteca de componentes acessíveis com tokens de tema e documentação viva para times distribuídos.",
+    "challenges": "Contratos de props estáveis entre versões, tree-shaking agressivo e temas dark/light consistentes.",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "frontend"
+  },
+  {
+    "id": "payments-api",
+    "title": "API de cobrança recorrente",
+    "stack": ["Node.js", "Express", "Redis", "Stripe"],
+    "description": "Microsserviço de assinaturas com webhooks idempotentes e reconciliação financeira automatizada.",
+    "challenges": "Exatamente-uma-vez nos webhooks, reconciliação contra divergências de gateway e observabilidade por trace.",
+    "image": "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "backend"
+  },
+  {
+    "id": "ecommerce-headless",
+    "title": "E-commerce headless",
+    "stack": ["Next.js", "Node.js", "MongoDB", "Algolia"],
+    "description": "Storefront rápido com busca instantânea e CMS headless para merchandising ágil.",
+    "challenges": "ISR com invalidação seletiva, SEO dinâmico por categoria e índice de busca sincronizado com estoque.",
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "fullstack"
+  },
+  {
+    "id": "realtime-chat",
+    "title": "Chat em tempo real",
+    "stack": ["React", "Socket.io", "Node.js", "PostgreSQL"],
+    "description": "Salas com presença, histórico paginado e upload seguro de anexos para times internos.",
+    "challenges": "Backpressure em sockets, ordenação de mensagens sob rede instável e políticas de retenção.",
+    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "fullstack"
+  },
+  {
+    "id": "etl-pipeline",
+    "title": "Pipeline ETL serverless",
+    "stack": ["Node.js", "AWS Lambda", "S3", "Snowflake"],
+    "description": "Ingestão particionada de arquivos CSV/JSON com Dead Letter Queue e métricas por execução.",
+    "challenges": "Cold starts previsíveis, rate limits do warehouse e custo por GB processado sob controle.",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+    "demoUrl": "#",
+    "codeUrl": "https://github.com",
+    "category": "backend"
+  }
+]

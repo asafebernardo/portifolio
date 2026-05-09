@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "title": "Asafe — Desenvolvedor Full Stack | React & Node.js",
+    "description": "Portfólio de desenvolvedor Full Stack — React, Node.js e JavaScript. Interfaces modernas, APIs escaláveis e arquitetura limpa."
+  },
+  "nav": {
+    "ariaMain": "Principal",
+    "home": "Home",
+    "projects": "Projetos",
+    "skills": "Skills",
+    "architecture": "Arquitetura",
+    "about": "Sobre",
+    "contact": "Contato",
+    "ctaProjects": "Ver Projetos",
+    "menuOpen": "Abrir menu",
+    "menuClose": "Fechar menu",
+    "scrimClose": "Fechar menu",
+    "ariaLanguage": "Idioma do site"
+  },
+  "hero": {
+    "kicker": "Olá, eu sou",
+    "title": "",
+    "role": "Desenvolvedor Full Stack",
+    "description": "Desenvolvo interfaces modernas, APIs escaláveis e sistemas web com foco em performance, usabilidade e arquitetura limpa.",
+    "ctaProjects": "Ver Projetos",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "mockTitle": "dashboard.app",
+    "chartLabel": "Performance",
+    "badgeLive": "Ao vivo",
+    "floatApi": { "label": "API", "sub": "REST / JSON" },
+    "floatFe": { "label": "Frontend", "sub": "React" },
+    "floatDb": { "label": "Database", "sub": "SQL / NoSQL" }
+  },
+  "projects": {
+    "kicker": "Trabalhos selecionados",
+    "title": "Projetos",
+    "sub": "Cases com ênfase em arquitetura, trade-offs e resultados mensuráveis — não apenas telas bonitas.",
+    "filters": {
+      "all": "Todos",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Full Stack"
+    },
+    "filterAria": "Filtrar projetos",
+    "featuredCase": "Case principal",
+    "challenges": "Desafios técnicos",
+    "challengesShort": "Desafios",
+    "demo": "Demo",
+    "code": "Código",
+    "empty": "Nenhum projeto nesta categoria ainda.",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Full Stack"
+    }
+  },
+  "skills": {
+    "kicker": "Stack & práticas",
+    "title": "Skills",
+    "sub": "Organizado por camada — do que o usuário vê ao que roda em produção.",
+    "groups": [
+      {
+        "title": "Frontend",
+        "items": ["React", "TypeScript", "Next.js", "CSS Modules", "Acessibilidade", "Performance Web"]
+      },
+      {
+        "title": "Backend",
+        "items": ["Node.js", "Express / Fastify", "REST & GraphQL", "WebSockets", "Testes automatizados"]
+      },
+      {
+        "title": "Database",
+        "items": ["PostgreSQL", "MongoDB", "Redis", "Modelagem & índices", "Migrações"]
+      },
+      {
+        "title": "DevOps / Ferramentas",
+        "items": ["Docker", "CI/CD", "Git", "Cloud (AWS/GCP)", "Observabilidade"]
+      }
+    ]
+  },
+  "architecture": {
+    "kicker": "Fluxo de entrega",
+    "title": "Arquitetura",
+    "sub": "Visão em camadas — da interface ao deploy — com foco em contratos claros entre cada etapa.",
+    "pipeline": {
+      "frontend": "Frontend",
+      "api": "API",
+      "database": "Banco",
+      "deploy": "Deploy"
+    },
+    "nodes": [
+      { "key": "react", "label": "React", "sub": "UI & estado" },
+      { "key": "node", "label": "Node", "sub": "API & domínio" },
+      { "key": "auth", "label": "Auth", "sub": "JWT / OAuth" },
+      { "key": "db", "label": "Database", "sub": "Postgres" },
+      { "key": "docker", "label": "Docker", "sub": "Containers" },
+      { "key": "cloud", "label": "Cloud", "sub": "Deploy & CDN" }
+    ]
+  },
+  "about": {
+    "kicker": "Sobre",
+    "title": "Engenheiro de software orientado a produto",
+    "lead": "Trabalho na interseção entre experiência de usuário e engenharia de backend: contratos de API claros, frontends previsíveis e deploys confiáveis. Código legível, testes onde importam e documentação que envelhece bem.",
+    "para": "Valorizo feedback contínuo, métricas (Core Web Vitals, latência p99, taxa de erro) e uma cultura onde refatorar é investimento — não luxo.",
+    "timeline": [
+      {
+        "phase": "Estudos",
+        "title": "Base sólida em CS & web",
+        "body": "Algoritmos, redes e boas práticas de engenharia aplicadas a produtos reais."
+      },
+      {
+        "phase": "Projetos",
+        "title": "Construção iterativa",
+        "body": "Apps completos com código revisável, métricas de performance e decisões documentadas."
+      },
+      {
+        "phase": "Experiência",
+        "title": "Squads e escala",
+        "body": "Integração com design e produto, revisões de arquitetura e foco em DX."
+      },
+      {
+        "phase": "Objetivos",
+        "title": "Próximos passos",
+        "body": "Sistemas distribuídos ainda mais observáveis e interfaces ultra rápidas para usuários finais."
+      }
+    ]
+  },
+  "contact": {
+    "kicker": "Contato",
+    "title": "Vamos conversar",
+    "sub": "Prefere formulário ou redes? Escolha o canal que for mais rápido para você.",
+    "name": "Nome",
+    "email": "Email",
+    "message": "Mensagem",
+    "namePlaceholder": "Seu nome",
+    "emailPlaceholder": "voce@email.com",
+    "messagePlaceholder": "Como posso ajudar?",
+    "submit": "Enviar mensagem",
+    "feedback": "Obrigado — em um projeto real isso partiria para um endpoint ou serviço de email.",
+    "channelsTitle": "Outros canais",
+    "channelLabels": {
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "footer": {
+    "note": "© {{year}} {{brand}}. Feito com React & atenção ao detalhe.",
+    "aria": "Rodapé",
+    "top": "Topo",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
+  "loading": {
+    "role": "Full Stack"
+  },
+  "backToTop": "Voltar ao topo"
+}
