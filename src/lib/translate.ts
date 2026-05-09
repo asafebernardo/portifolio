@@ -1,3 +1,4 @@
+import { normalizeContactLinkSegments } from '../site/contactLinks'
 import type { ProjectEntry, SiteContent } from '../site/types'
 
 const MYMEMORY = 'https://api.mymemory.translated.net/get'
@@ -88,7 +89,10 @@ async function walkTranslate(val: unknown): Promise<unknown> {
 
 export async function translateSiteContentPtToEn(pt: SiteContent): Promise<SiteContent> {
   const clone = structuredClone(pt)
-  return walkTranslate(clone) as Promise<SiteContent>
+  const linkSegments = normalizeContactLinkSegments(clone.contact.linkSegments)
+  const translated = (await walkTranslate(clone)) as SiteContent
+  translated.contact.linkSegments = linkSegments
+  return translated
 }
 
 export async function translateProjectsPtToEn(projects: ProjectEntry[]): Promise<ProjectEntry[]> {

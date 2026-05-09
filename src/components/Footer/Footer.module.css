@@ -27,6 +27,20 @@
   color: var(--text-muted);
 }
 
+.editNote {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 520px;
+}
+
+.editNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .nav {
   display: flex;
   flex-wrap: wrap;

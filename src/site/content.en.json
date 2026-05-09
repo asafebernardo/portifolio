@@ -128,7 +128,7 @@
   "contact": {
     "kicker": "Contact",
     "title": "Let’s talk",
-    "sub": "Prefer a form or socials? Pick whatever is fastest for you.",
+    "sub": "Pick whatever channel is fastest for you.",
     "name": "Name",
     "email": "Email",
     "message": "Message",
@@ -137,12 +137,17 @@
     "messagePlaceholder": "How can I help?",
     "submit": "Send message",
     "feedback": "Thanks — in production this would POST to an endpoint or email service.",
-    "channelsTitle": "Other channels",
     "channelLabels": {
       "email": "Email",
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "whatsapp": "WhatsApp"
+    },
+    "linkSegments": {
+      "email": "",
+      "github": "",
+      "linkedin": "",
+      "whatsapp": ""
     }
   },
   "footer": {

@@ -1,0 +1,59 @@
+/* Campos de edição inline (admin): mesmo peso visual que o texto final */
+
+.field {
+  width: 100%;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--text-primary);
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px dashed rgba(34, 211, 238, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.55rem;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.field:focus {
+  border-color: var(--accent);
+  background: rgba(34, 211, 238, 0.08);
+}
+
+.fieldMono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+
+.textarea {
+  min-height: 4.5rem;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.compact {
+  font-size: 0.85em;
+}
+
+.adminHint {
+  margin: 0.5rem 0 0;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.sectionTools {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.sectionToolsTitle {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

@@ -989,3 +989,19 @@
     animation: fadeIn 0.25s ease both;
   }
 }
+
+.navEditSlot {
+  display: block;
+  min-width: 0;
+}
+
+.navMetaEdit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  width: 100%;
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px dashed rgba(148, 163, 184, 0.2);
+}
+

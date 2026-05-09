@@ -1,0 +1,105 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blobA,
+.blobB,
+.blobC {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.blobA {
+  width: min(120vw, 900px);
+  height: min(120vw, 900px);
+  left: -25%;
+  top: -15%;
+  background: radial-gradient(circle at 30% 40%, rgba(34, 211, 238, 0.35), rgba(99, 102, 241, 0.08) 55%, transparent 70%);
+  animation: driftA 22s ease-in-out infinite alternate;
+}
+
+.blobB {
+  width: min(100vw, 700px);
+  height: min(100vw, 700px);
+  right: -20%;
+  top: 35%;
+  background: radial-gradient(circle at 60% 50%, rgba(99, 102, 241, 0.22), rgba(34, 211, 238, 0.06) 50%, transparent 65%);
+  animation: driftB 28s ease-in-out infinite alternate;
+}
+
+.blobC {
+  width: min(90vw, 600px);
+  height: min(90vw, 600px);
+  left: 15%;
+  bottom: -25%;
+  background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.18), transparent 62%);
+  animation: driftC 18s ease-in-out infinite alternate;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.35) 1px, transparent 1px);
+  background-size: 56px 56px;
+  animation: gridPulse 14s ease-in-out infinite;
+}
+
+@keyframes driftA {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(8%, 12%) scale(1.08);
+  }
+}
+
+@keyframes driftB {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-10%, -6%) scale(1.05);
+  }
+}
+
+@keyframes driftC {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(5%, -10%) scale(1.12);
+  }
+}
+
+@keyframes gridPulse {
+  0%,
+  100% {
+    opacity: 0.035;
+  }
+  50% {
+    opacity: 0.055;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blobA,
+  .blobB,
+  .blobC {
+    animation: none;
+  }
+
+  .grid {
+    animation: none;
+    opacity: 0.04;
+  }
+}

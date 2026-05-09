@@ -1,20 +1,27 @@
-/** Rotas públicas do portfólio (um path por seção). */
+/** Página única: navegação por scroll (URL só `/`, sem hash na barra). */
 export const portfolioPaths = {
   home: '/',
-  projects: '/projetos',
-  skills: '/skills',
-  architecture: '/arquitetura',
-  about: '/sobre',
-  contact: '/contato',
 } as const
 
-export type PortfolioNavKey = keyof typeof portfolioPaths
+/** IDs dos elementos `<section>` na página inicial (âncoras). */
+export const PORTFOLIO_SECTION_IDS = {
+  home: 'home',
+  projects: 'projetos',
+  skills: 'skills',
+  architecture: 'arquitetura',
+  about: 'sobre',
+  contact: 'contato',
+} as const
 
-export const PORTFOLIO_NAV: readonly { path: string; key: PortfolioNavKey }[] = [
-  { path: portfolioPaths.home, key: 'home' },
-  { path: portfolioPaths.projects, key: 'projects' },
-  { path: portfolioPaths.skills, key: 'skills' },
-  { path: portfolioPaths.architecture, key: 'architecture' },
-  { path: portfolioPaths.about, key: 'about' },
-  { path: portfolioPaths.contact, key: 'contact' },
-] as const
+export type PortfolioNavKey = keyof typeof PORTFOLIO_SECTION_IDS
+
+export const PORTFOLIO_NAV: readonly { sectionId: (typeof PORTFOLIO_SECTION_IDS)[PortfolioNavKey]; key: PortfolioNavKey }[] =
+  [
+    { sectionId: PORTFOLIO_SECTION_IDS.home, key: 'home' },
+    { sectionId: PORTFOLIO_SECTION_IDS.projects, key: 'projects' },
+    { sectionId: PORTFOLIO_SECTION_IDS.skills, key: 'skills' },
+    { sectionId: PORTFOLIO_SECTION_IDS.architecture, key: 'architecture' },
+    { sectionId: PORTFOLIO_SECTION_IDS.about, key: 'about' },
+    { sectionId: PORTFOLIO_SECTION_IDS.contact, key: 'contact' },
+  ] as const
+

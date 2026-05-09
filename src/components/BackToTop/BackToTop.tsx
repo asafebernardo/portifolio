@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useSite } from '../../i18n/SiteProvider'
+import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import styles from './BackToTop.module.css'
 
 export function BackToTop() {
-  const { content } = useSite()
+  const { content } = usePortfolioDisplay()
   const [show, setShow] = useState(false)
 
   useEffect(() => {

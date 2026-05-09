@@ -7,7 +7,7 @@ export default function AdminDashboard() {
 
   function handleLogout() {
     logout()
-    navigate('/admin/login', { replace: true })
+    navigate('/login', { replace: true })
   }
 
   return (
@@ -16,11 +16,11 @@ export default function AdminDashboard() {
         <p className={styles.kicker}>Área administrativa</p>
         <h1 className={styles.title}>Como deseja editar?</h1>
         <p className={styles.lead}>
-          O modo recomendado é no próprio portfólio: formulários em português e tradução automática para inglês ao salvar.
+          O modo recomendado é o assistente por etapas no site (textos em português).
         </p>
         <div className={styles.actions}>
-          <Link className={styles.primary} to="/?edit=1">
-            Abrir editor visual no site
+          <Link className={styles.primary} to="/editar">
+            Abrir editor assistido
           </Link>
           <Link className={styles.secondary} to="/admin/json">
             Editor JSON (avançado)
@@ -30,7 +30,7 @@ export default function AdminDashboard() {
           </button>
         </div>
         <p className={styles.hint}>
-          Depois de logado, na página inicial aparece também o botão flutuante <strong>Editar site</strong>.
+          Na página inicial também aparece o botão flutuante <strong>Editar</strong> enquanto estiver logado.
         </p>
       </div>
     </div>

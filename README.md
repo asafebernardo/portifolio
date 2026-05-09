@@ -6,7 +6,7 @@ Single-page portfolio site with a dark SaaS-style theme, **Portuguese and Englis
 
 - **Sections**: Hero, projects, skills, architecture / stack, about, contact, and footer.
 - **i18n**: PT/EN toggle in the header; page metadata (`DocumentMeta`) per language.
-- **Admin**: Sign in at `/admin/login` with credentials from `.env`; after login you are redirected to `/?edit=1` with the side editor.
+- **Admin**: Sign in at `/login` with credentials from `.env`; after login you are redirected to `/?edit=1` with the side editor.
 - **Visual editor**: Forms for configuration (links, profile photo), Portuguese copy, and Portuguese projects. The dock action **Salvar tudo + gerar inglês** persists changes to the browser `localStorage` and generates the English version via the translation API (MyMemory).
 - **Raw JSON**: `/admin/json` to edit the same data as JSON (admin session required).
 - **Profile photo**: Thumbnail in the navbar; click opens a larger image in a modal (not shown in the hero).
@@ -14,7 +14,7 @@ Single-page portfolio site with a dark SaaS-style theme, **Portuguese and Englis
 ## Stack
 
 - [Vite](https://vitejs.dev/) + [React](https://react.dev/) 19 + [TypeScript](https://www.typescriptlang.org/)
-- [React Router](https://reactrouter.com/) for routes (`/`, `/admin`, `/admin/login`, `/admin/json`)
+- [React Router](https://reactrouter.com/) for routes (`/`, `/login`, `/admin`, `/admin/json`)
 - CSS Modules and global styles in `src/index.css`
 
 ## Requirements
@@ -78,7 +78,7 @@ In **edit mode**, saved changes are stored in **`localStorage`** (keys like `por
 ## In-site editor
 
 1. Set `VITE_ADMIN_USERNAME` and `VITE_ADMIN_PASSWORD` in `.env` and restart `npm run dev`.
-2. Go to `/admin/login` and sign in with those credentials.
+2. Go to `/login` and sign in with those credentials.
 3. The site opens with `?edit=1` and the **side panel** (dock). You can open or close it; the `edit=1` query controls visibility.
 4. Click **Salvar tudo + gerar inglês** in the dock to persist in the browser and generate EN from PT.
 

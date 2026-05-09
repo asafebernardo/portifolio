@@ -50,6 +50,18 @@ export type TimelineEntry = {
   body: string
 }
 
+/** Segmentos após CONTACT_URL_BASE / mailto (passo Contato no editor). */
+export type ContactLinkSegments = {
+  /** Endereço para mailto (ex.: contato@mail.com). */
+  email: string
+  /** Utilizador ou caminho após github.com/ */
+  github: string
+  /** Slug após linkedin.com/in/ */
+  linkedin: string
+  /** Número com código do país (dígitos; pode incluir espaços, são removidos na URL). */
+  whatsapp: string
+}
+
 export type SiteContent = {
   meta: {
     title: string
@@ -130,13 +142,14 @@ export type SiteContent = {
     messagePlaceholder: string
     submit: string
     feedback: string
-    channelsTitle: string
     channelLabels: {
       email: string
       github: string
       linkedin: string
       whatsapp: string
     }
+    /** Caminhos combinados com URLs base fixas; ver `contactLinks.ts`. */
+    linkSegments: ContactLinkSegments
   }
   footer: {
     note: string

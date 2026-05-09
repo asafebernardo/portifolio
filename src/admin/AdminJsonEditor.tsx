@@ -57,7 +57,7 @@ export default function AdminJsonEditor() {
 
   function handleLogout() {
     logout()
-    navigate('/admin/login', { replace: true })
+    navigate('/login', { replace: true })
   }
 
   return (

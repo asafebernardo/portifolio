@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import type { Locale } from '../../site/types'
-import { PORTFOLIO_NAV, portfolioPaths } from '../../site/portfolioPaths'
-import { useSite } from '../../i18n/SiteProvider'
-import { useVisualTheme } from '../../theme/VisualThemeProvider'
+import { useEffect, useMemo, useState } from 'react'
+import { PORTFOLIO_NAV, PORTFOLIO_SECTION_IDS } from '../../site/portfolioPaths'
+import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
+import { usePortfolioSectionSpy } from '../../hooks/usePortfolioSectionSpy'
+import { PortfolioSectionLink } from '../PortfolioSectionLink/PortfolioSectionLink'
 import styles from './Header.module.css'
 
+const SECTION_IDS = PORTFOLIO_NAV.map((i) => i.sectionId)
+
 export function Header() {
-  const { config, content, locale, setLocale } = useSite()
-  const { theme, setTheme } = useVisualTheme()
+  const { config, content } = usePortfolioDisplay()
   const profilePhoto = config.profilePhoto?.trim()
   const { nav } = content
+  const sectionIds = useMemo(() => SECTION_IDS, [])
+  const activeSectionId = usePortfolioSectionSpy(sectionIds)
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [photoModalOpen, setPhotoModalOpen] = useState(false)
@@ -38,9 +40,11 @@ export function Header() {
     return () => window.removeEventListener('keydown', onKey)
   }, [photoModalOpen])
 
-  function pickLocale(next: Locale) {
-    setLocale(next)
-    setOpen(false)
+  function navActive(sectionId: string): boolean {
+    if (sectionId === PORTFOLIO_SECTION_IDS.home) {
+      return activeSectionId === PORTFOLIO_SECTION_IDS.home
+    }
+    return activeSectionId === sectionId
   }
 
   return (
@@ -67,13 +71,21 @@ export function Header() {
                 />
               </button>
             ) : (
-              <Link to={portfolioPaths.home} className={styles.brandMarkLink} onClick={() => setOpen(false)}>
+              <PortfolioSectionLink
+                sectionId={PORTFOLIO_SECTION_IDS.home}
+                className={styles.brandMarkLink}
+                onNavigate={() => setOpen(false)}
+              >
                 <span className={styles.brandMark} aria-hidden="true" />
-              </Link>
+              </PortfolioSectionLink>
             )}
-            <Link to={portfolioPaths.home} className={styles.brandNameLink} onClick={() => setOpen(false)}>
+            <PortfolioSectionLink
+              sectionId={PORTFOLIO_SECTION_IDS.home}
+              className={styles.brandNameLink}
+              onNavigate={() => setOpen(false)}
+            >
               <span className={styles.brandText}>{config.brandName}</span>
-            </Link>
+            </PortfolioSectionLink>
           </div>
 
           <nav
@@ -83,69 +95,26 @@ export function Header() {
           >
             <ul className={styles.list}>
               {PORTFOLIO_NAV.map((item) => (
-                <li key={item.path}>
-                  <NavLink
-                    to={item.path}
-                    end={item.path === portfolioPaths.home}
-                    className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}
-                    onClick={() => setOpen(false)}
+                <li key={item.sectionId}>
+                  <PortfolioSectionLink
+                    sectionId={item.sectionId}
+                    className={`${styles.link} ${navActive(item.sectionId) ? styles.linkActive : ''}`}
+                    onNavigate={() => setOpen(false)}
                   >
                     {nav[item.key]}
-                  </NavLink>
+                  </PortfolioSectionLink>
                 </li>
               ))}
             </ul>
 
             <div className={styles.actions}>
-              <div
-                className={styles.themeSwitch}
-                role="radiogroup"
-                aria-label={locale === 'pt' ? 'Visual do site' : 'Site appearance'}
+              <PortfolioSectionLink
+                sectionId={PORTFOLIO_SECTION_IDS.projects}
+                className={styles.cta}
+                onNavigate={() => setOpen(false)}
               >
-                <div className={styles.themeSwitchTrack}>
-                  <span
-                    className={`${styles.themeSwitchThumb} ${theme === 'xp' ? styles.themeSwitchThumbRight : ''}`}
-                    aria-hidden
-                  />
-                  <button
-                    type="button"
-                    role="radio"
-                    aria-checked={theme === 'pro'}
-                    className={`${styles.themeSwitchBtn} ${theme === 'pro' ? styles.themeSwitchBtnOn : ''}`}
-                    onClick={() => setTheme('pro')}
-                  >
-                    Pro
-                  </button>
-                  <button
-                    type="button"
-                    role="radio"
-                    aria-checked={theme === 'xp'}
-                    className={`${styles.themeSwitchBtn} ${theme === 'xp' ? styles.themeSwitchBtnOn : ''}`}
-                    onClick={() => setTheme('xp')}
-                  >
-                    XP
-                  </button>
-                </div>
-              </div>
-              <div className={styles.lang} role="group" aria-label={nav.ariaLanguage}>
-                <button
-                  type="button"
-                  className={`${styles.langBtn} ${locale === 'pt' ? styles.langActive : ''}`}
-                  onClick={() => pickLocale('pt')}
-                >
-                  PT
-                </button>
-                <button
-                  type="button"
-                  className={`${styles.langBtn} ${locale === 'en' ? styles.langActive : ''}`}
-                  onClick={() => pickLocale('en')}
-                >
-                  EN
-                </button>
-              </div>
-              <Link to={portfolioPaths.projects} className={styles.cta} onClick={() => setOpen(false)}>
                 {nav.ctaProjects}
-              </Link>
+              </PortfolioSectionLink>
             </div>
           </nav>
 

@@ -128,7 +128,7 @@
   "contact": {
     "kicker": "Contato",
     "title": "Vamos conversar",
-    "sub": "Prefere formulário ou redes? Escolha o canal que for mais rápido para você.",
+    "sub": "Escolha o canal que for mais rápido para você.",
     "name": "Nome",
     "email": "Email",
     "message": "Mensagem",
@@ -137,12 +137,17 @@
     "messagePlaceholder": "Como posso ajudar?",
     "submit": "Enviar mensagem",
     "feedback": "Obrigado — em um projeto real isso partiria para um endpoint ou serviço de email.",
-    "channelsTitle": "Outros canais",
     "channelLabels": {
       "email": "Email",
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "whatsapp": "WhatsApp"
+    },
+    "linkSegments": {
+      "email": "",
+      "github": "",
+      "linkedin": "",
+      "whatsapp": ""
     }
   },
   "footer": {

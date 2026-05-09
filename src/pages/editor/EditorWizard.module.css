@@ -1,0 +1,301 @@
+.root {
+  box-sizing: border-box;
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-root);
+  color: var(--text-primary);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+}
+
+.headerInner {
+  max-width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0.65rem 1rem;
+  box-sizing: border-box;
+}
+
+.headerTitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem 1.25rem;
+}
+
+@media (max-width: 720px) {
+  .headerToolbar {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.headerTitleCol {
+  flex: 1;
+  min-width: 0;
+}
+
+.headerToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem 0.65rem;
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+
+.headerStepNav {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.toolbarSep {
+  flex-shrink: 0;
+  width: 1px;
+  height: 1.65rem;
+  align-self: center;
+  background: var(--border-subtle);
+  opacity: 0.85;
+}
+
+.stepBtn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.65rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.stepBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.stepBtnPrimary {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.65rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent);
+  background: rgba(34, 211, 238, 0.12);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.stepBtnLabel {
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.stepBtnPrimary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.stepBtnIcon {
+  flex-shrink: 0;
+  display: block;
+}
+
+.kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.back:hover {
+  border-color: rgba(34, 211, 238, 0.35);
+  background: rgba(34, 211, 238, 0.06);
+}
+
+.backIcon {
+  flex-shrink: 0;
+  display: block;
+}
+
+.main {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0.6rem 1rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainSplit {
+  max-width: min(1400px, 100%);
+}
+
+.workspace {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.workspaceSingle {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.editScroll {
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 0.2rem;
+}
+
+.workspace > .editScroll {
+  min-height: 0;
+}
+
+.workspaceSingle > .editScroll {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.previewColumn {
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.fallback {
+  min-height: 40vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.fallback a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.previewSection {
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.previewHeading {
+  margin: 0 0 0.25rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.previewNote {
+  margin: 0 0 0.55rem;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.previewFrame {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  overflow: auto;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: rgba(7, 9, 14, 0.55);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 960px) {
+  .workspace {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .workspace > .editScroll {
+    flex: 1 1 0;
+    min-height: min(42dvh, 320px);
+  }
+
+  .workspace > .previewColumn {
+    flex: 1 1 0;
+    min-height: min(38dvh, 280px);
+  }
+}
+
+.previewFrame :global(a),
+.previewFrame :global(button) {
+  pointer-events: none;
+  cursor: default;
+}

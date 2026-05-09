@@ -1,3 +1,4 @@
+import { normalizeContactLinkSegments } from './contactLinks'
 import type { Locale, ProjectEntry, SiteConfig, SiteContent } from './types'
 import configDefault from './config.json'
 import contentEnDefault from './content.en.json'
@@ -60,7 +61,14 @@ export function getMergedConfig(): SiteConfig {
 
 export function getMergedContent(locale: Locale): SiteContent {
   const file = locale === 'pt' ? 'contentPt' : 'contentEn'
-  return readOverride(file, defaults[file])
+  const c = readOverride(file, defaults[file])
+  return {
+    ...c,
+    contact: {
+      ...c.contact,
+      linkSegments: normalizeContactLinkSegments(c.contact?.linkSegments),
+    },
+  }
 }
 
 export function getMergedProjects(locale: Locale): ProjectEntry[] {

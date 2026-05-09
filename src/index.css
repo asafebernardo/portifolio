@@ -1,6 +1,7 @@
-/* Temas: pro (padrão) | xp */
+/* Visual Pro (único) */
 
 html[data-visual-theme='pro'] {
+  background-color: var(--bg-root);
   --xp-face: rgba(18, 22, 35, 0.65);
   --xp-window: #0e1018;
   --xp-button-hilight: rgba(255, 255, 255, 0.08);
@@ -45,51 +46,6 @@ html[data-visual-theme='pro'] {
   --scrollbar-border: rgba(7, 8, 13, 0.65);
 }
 
-html[data-visual-theme='xp'] {
-  --xp-face: #ece9d8;
-  --xp-window: #ffffff;
-  --xp-button-hilight: #ffffff;
-  --xp-button-light: #ece9d8;
-  --xp-button-shadow: #aca899;
-  --xp-button-dk-shadow: #716f64;
-  --xp-frame-active: #0054e3;
-  --xp-title-text: #ffffff;
-  --xp-desktop-top: #7ec0ff;
-  --xp-desktop-mid: #c4e2fc;
-  --xp-desktop-grass: #7ec454;
-  --xp-desktop-bottom: #4a9018;
-  --xp-selection: #316ac5;
-  --xp-selection-text: #ffffff;
-  --xp-taskbar-1: #3b82ee;
-  --xp-taskbar-2: #245edc;
-  --xp-taskbar-3: #1a47a8;
-
-  --bg-root: var(--xp-desktop-top);
-  --bg-elevated: var(--xp-window);
-  --bg-glass: var(--xp-face);
-  --border-subtle: #808080;
-  --border-glow: #0a246a;
-  --text-primary: #000000;
-  --text-secondary: #000000;
-  --text-muted: #404040;
-  --accent: #0000cc;
-  --accent-deep: #0a246a;
-  --accent-soft: #ece9d8;
-  --shadow-soft: 1px 1px 0 rgba(0, 0, 0, 0.2);
-  --shadow-glow: inset 1px 1px 0 var(--xp-button-hilight), inset -1px -1px 0 var(--xp-button-dk-shadow);
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --font-sans: Tahoma, 'MS Sans Serif', Verdana, sans-serif;
-  --font-mono: 'Lucida Console', 'Courier New', monospace;
-  --header-h: 56px;
-  --ease-out: ease;
-  --scrollbar-track: #ece9d8;
-  --scrollbar-thumb: linear-gradient(180deg, #f5f5f5, #bdbdbd);
-  --scrollbar-thumb-hover: linear-gradient(180deg, #ffffff, #d0d0d0);
-  --scrollbar-border: #696969;
-}
-
 *,
 *::before,
 *::after {
@@ -104,65 +60,42 @@ html[data-visual-theme='pro'] body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-sans);
-  background: var(--bg-root);
+  background: transparent;
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-html[data-visual-theme='xp'] body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  color: var(--text-primary);
-  line-height: 1.45;
-  -webkit-font-smoothing: auto;
-  text-rendering: auto;
-  background-color: var(--xp-desktop-top);
-  background-image: linear-gradient(
-    180deg,
-    var(--xp-desktop-top) 0%,
-    var(--xp-desktop-mid) 26%,
-    #d8ecc8 52%,
-    var(--xp-desktop-grass) 76%,
-    var(--xp-desktop-bottom) 100%
-  );
-}
-
-html[data-visual-theme='pro'] * {
+/* Barra de rolagem — documento + elementos (Firefox) */
+html[data-visual-theme='pro'] {
   scrollbar-width: thin;
   scrollbar-color: rgba(34, 211, 238, 0.55) var(--scrollbar-track);
 }
 
-html[data-visual-theme='xp'] * {
-  scrollbar-width: auto;
-  scrollbar-color: #c0c0c0 #ece9d8;
+html[data-visual-theme='xp'] {
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3c4 #e8e4dc;
 }
 
+/* WebKit / Chromium — raiz + conteúdos com overflow */
+html[data-visual-theme='pro']::-webkit-scrollbar,
+html[data-visual-theme='pro'] body::-webkit-scrollbar,
 html[data-visual-theme='pro'] *::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-html[data-visual-theme='xp'] *::-webkit-scrollbar {
-  width: 16px;
-  height: 16px;
-}
-
+html[data-visual-theme='pro']::-webkit-scrollbar-track,
+html[data-visual-theme='pro'] body::-webkit-scrollbar-track,
 html[data-visual-theme='pro'] *::-webkit-scrollbar-track {
   background: var(--scrollbar-track);
   border-radius: 100px;
   margin-block: 4px;
 }
 
-html[data-visual-theme='xp'] *::-webkit-scrollbar-track {
-  background: linear-gradient(180deg, #e8e8e8, #d0d0d0);
-  border-radius: 0;
-  margin-block: 0;
-}
-
+html[data-visual-theme='pro']::-webkit-scrollbar-thumb,
+html[data-visual-theme='pro'] body::-webkit-scrollbar-thumb,
 html[data-visual-theme='pro'] *::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
   border-radius: 100px;
@@ -170,32 +103,68 @@ html[data-visual-theme='pro'] *::-webkit-scrollbar-thumb {
   box-shadow: 0 0 12px rgba(34, 211, 238, 0.12);
 }
 
-html[data-visual-theme='xp'] *::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 0;
-  border: 2px solid;
-  border-color: var(--xp-button-hilight) var(--scrollbar-border) var(--scrollbar-border) var(--xp-button-hilight);
-}
-
+html[data-visual-theme='pro']::-webkit-scrollbar-thumb:hover,
+html[data-visual-theme='pro'] body::-webkit-scrollbar-thumb:hover,
 html[data-visual-theme='pro'] *::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
   border-color: rgba(34, 211, 238, 0.22);
 }
 
+html[data-visual-theme='pro']::-webkit-scrollbar-thumb:active,
+html[data-visual-theme='pro'] body::-webkit-scrollbar-thumb:active,
 html[data-visual-theme='pro'] *::-webkit-scrollbar-thumb:active {
   background: linear-gradient(180deg, rgba(34, 211, 238, 0.85), rgba(129, 140, 248, 0.55));
 }
 
-html[data-visual-theme='xp'] *::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover);
-}
-
+html[data-visual-theme='pro']::-webkit-scrollbar-corner,
+html[data-visual-theme='pro'] body::-webkit-scrollbar-corner,
 html[data-visual-theme='pro'] *::-webkit-scrollbar-corner {
   background: transparent;
 }
 
-*::-webkit-scrollbar-corner {
-  background: var(--scrollbar-track);
+/* Tema XP — trilho claro e “thumb” tipo clássico */
+html[data-visual-theme='xp']::-webkit-scrollbar,
+html[data-visual-theme='xp'] body::-webkit-scrollbar,
+html[data-visual-theme='xp'] *::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+html[data-visual-theme='xp']::-webkit-scrollbar-track,
+html[data-visual-theme='xp'] body::-webkit-scrollbar-track,
+html[data-visual-theme='xp'] *::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #f2f0ea 0%, #e8e4dc 45%, #ddd8cf 100%);
+  border: 1px solid #aca899;
+  border-radius: 0;
+}
+
+html[data-visual-theme='xp']::-webkit-scrollbar-thumb,
+html[data-visual-theme='xp'] body::-webkit-scrollbar-thumb,
+html[data-visual-theme='xp'] *::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d8dff8 0%, #b4bddc 35%, #8e96b8 100%);
+  border-radius: 0;
+  border: 1px solid;
+  border-color: #ffffff #5a5f78 #5a5f78 #ffffff;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+html[data-visual-theme='xp']::-webkit-scrollbar-thumb:hover,
+html[data-visual-theme='xp'] body::-webkit-scrollbar-thumb:hover,
+html[data-visual-theme='xp'] *::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #e8eeff 0%, #c4cce8 40%, #a0a8cc 100%);
+}
+
+html[data-visual-theme='xp']::-webkit-scrollbar-thumb:active,
+html[data-visual-theme='xp'] body::-webkit-scrollbar-thumb:active,
+html[data-visual-theme='xp'] *::-webkit-scrollbar-thumb:active {
+  border-color: #5a5f78 #ffffff #ffffff #5a5f78;
+  box-shadow: none;
+}
+
+html[data-visual-theme='xp']::-webkit-scrollbar-corner,
+html[data-visual-theme='xp'] body::-webkit-scrollbar-corner,
+html[data-visual-theme='xp'] *::-webkit-scrollbar-corner {
+  background: #e8e4dc;
 }
 
 #root {
@@ -204,6 +173,27 @@ html[data-visual-theme='pro'] *::-webkit-scrollbar-corner {
 
 main section[id] {
   scroll-margin-top: calc(var(--header-h) + 12px);
+  position: relative;
+  isolation: isolate;
+}
+
+main section[id]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 95% 65% at 50% -15%, rgba(34, 211, 238, 0.075), transparent 58%);
+  animation: sectionBgPulse 20s ease-in-out infinite alternate;
+}
+
+@keyframes sectionBgPulse {
+  0% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 a {
@@ -243,19 +233,9 @@ html[data-visual-theme='pro'] ::selection {
   color: var(--text-primary);
 }
 
-html[data-visual-theme='xp'] ::selection {
-  background: var(--xp-selection);
-  color: var(--xp-selection-text);
-}
-
 html[data-visual-theme='pro'] :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-}
-
-html[data-visual-theme='xp'] :focus-visible {
-  outline: 2px dotted #000000;
-  outline-offset: 1px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -268,5 +248,10 @@ html[data-visual-theme='xp'] :focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  main section[id]::before {
+    animation: none;
+    opacity: 0.85;
   }
 }

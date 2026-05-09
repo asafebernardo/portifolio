@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { useSite } from './SiteProvider'
+import { usePortfolioDisplay } from '../pages/portfolio/PortfolioDraftContext'
 
-/** Shown in the browser tab and og:title in every locale. */
+/** Shown in the browser tab and og:title. */
 const TAB_BRAND_TITLE = 'Asafe Bernardo'
 
 function setFaviconLink(href: string) {
@@ -26,10 +26,10 @@ function setFaviconLink(href: string) {
 }
 
 export function DocumentMeta() {
-  const { locale, content, config } = useSite()
+  const { content, config } = usePortfolioDisplay()
 
   useEffect(() => {
-    document.documentElement.lang = locale === 'pt' ? 'pt-BR' : 'en'
+    document.documentElement.lang = 'pt-BR'
     document.title = TAB_BRAND_TITLE
 
     const apply = (selector: string, attr: string, value: string) => {
@@ -43,7 +43,7 @@ export function DocumentMeta() {
 
     const photo = config.profilePhoto?.trim()
     setFaviconLink(photo && photo.length > 0 ? photo : '/favicon.svg')
-  }, [locale, content, config.profilePhoto])
+  }, [content, config.profilePhoto])
 
   return null
 }

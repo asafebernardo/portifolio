@@ -1,13 +1,34 @@
-import { Link } from 'react-router-dom'
-import { portfolioPaths } from '../../site/portfolioPaths'
-import { useSite } from '../../i18n/SiteProvider'
+import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
+import { resolveContactLinksFromContent } from '../../site/contactLinks'
+import { PortfolioSectionLink } from '../PortfolioSectionLink/PortfolioSectionLink'
+import { PORTFOLIO_SECTION_IDS } from '../../site/portfolioPaths'
 import { Reveal } from '../Reveal/Reveal'
 import styles from './Hero.module.css'
 
-export function Hero() {
-  const { config, content } = useSite()
+/** Alinha-se aos passos intro | rest do wizard */
+export type HeroPreviewScope = 'intro' | 'rest'
+
+type HeroProps = {
+  /** Wizard: mostrar só a zona editada neste passo */
+  previewScope?: HeroPreviewScope
+}
+
+export function Hero({ previewScope }: HeroProps) {
+  const { config, content } = usePortfolioDisplay()
   const { hero } = content
   const displayName = hero.title.trim() || config.brandName
+  const contactLinks = resolveContactLinksFromContent(content, config)
+
+  const showIntro = previewScope !== 'rest'
+  const showRest = previewScope !== 'intro'
+  const showGhostLinks = previewScope !== 'intro'
+
+  const innerClass =
+    previewScope === 'intro'
+      ? `${styles.inner} ${styles.innerPreviewIntroOnly}`
+      : previewScope === 'rest'
+        ? `${styles.inner} ${styles.innerPreviewRestOnly}`
+        : styles.inner
 
   return (
     <section id="home" className={styles.hero}>
@@ -16,37 +37,34 @@ export function Hero() {
         <div className={styles.grid} aria-hidden="true" />
       </div>
 
-      <div className={styles.inner}>
-        <Reveal className={styles.copy}>
-          <p className={styles.kicker}>{hero.kicker}</p>
-          <h1 className={styles.name}>{displayName}</h1>
-          <p className={styles.title}>{hero.role}</p>
-          <p className={styles.desc}>{hero.description}</p>
-          <div className={styles.actions}>
-            <Link to={portfolioPaths.projects} className={styles.primary}>
-              {hero.ctaProjects}
-            </Link>
-            <a
-              href={config.links.github}
-              target="_blank"
-              rel="noreferrer noopener"
-              className={styles.ghost}
-            >
-              {hero.github}
-            </a>
-            <a
-              href={config.links.linkedin}
-              target="_blank"
-              rel="noreferrer noopener"
-              className={styles.ghost}
-            >
-              {hero.linkedin}
-            </a>
-          </div>
-        </Reveal>
+      <div className={innerClass}>
+        {showIntro ? (
+          <Reveal className={styles.copy}>
+            <p className={styles.kicker}>{hero.kicker}</p>
+            <h1 className={styles.name}>{displayName}</h1>
+            <p className={styles.title}>{hero.role}</p>
+            <p className={styles.desc}>{hero.description}</p>
+            <div className={styles.actions}>
+              <PortfolioSectionLink sectionId={PORTFOLIO_SECTION_IDS.projects} className={styles.primary}>
+                {hero.ctaProjects}
+              </PortfolioSectionLink>
+              {showGhostLinks ? (
+                <>
+                  <a href={contactLinks.github} target="_blank" rel="noreferrer noopener" className={styles.ghost}>
+                    {hero.github}
+                  </a>
+                  <a href={contactLinks.linkedin} target="_blank" rel="noreferrer noopener" className={styles.ghost}>
+                    {hero.linkedin}
+                  </a>
+                </>
+              ) : null}
+            </div>
+          </Reveal>
+        ) : null}
 
-        <Reveal className={styles.visual}>
-          <div className={styles.mock}>
+        {showRest ? (
+          <Reveal className={styles.visual}>
+            <div className={styles.mock}>
             <div className={styles.mockHeader}>
               <span className={styles.dot} />
               <span className={styles.dot} />
@@ -92,8 +110,9 @@ export function Hero() {
               <span className={styles.floatLabel}>{hero.floatDb.label}</span>
               <span className={styles.floatSub}>{hero.floatDb.sub}</span>
             </div>
-          </div>
-        </Reveal>
+            </div>
+          </Reveal>
+        ) : null}
       </div>
     </section>
   )

@@ -95,6 +95,10 @@
     padding: 1.5rem;
     gap: 2rem;
   }
+
+  .featuredNoImage {
+    grid-template-columns: 1fr;
+  }
 }
 
 .featuredImgWrap {
@@ -254,6 +258,13 @@
   }
 }
 
+/* Wizard: um único cartão centrado na pré-visualização */
+.gridPreviewOne {
+  max-width: 420px;
+  margin-inline: auto;
+  grid-template-columns: 1fr;
+}
+
 .card {
   height: 100%;
   display: flex;
@@ -276,7 +287,7 @@
 
 .cardImg {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
@@ -302,6 +313,13 @@
   background: rgba(7, 8, 13, 0.75);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border-subtle);
+}
+
+/* Cartão sem imagem: categoria no corpo do card */
+.catInline {
+  position: static;
+  align-self: flex-start;
+  margin: 0 0 0.15rem;
 }
 
 .cardPad {
@@ -375,6 +393,121 @@
   text-align: center;
   color: var(--text-muted);
   margin-top: 2rem;
+}
+
+.editGrid {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .editGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.editField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.editLabel {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.filterAriaEdit {
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+.inlineRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.inlinePair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 160px;
+}
+
+.imageUrlRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardImageEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 0.65rem;
+  background: rgba(7, 8, 13, 0.92);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.catSelect {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  max-width: min(160px, 55%);
+  padding: 0.25rem 0.45rem !important;
+  font-size: 0.72rem !important;
+  cursor: pointer;
+}
+
+.stackEdit {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  min-height: 3rem;
+}
+
+.challengesEdit {
+  margin-top: 0.35rem;
+  width: 100%;
+  min-height: 4rem;
+}
+
+.urlPair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 140px;
+}
+
+.urlPairLabel {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.linkBtnsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.linksSm .linkBtnsRow {
+  gap: 0.5rem;
+}
+
+.linksSm .linkBtnsRow .demo,
+.linksSm .linkBtnsRow .code {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.82rem;
 }
 
 /* Windows XP */
@@ -661,7 +794,7 @@
 
 :global(html[data-visual-theme='xp']) .cardImg {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 

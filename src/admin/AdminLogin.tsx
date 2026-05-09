@@ -10,7 +10,7 @@ export default function AdminLogin() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    if (isAdminSession()) navigate('/?edit=1', { replace: true })
+    if (isAdminSession()) navigate('/editar', { replace: true })
   }, [navigate])
 
   function onSubmit(e: FormEvent) {
@@ -26,7 +26,7 @@ export default function AdminLogin() {
       setError('Usuário ou senha incorretos.')
       return
     }
-    navigate('/?edit=1', { replace: true })
+    navigate('/editar', { replace: true })
   }
 
   return (

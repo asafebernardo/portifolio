@@ -53,6 +53,21 @@
   }
 }
 
+/* Editor wizard: pré-visualização parcial (só coluna de texto ou só mock) */
+.innerPreviewIntroOnly,
+.innerPreviewRestOnly {
+  grid-template-columns: 1fr;
+  justify-items: start;
+}
+
+.innerPreviewRestOnly {
+  justify-items: center;
+}
+
+.innerPreviewIntroOnly .copy {
+  max-width: min(560px, 100%);
+}
+
 .copy {
   max-width: 560px;
 }
@@ -689,3 +704,24 @@
     right: 0;
   }
 }
+
+.containerTools {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.editBtnRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+}
+
+.editPair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1 1 200px;
+  min-width: 0;
+}
+

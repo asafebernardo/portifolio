@@ -1,8 +1,96 @@
-import { useRef, useState, type ChangeEvent } from 'react'
+import { useRef, useState, type ChangeEvent, type RefObject } from 'react'
 import type { ProjectEntry, SiteConfig } from '../site/types'
 import { fileToProfilePhotoDataUrl, fileToProjectImageDataUrl } from '../lib/profileImageUpload'
 import { Field } from './SiteEditorFields'
 import styles from './SiteEditorForms.module.css'
+import {
+  IconLoader,
+  IconPencil,
+  IconPlus,
+  IconTrash,
+  IconUpload,
+  IconX,
+} from './wizardIcons'
+
+function ImageUploadControl({
+  label,
+  image,
+  uploadBusy,
+  uploadErr,
+  fileRef,
+  onPickFile,
+  onClear,
+  previewImgClass,
+  placeholderShape,
+  removeAriaLabel,
+}: {
+  label: string
+  image: string
+  uploadBusy: boolean
+  uploadErr: string | null
+  fileRef: RefObject<HTMLInputElement | null>
+  onPickFile: (e: ChangeEvent<HTMLInputElement>) => void
+  onClear: () => void
+  previewImgClass: string
+  placeholderShape: 'round' | 'card'
+  removeAriaLabel: string
+}) {
+  const img = image.trim()
+  const ph =
+    placeholderShape === 'round' ? styles.uploadPlaceholderRound : styles.uploadPlaceholderCard
+
+  return (
+    <>
+      <span className={styles.uploadLabel}>{label}</span>
+      <div className={styles.uploadToolbar}>
+        <div className={styles.uploadPreviewCol}>
+          {img ? (
+            <img src={img} alt="" className={previewImgClass} loading="lazy" decoding="async" />
+          ) : (
+            <div className={`${styles.uploadPlaceholder} ${ph}`} aria-hidden>
+              <IconUpload className={styles.uploadPlaceholderIcon} />
+            </div>
+          )}
+        </div>
+        <div className={styles.uploadActionCol}>
+          <span className={styles.uploadActionHeading}>Ações</span>
+          <div className={styles.uploadActionBtns} role="group" aria-label="Enviar ou remover imagem">
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              className={styles.hiddenFile}
+              onChange={onPickFile}
+            />
+            <button
+              type="button"
+              className={styles.uploadBtn}
+              disabled={uploadBusy}
+              aria-label={uploadBusy ? 'A processar ficheiro' : 'Carregar ficheiro de imagem'}
+              onClick={() => fileRef.current?.click()}
+            >
+              {uploadBusy ? (
+                <IconLoader className={`${styles.btnIcon} ${styles.iconSpin}`} />
+              ) : (
+                <IconUpload className={styles.btnIcon} />
+              )}
+            </button>
+            {img ? (
+              <button type="button" className={styles.removePhoto} aria-label={removeAriaLabel} onClick={onClear}>
+                <IconX className={styles.btnIcon} />
+              </button>
+            ) : null}
+          </div>
+        </div>
+      </div>
+      {uploadErr ? (
+        <p className={styles.uploadErr} role="alert">
+          {uploadErr}
+        </p>
+      ) : null}
+    </>
+  )
+}
 
 function ProjectImageUploadBlock({
   image,
@@ -35,35 +123,18 @@ function ProjectImageUploadBlock({
 
   return (
     <div className={styles.uploadBlock}>
-      <span className={styles.uploadLabel}>Imagem do card</span>
-      {img ? (
-        <div className={styles.previewRow}>
-          <img src={img} alt="" className={styles.previewImgProject} />
-          <button type="button" className={styles.removePhoto} onClick={() => onImageChange('')}>
-            Remover imagem
-          </button>
-        </div>
-      ) : null}
-      <input
-        ref={fileRef}
-        type="file"
-        accept="image/jpeg,image/png,image/webp,image/gif"
-        className={styles.hiddenFile}
-        onChange={onPickFile}
+      <ImageUploadControl
+        label="Imagem do card (opcional)"
+        image={image}
+        uploadBusy={uploadBusy}
+        uploadErr={uploadErr}
+        fileRef={fileRef}
+        onPickFile={onPickFile}
+        onClear={() => onImageChange('')}
+        previewImgClass={styles.previewImgProject}
+        placeholderShape="card"
+        removeAriaLabel="Remover imagem do cartão"
       />
-      <button
-        type="button"
-        className={styles.uploadBtn}
-        disabled={uploadBusy}
-        onClick={() => fileRef.current?.click()}
-      >
-        {uploadBusy ? 'Processando…' : 'Upload'}
-      </button>
-      {uploadErr ? (
-        <p className={styles.uploadErr} role="alert">
-          {uploadErr}
-        </p>
-      ) : null}
       <p className={styles.help}>
         Redimensionada para caber no navegador após <strong>Salvar tudo + gerar inglês</strong>. Ou use uma URL abaixo.
       </p>
@@ -119,39 +190,18 @@ export function ConfigForm({
         <Field label="Nome da marca (logo)" value={c.brandName} onChange={(brandName) => onChange({ ...c, brandName })} />
 
         <div className={styles.uploadBlock}>
-          <span className={styles.uploadLabel}>Foto de perfil</span>
-          {photo ? (
-            <div className={styles.previewRow}>
-              <img src={photo} alt="" className={styles.previewImg} />
-              <button
-                type="button"
-                className={styles.removePhoto}
-                onClick={() => onChange({ ...c, profilePhoto: '' })}
-              >
-                Remover foto
-              </button>
-            </div>
-          ) : null}
-          <input
-            ref={fileRef}
-            type="file"
-            accept="image/jpeg,image/png,image/webp,image/gif"
-            className={styles.hiddenFile}
-            onChange={onPickFile}
+          <ImageUploadControl
+            label="Foto de perfil"
+            image={photo}
+            uploadBusy={uploadBusy}
+            uploadErr={uploadErr}
+            fileRef={fileRef}
+            onPickFile={onPickFile}
+            onClear={() => onChange({ ...c, profilePhoto: '' })}
+            previewImgClass={styles.previewImg}
+            placeholderShape="round"
+            removeAriaLabel="Remover foto de perfil"
           />
-          <button
-            type="button"
-            className={styles.uploadBtn}
-            disabled={uploadBusy}
-            onClick={() => fileRef.current?.click()}
-          >
-            {uploadBusy ? 'Processando…' : 'Upload'}
-          </button>
-          {uploadErr ? (
-            <p className={styles.uploadErr} role="alert">
-              {uploadErr}
-            </p>
-          ) : null}
           <p className={styles.help}>
             A foto aparece na <strong>barra superior</strong> e como <strong>ícone da aba</strong> (favicon); clique na
             miniatura para ampliar. Guardada neste navegador após <strong>Salvar tudo + gerar inglês</strong>.
@@ -174,9 +224,9 @@ export function ConfigForm({
         )}
 
         <p className={styles.help}>
-          <strong>Links do bloco Contato</strong> (URLs mailto, GitHub, LinkedIn, WhatsApp e textos exibidos ao lado)
-          não são editáveis aqui. Ajuste em <code>src/site/config.json</code> no repositório ou em{' '}
-          <strong>Admin → Editor JSON → config.json</strong>.
+          <strong>Links do bloco Contato</strong>: edite os segmentos no passo <strong>Contato → Links dos canais</strong>{' '}
+          (URL base fixa + utilizador ou caminho). Os valores em <code>config.json</code> servem de reserva quando um
+          segmento está vazio.
         </p>
       </div>
     </>
@@ -220,6 +270,8 @@ export function ProjectsPtForm({
   activeIndex: number
   onActiveIndexChange: (i: number) => void
 }) {
+  const editPanelRef = useRef<HTMLDivElement>(null)
+
   const safeIdx =
     projects.length === 0 ? 0 : Math.min(Math.max(0, activeIndex), projects.length - 1)
   const p = projects[safeIdx]
@@ -230,13 +282,28 @@ export function ProjectsPtForm({
     onActiveIndexChange(next.length - 1)
   }
 
+  function removeActiveProject() {
+    if (!window.confirm('Remover este projeto da lista?')) return
+    const filtered = projects.filter((_, i) => i !== safeIdx)
+    onChange(filtered)
+    onActiveIndexChange(Math.min(safeIdx, Math.max(0, filtered.length - 1)))
+  }
+
+  function scrollToEditPanel() {
+    editPanelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    const first = editPanelRef.current?.querySelector<HTMLInputElement | HTMLTextAreaElement>(
+      'input:not([type="checkbox"]), textarea',
+    )
+    window.requestAnimationFrame(() => first?.focus())
+  }
+
   if (projects.length === 0) {
     return (
       <>
         <p className={styles.sectionTitle}>Projetos (PT)</p>
         <p className={styles.help}>Nenhum card ainda. Stack e links de demo/código não entram na tradução automática.</p>
-        <button type="button" className={styles.addProject} onClick={addProject}>
-          + Adicionar projeto
+        <button type="button" className={styles.addProject} aria-label="Adicionar projeto" onClick={addProject}>
+          <IconPlus className={styles.btnIcon} />
         </button>
       </>
     )
@@ -247,45 +314,55 @@ export function ProjectsPtForm({
   return (
     <>
       <p className={styles.sectionTitle}>Projetos (PT)</p>
-      <p className={styles.help}>Um card por vez. Stack e URLs de demo/código não são traduzidos automaticamente.</p>
-      <div className={styles.projectSectionNav} role="tablist" aria-label="Projeto a editar">
-        {projects.map((proj, i) => {
-          const label = proj.title.trim() || `Projeto ${i + 1}`
-          return (
-            <button
-              key={`${proj.id}-${i}`}
-              type="button"
-              role="tab"
-              aria-selected={i === pi}
-              className={`${styles.projectSectionNavBtn} ${i === pi ? styles.projectSectionNavBtnOn : ''}`}
-              onClick={() => onActiveIndexChange(i)}
-            >
-              {label.length > 22 ? `${label.slice(0, 20)}…` : label}
-            </button>
-          )
-        })}
-        <button type="button" className={styles.projectSectionNavAdd} onClick={addProject} title="Novo projeto">
-          + Novo
-        </button>
+      <p className={styles.help}>Escolha o cartão, depois edite os campos ou remova o projeto.</p>
+
+      <div className={styles.projectToolbar}>
+        <div className={styles.projectPicker}>
+          <label className={styles.projectPickerLabel} htmlFor="wizard-project-picker">
+            Projeto a editar
+          </label>
+          <select
+            id="wizard-project-picker"
+            className={styles.projectSelect}
+            value={pi}
+            aria-label="Selecionar projeto a editar"
+            onChange={(e) => onActiveIndexChange(Number.parseInt(e.target.value, 10))}
+          >
+            {projects.map((proj, i) => {
+              const label = proj.title.trim() || `Projeto ${i + 1}`
+              return (
+                <option key={`${proj.id}-${i}`} value={i}>
+                  {label}
+                </option>
+              )
+            })}
+          </select>
+        </div>
+
+        <div className={styles.projectActions}>
+          <button type="button" className={styles.addProjectInline} aria-label="Novo projeto" onClick={addProject}>
+            <IconPlus className={styles.btnIcon} />
+          </button>
+          <button
+            type="button"
+            className={styles.editProjectBtn}
+            aria-label="Ir para os campos de edição"
+            onClick={scrollToEditPanel}
+          >
+            <IconPencil className={styles.btnIcon} />
+          </button>
+          <button type="button" className={styles.removeProject} aria-label="Remover projeto" onClick={removeActiveProject}>
+            <IconTrash className={styles.btnIcon} />
+          </button>
+        </div>
       </div>
+
       {p ? (
-        <div className={styles.projectCard}>
+        <div ref={editPanelRef} id="wizard-project-edit-panel" className={styles.projectCard}>
           <div className={styles.projectCardHead}>
             <p className={styles.projectTitle}>
               {p.id} · stack: {p.stack.join(', ')}
             </p>
-            <button
-              type="button"
-              className={styles.removeProject}
-              onClick={() => {
-                if (!window.confirm('Remover este projeto da lista?')) return
-                const filtered = projects.filter((_, i) => i !== pi)
-                onChange(filtered)
-                onActiveIndexChange(Math.min(pi, Math.max(0, filtered.length - 1)))
-              }}
-            >
-              Remover
-            </button>
           </div>
           <Field
             label="ID (slug único, ex.: meu-app)"

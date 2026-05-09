@@ -1,9 +1,9 @@
-import { useSite } from '../../i18n/SiteProvider'
+import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
 import styles from './Skills.module.css'
 
 export function Skills() {
-  const { content } = useSite()
+  const { content } = usePortfolioDisplay()
   const { skills } = content
 
   return (
@@ -18,8 +18,8 @@ export function Skills() {
         </Reveal>
 
         <div className={styles.grid}>
-          {skills.groups.map((g) => (
-            <Reveal key={g.title}>
+          {skills.groups.map((g, gi) => (
+            <Reveal key={`${gi}-${g.title}`}>
               <article className={styles.card}>
                 <h3 className={styles.cardTitle}>{g.title}</h3>
                 <ul className={styles.list}>

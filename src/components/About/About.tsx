@@ -1,9 +1,9 @@
-import { useSite } from '../../i18n/SiteProvider'
+import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
 import styles from './About.module.css'
 
 export function About() {
-  const { content } = useSite()
+  const { content } = usePortfolioDisplay()
   const { about } = content
 
   return (
@@ -22,7 +22,7 @@ export function About() {
           <Reveal>
             <ol className={styles.timeline}>
               {about.timeline.map((t, i) => (
-                <li key={`${t.phase}-${t.title}`} className={styles.tItem}>
+                <li key={`${t.phase}-${t.title}-${i}`} className={styles.tItem}>
                   <span className={styles.marker} aria-hidden="true">
                     {String(i + 1).padStart(2, '0')}
                   </span>

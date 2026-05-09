@@ -1,8 +1,17 @@
 import { portfolioPaths } from '../site/portfolioPaths'
 import type { ContentPtSectionId } from './contentPtSections'
 
-/** Textos editáveis na home (hero + meta navegação global + rodapé). */
-const HOME_CONTENT_SECTIONS: ContentPtSectionId[] = ['hero', 'seo', 'nav', 'footer']
+/** Conteúdo editável na página única (referência para futuras extensões). */
+const ALL_CONTENT_SECTIONS: ContentPtSectionId[] = [
+  'seo',
+  'hero',
+  'projects',
+  'skills',
+  'architecture',
+  'about',
+  'contact',
+  'footer',
+]
 
 export function normalizePortfolioPathname(pathname: string): string {
   const p = pathname.trim()
@@ -10,24 +19,16 @@ export function normalizePortfolioPathname(pathname: string): string {
   return p.replace(/\/+$/, '') || portfolioPaths.home
 }
 
-/** Quais blocos de `content.pt.json` podem ser editados nesta rota. */
-export function getEditorContentSectionIds(pathname: string): ContentPtSectionId[] {
-  const p = normalizePortfolioPathname(pathname)
-  if (p === portfolioPaths.home) return [...HOME_CONTENT_SECTIONS]
-  if (p === portfolioPaths.projects) return ['projects']
-  if (p === portfolioPaths.skills) return ['skills']
-  if (p === portfolioPaths.architecture) return ['architecture']
-  if (p === portfolioPaths.about) return ['about']
-  if (p === portfolioPaths.contact) return ['contact']
-  return [...HOME_CONTENT_SECTIONS]
+export function getEditorContentSectionIds(_pathname: string): ContentPtSectionId[] {
+  return [...ALL_CONTENT_SECTIONS]
 }
 
-export function editorAllowsConfigTab(pathname: string): boolean {
-  return normalizePortfolioPathname(pathname) === portfolioPaths.home
+export function editorAllowsConfigTab(_pathname: string): boolean {
+  return true
 }
 
-export function editorAllowsProjectsTab(pathname: string): boolean {
-  return normalizePortfolioPathname(pathname) === portfolioPaths.projects
+export function editorAllowsProjectsTab(_pathname: string): boolean {
+  return true
 }
 
 export function pickContentSectionForPath(
@@ -39,16 +40,6 @@ export function pickContentSectionForPath(
   return allowed[0]!
 }
 
-/** Rótulo curto da página no editor (PT). */
-export function getEditorPathLabel(pathname: string): string {
-  const p = normalizePortfolioPathname(pathname)
-  const labels: Record<string, string> = {
-    [portfolioPaths.home]: 'Home',
-    [portfolioPaths.projects]: 'Projetos',
-    [portfolioPaths.skills]: 'Skills',
-    [portfolioPaths.architecture]: 'Arquitetura',
-    [portfolioPaths.about]: 'Sobre',
-    [portfolioPaths.contact]: 'Contato',
-  }
-  return labels[p] ?? p
+export function getEditorPathLabel(_pathname: string): string {
+  return 'Página única'
 }

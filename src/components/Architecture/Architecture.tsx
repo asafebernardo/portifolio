@@ -1,9 +1,9 @@
-import { useSite } from '../../i18n/SiteProvider'
+import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
 import styles from './Architecture.module.css'
 
 export function Architecture() {
-  const { content } = useSite()
+  const { content } = usePortfolioDisplay()
   const { architecture: a } = content
 
   return (
