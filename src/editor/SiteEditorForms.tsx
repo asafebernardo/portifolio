@@ -1,6 +1,8 @@
 import { useRef, useState, type ChangeEvent, type RefObject } from 'react'
 import type { ProjectEntry, SiteConfig } from '../site/types'
+import { imageAnonymousProps } from '../lib/imageLoadProps'
 import { fileToProfilePhotoDataUrl, fileToProjectImageDataUrl } from '../lib/profileImageUpload'
+import { saveImageToProject } from '../lib/saveImageToProject'
 import { Field } from './SiteEditorFields'
 import styles from './SiteEditorForms.module.css'
 import {
@@ -45,7 +47,14 @@ function ImageUploadControl({
       <div className={styles.uploadToolbar}>
         <div className={styles.uploadPreviewCol}>
           {img ? (
-            <img src={img} alt="" className={previewImgClass} loading="lazy" decoding="async" />
+            <img
+              src={img}
+              alt=""
+              className={previewImgClass}
+              loading="lazy"
+              decoding="async"
+              {...imageAnonymousProps(img)}
+            />
           ) : (
             <div className={`${styles.uploadPlaceholder} ${ph}`} aria-hidden>
               <IconUpload className={styles.uploadPlaceholderIcon} />
@@ -111,7 +120,8 @@ function ProjectImageUploadBlock({
     setUploadBusy(true)
     try {
       const dataUrl = await fileToProjectImageDataUrl(file)
-      onImageChange(dataUrl)
+      const url = await saveImageToProject(dataUrl, 'project')
+      onImageChange(url)
     } catch (err) {
       setUploadErr(err instanceof Error ? err.message : 'Erro ao processar a imagem.')
     } finally {
@@ -136,7 +146,8 @@ function ProjectImageUploadBlock({
         removeAriaLabel="Remover imagem do cartão"
       />
       <p className={styles.help}>
-        Redimensionada para caber no navegador após <strong>Salvar tudo + gerar inglês</strong>. Ou use uma URL abaixo.
+        Gravada em <code>public/uploads/</code> ao carregar o ficheiro (com <strong>npm run dev</strong> ou{' '}
+        <strong>npm run preview</strong>). Ou use uma URL abaixo.
       </p>
       {img.startsWith('data:') ? (
         <p className={styles.help}>
@@ -173,7 +184,8 @@ export function ConfigForm({
     setUploadBusy(true)
     try {
       const dataUrl = await fileToProfilePhotoDataUrl(file)
-      onChange({ ...c, profilePhoto: dataUrl })
+      const url = await saveImageToProject(dataUrl, 'profile')
+      onChange({ ...c, profilePhoto: url })
     } catch (err) {
       setUploadErr(err instanceof Error ? err.message : 'Erro ao processar a imagem.')
     } finally {
@@ -204,7 +216,9 @@ export function ConfigForm({
           />
           <p className={styles.help}>
             A foto aparece na <strong>barra superior</strong> e como <strong>ícone da aba</strong> (favicon); clique na
-            miniatura para ampliar. Guardada neste navegador após <strong>Salvar tudo + gerar inglês</strong>.
+            miniatura para ampliar. O ficheiro é gravado em <code>public/uploads/</code> ao carregar (com{' '}
+            <strong>npm run dev</strong> ou <strong>npm run preview</strong>); o caminho é guardado ao{' '}
+            <strong>Salvar tudo + gerar inglês</strong>.
           </p>
         </div>
 

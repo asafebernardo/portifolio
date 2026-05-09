@@ -50,7 +50,9 @@ export function PortfolioSaveBar({ variant = 'bottom' }: { variant?: 'bottom' | 
             Alterações guardadas
           </h2>
           <p className={styles.confirmBody}>
-            Textos em português, configuração e projetos foram guardados neste navegador (localStorage).
+            Textos em português, configuração e projetos foram guardados neste navegador (localStorage). Imagens
+            carregadas no editor ficam em <code>public/uploads/</code> no disco (com <code>npm run dev</code> ou{' '}
+            <code>npm run preview</code>) e o caminho é guardado aqui.
           </p>
           <button type="button" className={styles.confirmOk} onClick={() => setSavedOpen(false)}>
             OK

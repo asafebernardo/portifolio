@@ -12,6 +12,11 @@ function setFaviconLink(href: string) {
     document.head.appendChild(link)
   }
   link.href = href
+  if (href.startsWith('data:')) {
+    link.removeAttribute('crossorigin')
+  } else {
+    link.crossOrigin = 'anonymous'
+  }
   if (href.startsWith('data:image/jpeg') || href.startsWith('data:image/jpg')) {
     link.type = 'image/jpeg'
   } else if (href.startsWith('data:image/png')) {

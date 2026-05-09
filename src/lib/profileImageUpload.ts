@@ -4,7 +4,7 @@ const JPEG_QUALITY = 0.82
 const MAX_INPUT_BYTES = 12 * 1024 * 1024
 
 /**
- * Lê um arquivo de imagem, redimensiona e exporta JPEG para caber no localStorage.
+ * Lê um ficheiro de imagem, redimensiona e exporta JPEG (para gravar em `public/uploads/` via Vite).
  * @param maxEdge maior lado em px após redimensionar
  */
 export async function fileToJpegDataUrl(file: File, maxEdge: number): Promise<string> {

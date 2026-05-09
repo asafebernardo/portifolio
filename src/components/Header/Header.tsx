@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { imageAnonymousProps } from '../../lib/imageLoadProps'
 import { PORTFOLIO_NAV, PORTFOLIO_SECTION_IDS } from '../../site/portfolioPaths'
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { usePortfolioSectionSpy } from '../../hooks/usePortfolioSectionSpy'
@@ -68,6 +69,7 @@ export function Header() {
                   width={36}
                   height={36}
                   decoding="async"
+                  {...imageAnonymousProps(profilePhoto)}
                 />
               </button>
             ) : (
@@ -167,6 +169,7 @@ export function Header() {
                 alt={`Foto de ${config.brandName}`}
                 className={styles.photoModalImg}
                 decoding="async"
+                {...imageAnonymousProps(profilePhoto)}
               />
             </div>
           </div>

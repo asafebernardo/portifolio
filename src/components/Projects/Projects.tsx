@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { imageAnonymousProps } from '../../lib/imageLoadProps'
 import type { FilterId, ProjectEntry, SiteContent } from '../../site/types'
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
@@ -48,7 +49,13 @@ export function Projects({ previewProjectIndex }: ProjectsProps = {}) {
                 <article className={styles.card}>
                   {hasProjectImage(previewProj.image) ? (
                     <div className={styles.cardImg}>
-                      <img src={previewProj.image} alt="" loading="lazy" decoding="async" />
+                      <img
+                        src={previewProj.image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        {...imageAnonymousProps(previewProj.image)}
+                      />
                       <span className={styles.cat}>{p.categories[previewProj.category]}</span>
                     </div>
                   ) : null}
@@ -109,7 +116,14 @@ export function Projects({ previewProjectIndex }: ProjectsProps = {}) {
             >
               {hasProjectImage(featured.image) ? (
                 <div className={styles.featuredImgWrap}>
-                  <img src={featured.image} alt="" className={styles.img} loading="lazy" decoding="async" />
+                  <img
+                    src={featured.image}
+                    alt=""
+                    className={styles.img}
+                    loading="lazy"
+                    decoding="async"
+                    {...imageAnonymousProps(featured.image)}
+                  />
                   <div className={styles.featuredGlow} aria-hidden="true" />
                 </div>
               ) : null}
@@ -127,7 +141,13 @@ export function Projects({ previewProjectIndex }: ProjectsProps = {}) {
               <article className={styles.card}>
                 {hasProjectImage(proj.image) ? (
                   <div className={styles.cardImg}>
-                    <img src={proj.image} alt="" loading="lazy" decoding="async" />
+                    <img
+                      src={proj.image}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      {...imageAnonymousProps(proj.image)}
+                    />
                     <span className={styles.cat}>{p.categories[proj.category]}</span>
                   </div>
                 ) : null}
