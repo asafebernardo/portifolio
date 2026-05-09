@@ -10,18 +10,16 @@ import {
 import type { Locale, ProjectEntry, SiteConfig, SiteContent } from '../site/types'
 import { getMergedConfig, getMergedContent, getMergedProjects } from '../site/overrides'
 
-/** Resolve pt | en from the browser's preferred languages (no manual selector). */
-export function localeFromNavigator(): Locale {
-  if (typeof navigator === 'undefined') return 'en'
-  const list =
-    navigator.languages && navigator.languages.length > 0
-      ? navigator.languages
-      : [navigator.language || 'en']
-  for (const raw of list) {
-    const primary = raw.toLowerCase().split('-')[0] ?? ''
-    if (primary === 'pt') return 'pt'
-    if (primary === 'en') return 'en'
+const STORAGE_KEY = 'portfolio-locale'
+
+function readInitialLocale(): Locale {
+  try {
+    const s = localStorage.getItem(STORAGE_KEY)
+    if (s === 'pt' || s === 'en') return s
+  } catch {
+    /* private mode */
   }
+  if (typeof navigator !== 'undefined' && navigator.language.toLowerCase().startsWith('pt')) return 'pt'
   return 'en'
 }
 
@@ -36,7 +34,7 @@ type SiteContextValue = {
 const SiteContext = createContext<SiteContextValue | null>(null)
 
 export function SiteProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => localeFromNavigator())
+  const [locale, setLocaleState] = useState<Locale>(readInitialLocale)
   const [revision, setRevision] = useState(0)
 
   useEffect(() => {
@@ -49,14 +47,13 @@ export function SiteProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  useEffect(() => {
-    const sync = () => setLocaleState(localeFromNavigator())
-    window.addEventListener('languagechange', sync)
-    return () => window.removeEventListener('languagechange', sync)
-  }, [])
-
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next)
+    try {
+      localStorage.setItem(STORAGE_KEY, next)
+    } catch {
+      /* ignore */
+    }
   }, [])
 
   const config = useMemo(() => getMergedConfig(), [revision])

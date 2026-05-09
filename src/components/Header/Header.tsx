@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import type { Locale } from '../../site/types'
 import { PORTFOLIO_NAV, portfolioPaths } from '../../site/portfolioPaths'
 import { useSite } from '../../i18n/SiteProvider'
 import { useVisualTheme } from '../../theme/VisualThemeProvider'
 import styles from './Header.module.css'
 
 export function Header() {
-  const { config, content, locale } = useSite()
+  const { config, content, locale, setLocale } = useSite()
   const { theme, setTheme } = useVisualTheme()
   const profilePhoto = config.profilePhoto?.trim()
   const { nav } = content
@@ -36,6 +37,11 @@ export function Header() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [photoModalOpen])
+
+  function pickLocale(next: Locale) {
+    setLocale(next)
+    setOpen(false)
+  }
 
   return (
     <>
@@ -120,6 +126,22 @@ export function Header() {
                     XP
                   </button>
                 </div>
+              </div>
+              <div className={styles.lang} role="group" aria-label={nav.ariaLanguage}>
+                <button
+                  type="button"
+                  className={`${styles.langBtn} ${locale === 'pt' ? styles.langActive : ''}`}
+                  onClick={() => pickLocale('pt')}
+                >
+                  PT
+                </button>
+                <button
+                  type="button"
+                  className={`${styles.langBtn} ${locale === 'en' ? styles.langActive : ''}`}
+                  onClick={() => pickLocale('en')}
+                >
+                  EN
+                </button>
               </div>
               <Link to={portfolioPaths.projects} className={styles.cta} onClick={() => setOpen(false)}>
                 {nav.ctaProjects}

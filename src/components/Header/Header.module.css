@@ -288,6 +288,40 @@
   }
 }
 
+.lang {
+  display: inline-flex;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.langBtn {
+  padding: 0.45rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+.langBtn:hover {
+  color: var(--text-primary);
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.langActive {
+  color: var(--bg-root);
+  background: linear-gradient(135deg, var(--accent), #67e8f9);
+}
+
+.langActive:hover {
+  color: var(--bg-root);
+}
+
 .list {
   list-style: none;
   margin: 0;
@@ -436,6 +470,17 @@
     width: 100%;
     margin-top: 0.5rem;
     align-items: stretch;
+  }
+
+  .lang {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .langBtn {
+    flex: 1;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.78rem;
   }
 
   .cta {
@@ -715,6 +760,41 @@
   outline-offset: 1px;
 }
 
+:global(html[data-visual-theme='xp']) .lang {
+  display: inline-flex;
+  border-radius: 0;
+  border: 2px solid;
+  border-color: var(--xp-button-dk-shadow) var(--xp-button-hilight) var(--xp-button-hilight) var(--xp-button-dk-shadow);
+  overflow: hidden;
+  background: var(--xp-face);
+}
+
+:global(html[data-visual-theme='xp']) .langBtn {
+  padding: 0.45rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+:global(html[data-visual-theme='xp']) .langBtn:hover {
+  color: var(--text-primary);
+  background: #d8e4f8;
+}
+
+:global(html[data-visual-theme='xp']) .langActive {
+  color: var(--xp-title-text);
+  background: linear-gradient(180deg, #4e8eee 0%, var(--xp-taskbar-2) 100%);
+}
+
+:global(html[data-visual-theme='xp']) .langActive:hover {
+  color: var(--xp-title-text);
+}
+
 :global(html[data-visual-theme='xp']) .list {
   list-style: none;
   margin: 0;
@@ -879,6 +959,17 @@
     width: 100%;
     margin-top: 0.5rem;
     align-items: stretch;
+  }
+
+  :global(html[data-visual-theme='xp']) .lang {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  :global(html[data-visual-theme='xp']) .langBtn {
+    flex: 1;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.78rem;
   }
 
   :global(html[data-visual-theme='xp']) .cta {
