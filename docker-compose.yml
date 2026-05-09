@@ -1,0 +1,16 @@
+# Uso: copie .env.example → .env e ajuste. O Compose injeta VITE_* no build da imagem.
+# Subir: docker compose up --build
+# Acesse: http://localhost:8080
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_ADMIN_USERNAME: ${VITE_ADMIN_USERNAME:-admin}
+        VITE_ADMIN_PASSWORD: ${VITE_ADMIN_PASSWORD:?Defina VITE_ADMIN_PASSWORD no .env - veja .env.example}
+        VITE_TRANSLATION_EMAIL: ${VITE_TRANSLATION_EMAIL:-}
+    ports:
+      - "${PORT:-8080}:80"
+    restart: unless-stopped
