@@ -1,4 +1,4 @@
-.section {
+﻿.section {
   margin-bottom: 1.35rem;
 }
 
@@ -43,14 +43,6 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--border-subtle);
-}
-
-.previewImgProject {
-  width: 140px;
-  height: 79px;
-  border-radius: var(--radius-sm);
   object-fit: cover;
   border: 2px solid var(--border-subtle);
 }
@@ -169,7 +161,190 @@
   background: rgba(15, 23, 42, 0.35);
 }
 
-.projectCardHead {
+.projectTitle {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+/* Windows XP */
+:global(html[data-visual-theme='xp']) .section {
+  margin-bottom: 1.35rem;
+}
+
+:global(html[data-visual-theme='xp']) .help {
+  margin: -0.35rem 0 0.85rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+:global(html[data-visual-theme='xp']) .help code {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+}
+
+:global(html[data-visual-theme='xp']) .uploadBlock {
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0;
+  border: 2px dashed var(--border-subtle);
+  background: var(--xp-window);
+}
+
+:global(html[data-visual-theme='xp']) .uploadLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+:global(html[data-visual-theme='xp']) .previewRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+:global(html[data-visual-theme='xp']) .previewImg {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-subtle);
+}
+
+:global(html[data-visual-theme='xp']) .previewImgProject {
+  width: 140px;
+  height: 79px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 2px solid var(--border-subtle);
+}
+
+:global(html[data-visual-theme='xp']) .removePhoto {
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: transparent;
+}
+
+:global(html[data-visual-theme='xp']) .removePhoto:hover {
+  border-color: rgba(248, 113, 113, 0.55);
+}
+
+:global(html[data-visual-theme='xp']) .hiddenFile {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+:global(html[data-visual-theme='xp']) .uploadBtn {
+  padding: 0.55rem 1rem;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #000000;
+  background: var(--xp-button-light);
+  border: 2px solid;
+  border-color: var(--xp-button-hilight) var(--xp-button-dk-shadow) var(--xp-button-dk-shadow) var(--xp-button-hilight);
+  box-shadow: none;
+}
+
+:global(html[data-visual-theme='xp']) .uploadBtn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+:global(html[data-visual-theme='xp']) .uploadErr {
+  margin: 0.45rem 0 0;
+  font-size: 0.8rem;
+  color: #fca5a5;
+}
+
+:global(html[data-visual-theme='xp']) .sectionTitle {
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+:global(html[data-visual-theme='xp']) .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.65rem;
+}
+
+:global(html[data-visual-theme='xp']) .field span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+:global(html[data-visual-theme='xp']) .field input,
+:global(html[data-visual-theme='xp']) .field textarea {
+  padding: 0.5rem 0.65rem;
+  border-radius: 0;
+  border: 2px solid;
+  border-color: var(--xp-button-dk-shadow) var(--xp-button-hilight) var(--xp-button-hilight) var(--xp-button-dk-shadow);
+  background: var(--xp-window);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+:global(html[data-visual-theme='xp']) .field textarea {
+  min-height: 72px;
+  resize: vertical;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+:global(html[data-visual-theme='xp']) .grid2 {
+  display: grid;
+  gap: 0.65rem;
+}
+
+@media (min-width: 520px) {
+  :global(html[data-visual-theme='xp']) .grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+:global(html[data-visual-theme='xp']) .row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+:global(html[data-visual-theme='xp']) .row input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+}
+
+:global(html[data-visual-theme='xp']) .projectCard {
+  padding: 0.85rem;
+  margin-bottom: 0.75rem;
+  border-radius: 0;
+  border: 2px solid;
+  border-color: var(--xp-button-hilight) var(--xp-button-dk-shadow) var(--xp-button-dk-shadow) var(--xp-button-hilight);
+  background: var(--xp-window);
+}
+
+:global(html[data-visual-theme='xp']) .projectCardHead {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -178,7 +353,7 @@
   margin-bottom: 0.5rem;
 }
 
-.projectTitle {
+:global(html[data-visual-theme='xp']) .projectTitle {
   margin: 0;
   flex: 1;
   min-width: 8rem;
@@ -187,7 +362,7 @@
   color: var(--text-muted);
 }
 
-.removeProject {
+:global(html[data-visual-theme='xp']) .removeProject {
   flex-shrink: 0;
   padding: 0.35rem 0.65rem;
   border-radius: var(--radius-sm);
@@ -198,17 +373,76 @@
   background: transparent;
 }
 
-.removeProject:hover {
+:global(html[data-visual-theme='xp']) .removeProject:hover {
   border-color: rgba(248, 113, 113, 0.55);
 }
 
-.addProject {
+:global(html[data-visual-theme='xp']) .addProject {
   margin-bottom: 1rem;
   padding: 0.55rem 1rem;
-  border-radius: 999px;
+  border-radius: 0;
   font-weight: 600;
   font-size: 0.85rem;
-  color: var(--bg-root);
-  background: linear-gradient(135deg, var(--accent), #67e8f9);
-  box-shadow: 0 6px 20px rgba(34, 211, 238, 0.18);
+  color: #000000;
+  background: var(--xp-button-light);
+  border: 2px solid;
+  border-color: var(--xp-button-hilight) var(--xp-button-dk-shadow) var(--xp-button-dk-shadow) var(--xp-button-hilight);
+  box-shadow: none;
+}
+
+:global(html[data-visual-theme='xp']) .projectSectionNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  padding: 0.35rem;
+  border-radius: 0;
+  background: var(--xp-face);
+  border: 2px solid;
+  border-color: var(--xp-button-dk-shadow) var(--xp-button-hilight) var(--xp-button-hilight) var(--xp-button-dk-shadow);
+}
+
+:global(html[data-visual-theme='xp']) .projectSectionNavBtn {
+  padding: 0.4rem 0.55rem;
+  border-radius: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  background: transparent;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+:global(html[data-visual-theme='xp']) .projectSectionNavBtn:hover {
+  color: var(--text-primary);
+  background: #d8e4f8;
+}
+
+:global(html[data-visual-theme='xp']) .projectSectionNavBtnOn {
+  color: var(--xp-title-text);
+  border-color: #0a246a;
+  background: linear-gradient(180deg, #4e8eee 0%, var(--xp-taskbar-2) 100%);
+  box-shadow: none;
+}
+
+:global(html[data-visual-theme='xp']) .projectSectionNavAdd {
+  padding: 0.4rem 0.65rem;
+  border-radius: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 2px dashed var(--border-subtle);
+  color: var(--accent-deep);
+  background: var(--xp-window);
+}
+
+:global(html[data-visual-theme='xp']) .projectSectionNavAdd:hover {
+  border-color: var(--accent-deep);
+  background: #d8e4f8;
 }

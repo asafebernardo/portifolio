@@ -1,4 +1,4 @@
-.footer {
+﻿.footer {
   padding: 2rem 1rem;
   border-top: 1px solid var(--border-subtle);
   background: rgba(7, 8, 13, 0.85);
@@ -40,5 +40,53 @@
 }
 
 .nav a:hover {
+  color: var(--accent);
+}
+
+/* Windows XP */
+:global(html[data-visual-theme='xp']) .footer {
+  padding: 2rem 1rem;
+  border-top: 2px solid;
+  border-color: var(--xp-button-hilight) var(--xp-button-dk-shadow) transparent var(--xp-button-hilight);
+  background: linear-gradient(180deg, #ece9d8 0%, #d4d0c8 100%);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+:global(html[data-visual-theme='xp']) .inner {
+  width: min(1120px, 100%);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 640px) {
+  :global(html[data-visual-theme='xp']) .inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+:global(html[data-visual-theme='xp']) .copy {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+:global(html[data-visual-theme='xp']) .nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+:global(html[data-visual-theme='xp']) .nav a {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+:global(html[data-visual-theme='xp']) .nav a:hover {
   color: var(--accent);
 }

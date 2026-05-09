@@ -1,0 +1,46 @@
+# Pod nginx: apenas HTTP na porta 80 (sem TLS dentro do container).
+# Se o log do nginx mostrar requisição começando com "\x16\x03\x01" e status 400,
+# algum cliente está falando HTTPS nessa porta — use HTTP no backend ou termine TLS no Ingress/Route.
+#
+# Ajuste o campo image antes de aplicar.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portfolio
+  template:
+    metadata:
+      labels:
+        app: portfolio
+    spec:
+      containers:
+        - name: web
+          image: portfolio:latest
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: portfolio
+spec:
+  selector:
+    app: portfolio
+  ports:
+    - port: 80
+      targetPort: 80

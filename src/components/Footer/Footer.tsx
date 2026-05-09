@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { portfolioPaths } from '../../site/portfolioPaths'
 import { useSite } from '../../i18n/SiteProvider'
 import styles from './Footer.module.css'
 
@@ -12,9 +14,9 @@ export function Footer() {
       <div className={styles.inner}>
         <p className={styles.copy}>{note}</p>
         <nav className={styles.nav} aria-label={footer.aria}>
-          <a href="#home">{footer.top}</a>
-          <a href="#projetos">{footer.projects}</a>
-          <a href="#contato">{footer.contact}</a>
+          <Link to={portfolioPaths.home}>{footer.top}</Link>
+          <Link to={portfolioPaths.projects}>{footer.projects}</Link>
+          <Link to={portfolioPaths.contact}>{footer.contact}</Link>
         </nav>
       </div>
     </footer>

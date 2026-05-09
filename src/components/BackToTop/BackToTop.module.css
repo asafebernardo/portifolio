@@ -1,4 +1,4 @@
-.btn {
+﻿.btn {
   position: fixed;
   right: 1.25rem;
   bottom: 1.25rem;
@@ -31,6 +31,46 @@
 
 @media (min-width: 768px) {
   .btn {
+    right: 2rem;
+    bottom: 2rem;
+  }
+}
+
+/* Windows XP */
+:global(html[data-visual-theme='xp']) .btn {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 900;
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  display: grid;
+  place-items: center;
+  color: var(--text-primary);
+  background: var(--xp-button-light);
+  border: 2px solid;
+  border-color: var(--xp-button-hilight) var(--xp-button-dk-shadow) var(--xp-button-dk-shadow) var(--xp-button-hilight);
+  backdrop-filter: none;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.25s var(--ease-out),
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+
+:global(html[data-visual-theme='xp']) .btn:hover {
+  transform: translateY(-2px);
+  background: var(--xp-window);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.12);
+}
+
+:global(html[data-visual-theme='xp']) .btn:active {
+  transform: translateY(-1px);
+}
+
+@media (min-width: 768px) {
+  :global(html[data-visual-theme='xp']) .btn {
     right: 2rem;
     bottom: 2rem;
   }

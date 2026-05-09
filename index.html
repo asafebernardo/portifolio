@@ -22,6 +22,18 @@
       rel="stylesheet"
     />
     <title>Asafe Bernardo</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('portfolio-visual-theme');
+          if (t === 'classic') t = 'pro';
+          if (t !== 'xp' && t !== 'pro') t = 'pro';
+          document.documentElement.setAttribute('data-visual-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-visual-theme', 'pro');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { portfolioPaths } from '../../site/portfolioPaths'
 import { useSite } from '../../i18n/SiteProvider'
 import { Reveal } from '../Reveal/Reveal'
 import styles from './Hero.module.css'
@@ -21,9 +23,9 @@ export function Hero() {
           <p className={styles.title}>{hero.role}</p>
           <p className={styles.desc}>{hero.description}</p>
           <div className={styles.actions}>
-            <a href="#projetos" className={styles.primary}>
+            <Link to={portfolioPaths.projects} className={styles.primary}>
               {hero.ctaProjects}
-            </a>
+            </Link>
             <a
               href={config.links.github}
               target="_blank"

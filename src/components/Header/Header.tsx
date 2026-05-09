@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react'
-import type { Locale } from '../../site/types'
+import { NavLink, Link } from 'react-router-dom'
+import { PORTFOLIO_NAV, portfolioPaths } from '../../site/portfolioPaths'
 import { useSite } from '../../i18n/SiteProvider'
+import { useVisualTheme } from '../../theme/VisualThemeProvider'
 import styles from './Header.module.css'
 
-const NAV = [
-  { href: '#home', key: 'home' as const },
-  { href: '#projetos', key: 'projects' as const },
-  { href: '#skills', key: 'skills' as const },
-  { href: '#arquitetura', key: 'architecture' as const },
-  { href: '#sobre', key: 'about' as const },
-  { href: '#contato', key: 'contact' as const },
-]
-
 export function Header() {
-  const { config, content, locale, setLocale } = useSite()
+  const { config, content, locale } = useSite()
+  const { theme, setTheme } = useVisualTheme()
   const profilePhoto = config.profilePhoto?.trim()
   const { nav } = content
   const [open, setOpen] = useState(false)
@@ -43,11 +37,6 @@ export function Header() {
     return () => window.removeEventListener('keydown', onKey)
   }, [photoModalOpen])
 
-  function pickLocale(next: Locale) {
-    setLocale(next)
-    setOpen(false)
-  }
-
   return (
     <>
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
@@ -72,13 +61,13 @@ export function Header() {
                 />
               </button>
             ) : (
-              <a href="#home" className={styles.brandMarkLink} onClick={() => setOpen(false)}>
+              <Link to={portfolioPaths.home} className={styles.brandMarkLink} onClick={() => setOpen(false)}>
                 <span className={styles.brandMark} aria-hidden="true" />
-              </a>
+              </Link>
             )}
-            <a href="#home" className={styles.brandNameLink} onClick={() => setOpen(false)}>
+            <Link to={portfolioPaths.home} className={styles.brandNameLink} onClick={() => setOpen(false)}>
               <span className={styles.brandText}>{config.brandName}</span>
-            </a>
+            </Link>
           </div>
 
           <nav
@@ -87,35 +76,54 @@ export function Header() {
             aria-label={nav.ariaMain}
           >
             <ul className={styles.list}>
-              {NAV.map((item) => (
-                <li key={item.href}>
-                  <a href={item.href} className={styles.link} onClick={() => setOpen(false)}>
+              {PORTFOLIO_NAV.map((item) => (
+                <li key={item.path}>
+                  <NavLink
+                    to={item.path}
+                    end={item.path === portfolioPaths.home}
+                    className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}
+                    onClick={() => setOpen(false)}
+                  >
                     {nav[item.key]}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
 
             <div className={styles.actions}>
-              <div className={styles.lang} role="group" aria-label={nav.ariaLanguage}>
-                <button
-                  type="button"
-                  className={`${styles.langBtn} ${locale === 'pt' ? styles.langActive : ''}`}
-                  onClick={() => pickLocale('pt')}
-                >
-                  PT
-                </button>
-                <button
-                  type="button"
-                  className={`${styles.langBtn} ${locale === 'en' ? styles.langActive : ''}`}
-                  onClick={() => pickLocale('en')}
-                >
-                  EN
-                </button>
+              <div
+                className={styles.themeSwitch}
+                role="radiogroup"
+                aria-label={locale === 'pt' ? 'Visual do site' : 'Site appearance'}
+              >
+                <div className={styles.themeSwitchTrack}>
+                  <span
+                    className={`${styles.themeSwitchThumb} ${theme === 'xp' ? styles.themeSwitchThumbRight : ''}`}
+                    aria-hidden
+                  />
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={theme === 'pro'}
+                    className={`${styles.themeSwitchBtn} ${theme === 'pro' ? styles.themeSwitchBtnOn : ''}`}
+                    onClick={() => setTheme('pro')}
+                  >
+                    Pro
+                  </button>
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={theme === 'xp'}
+                    className={`${styles.themeSwitchBtn} ${theme === 'xp' ? styles.themeSwitchBtnOn : ''}`}
+                    onClick={() => setTheme('xp')}
+                  >
+                    XP
+                  </button>
+                </div>
               </div>
-              <a href="#projetos" className={styles.cta} onClick={() => setOpen(false)}>
+              <Link to={portfolioPaths.projects} className={styles.cta} onClick={() => setOpen(false)}>
                 {nav.ctaProjects}
-              </a>
+              </Link>
             </div>
           </nav>
 
