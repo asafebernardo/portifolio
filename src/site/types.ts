@@ -1,9 +1,3 @@
-/** Metadados gerados no servidor em `uploads/site-runtime.json` (persistência sem localStorage). */
-export type SiteRuntimeManifest = {
-  profilePhoto?: string
-  projectImages?: Record<string, string>
-}
-
 export type Locale = 'pt' | 'en'
 
 export type ProjectCategoryId = 'frontend' | 'backend' | 'fullstack'

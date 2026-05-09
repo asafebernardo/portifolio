@@ -68,8 +68,7 @@ export default function AdminJsonEditor() {
           <h1 className={styles.title}>Editor JSON (avançado)</h1>
           <p className={styles.sub}>
             Preferência: edite no próprio site com o botão <strong>Editar site</strong>. Aqui você pode ajustar JSON
-            cru. Alterações ficam em <strong>localStorage</strong> (caminhos de imagem apontam para ficheiros em{' '}
-            <code>public/uploads/</code> se os tiver carregado no editor em dev/preview).
+            cru. Alterações ficam em <strong>localStorage</strong>.
           </p>
         </div>
         <div className={styles.topActions}>

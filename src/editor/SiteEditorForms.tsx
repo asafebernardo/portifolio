@@ -1,41 +1,20 @@
-import { useRef, useState, type ChangeEvent, type RefObject } from 'react'
+import { useRef } from 'react'
 import type { ProjectEntry, SiteConfig } from '../site/types'
 import { imageAnonymousProps } from '../lib/imageLoadProps'
-import { fileToProfilePhotoDataUrl, fileToProjectImageDataUrl } from '../lib/profileImageUpload'
-import { saveImageToProject } from '../lib/saveImageToProject'
 import { Field } from './SiteEditorFields'
 import styles from './SiteEditorForms.module.css'
-import {
-  IconLoader,
-  IconPencil,
-  IconPlus,
-  IconTrash,
-  IconUpload,
-  IconX,
-} from './wizardIcons'
+import { IconPencil, IconPlus, IconTrash } from './wizardIcons'
 
-function ImageUploadControl({
+function ImageUrlPreview({
   label,
   image,
-  uploadBusy,
-  uploadErr,
-  fileRef,
-  onPickFile,
-  onClear,
-  previewImgClass,
+  previewClassName,
   placeholderShape,
-  removeAriaLabel,
 }: {
   label: string
   image: string
-  uploadBusy: boolean
-  uploadErr: string | null
-  fileRef: RefObject<HTMLInputElement | null>
-  onPickFile: (e: ChangeEvent<HTMLInputElement>) => void
-  onClear: () => void
-  previewImgClass: string
+  previewClassName: string
   placeholderShape: 'round' | 'card'
-  removeAriaLabel: string
 }) {
   const img = image.trim()
   const ph =
@@ -50,120 +29,17 @@ function ImageUploadControl({
             <img
               src={img}
               alt=""
-              className={previewImgClass}
+              className={previewClassName}
               loading="lazy"
               decoding="async"
               {...imageAnonymousProps(img)}
             />
           ) : (
-            <div className={`${styles.uploadPlaceholder} ${ph}`} aria-hidden>
-              <IconUpload className={styles.uploadPlaceholderIcon} />
-            </div>
+            <div className={`${styles.uploadPlaceholder} ${ph}`} aria-hidden />
           )}
         </div>
-        <div className={styles.uploadActionCol}>
-          <span className={styles.uploadActionHeading}>Ações</span>
-          <div className={styles.uploadActionBtns} role="group" aria-label="Enviar ou remover imagem">
-            <input
-              ref={fileRef}
-              type="file"
-              accept="image/jpeg,image/png,image/webp,image/gif"
-              className={styles.hiddenFile}
-              onChange={onPickFile}
-            />
-            <button
-              type="button"
-              className={styles.uploadBtn}
-              disabled={uploadBusy}
-              aria-label={uploadBusy ? 'A processar ficheiro' : 'Carregar ficheiro de imagem'}
-              onClick={() => fileRef.current?.click()}
-            >
-              {uploadBusy ? (
-                <IconLoader className={`${styles.btnIcon} ${styles.iconSpin}`} />
-              ) : (
-                <IconUpload className={styles.btnIcon} />
-              )}
-            </button>
-            {img ? (
-              <button type="button" className={styles.removePhoto} aria-label={removeAriaLabel} onClick={onClear}>
-                <IconX className={styles.btnIcon} />
-              </button>
-            ) : null}
-          </div>
-        </div>
       </div>
-      {uploadErr ? (
-        <p className={styles.uploadErr} role="alert">
-          {uploadErr}
-        </p>
-      ) : null}
     </>
-  )
-}
-
-function ProjectImageUploadBlock({
-  image,
-  projectId,
-  onImageChange,
-}: {
-  image: string
-  projectId: string
-  onImageChange: (v: string) => void
-}) {
-  const fileRef = useRef<HTMLInputElement>(null)
-  const [uploadBusy, setUploadBusy] = useState(false)
-  const [uploadErr, setUploadErr] = useState<string | null>(null)
-
-  async function onPickFile(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    e.target.value = ''
-    if (!file) return
-    setUploadErr(null)
-    setUploadBusy(true)
-    try {
-      const dataUrl = await fileToProjectImageDataUrl(file)
-      const url = await saveImageToProject(dataUrl, 'project', projectId)
-      onImageChange(url)
-    } catch (err) {
-      setUploadErr(err instanceof Error ? err.message : 'Erro ao processar a imagem.')
-    } finally {
-      setUploadBusy(false)
-    }
-  }
-
-  const img = image.trim()
-
-  return (
-    <div className={styles.uploadBlock}>
-      <ImageUploadControl
-        label="Imagem do card (opcional)"
-        image={image}
-        uploadBusy={uploadBusy}
-        uploadErr={uploadErr}
-        fileRef={fileRef}
-        onPickFile={onPickFile}
-        onClear={() => onImageChange('')}
-        previewImgClass={styles.previewImgProject}
-        placeholderShape="card"
-        removeAriaLabel="Remover imagem do cartão"
-      />
-      <p className={styles.help}>
-        Gravada em <code>public/uploads/</code> ao carregar o ficheiro (com <strong>npm run dev</strong> ou{' '}
-        <strong>npm run preview</strong>). Ou use uma URL abaixo.
-      </p>
-      {img.startsWith('data:') ? (
-        <p className={styles.help}>
-          Para usar uma URL em vez do arquivo, clique em <strong>Remover imagem</strong>.
-        </p>
-      ) : (
-        <>
-          <Field label="Ou cole uma URL de imagem (sem upload)" value={img} onChange={onImageChange} />
-          <p className={styles.help}>
-            Ex.: <code>/screenshot.png</code> em <code>public/</code> ou link <code>https://…</code>.
-          </p>
-        </>
-      )}
-    </div>
   )
 }
 
@@ -174,27 +50,6 @@ export function ConfigForm({
   value: SiteConfig
   onChange: (v: SiteConfig) => void
 }) {
-  const fileRef = useRef<HTMLInputElement>(null)
-  const [uploadBusy, setUploadBusy] = useState(false)
-  const [uploadErr, setUploadErr] = useState<string | null>(null)
-
-  async function onPickFile(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    e.target.value = ''
-    if (!file) return
-    setUploadErr(null)
-    setUploadBusy(true)
-    try {
-      const dataUrl = await fileToProfilePhotoDataUrl(file)
-      const url = await saveImageToProject(dataUrl, 'profile')
-      onChange({ ...c, profilePhoto: url })
-    } catch (err) {
-      setUploadErr(err instanceof Error ? err.message : 'Erro ao processar a imagem.')
-    } finally {
-      setUploadBusy(false)
-    }
-  }
-
   const photo = c.profilePhoto?.trim() ?? ''
 
   return (
@@ -203,41 +58,21 @@ export function ConfigForm({
         <h3 className={styles.sectionTitle}>Marca & foto</h3>
         <Field label="Nome da marca (logo)" value={c.brandName} onChange={(brandName) => onChange({ ...c, brandName })} />
 
-        <div className={styles.uploadBlock}>
-          <ImageUploadControl
-            label="Foto de perfil"
-            image={photo}
-            uploadBusy={uploadBusy}
-            uploadErr={uploadErr}
-            fileRef={fileRef}
-            onPickFile={onPickFile}
-            onClear={() => onChange({ ...c, profilePhoto: '' })}
-            previewImgClass={styles.previewImg}
-            placeholderShape="round"
-            removeAriaLabel="Remover foto de perfil"
-          />
-          <p className={styles.help}>
-            A foto aparece na <strong>barra superior</strong> e como <strong>ícone da aba</strong> (favicon); clique na
-            miniatura para ampliar. O ficheiro é gravado em <code>public/uploads/</code> ao carregar (com{' '}
-            <strong>npm run dev</strong> ou <strong>npm run preview</strong>); o caminho é guardado ao{' '}
-            <strong>Salvar tudo + gerar inglês</strong>.
-          </p>
-        </div>
-
-        {photo.startsWith('data:') ? (
-          <p className={styles.help}>Para usar uma URL em vez do arquivo, clique em <strong>Remover foto</strong>.</p>
-        ) : (
-          <>
-            <Field
-              label="Ou cole uma URL de imagem (sem upload)"
-              value={photo}
-              onChange={(profilePhoto) => onChange({ ...c, profilePhoto })}
-            />
-            <p className={styles.help}>
-              Ex.: <code>/eu.jpg</code> em <code>public/</code> ou link <code>https://…</code>.
-            </p>
-          </>
-        )}
+        <ImageUrlPreview
+          label="Pré-visualização"
+          image={photo}
+          previewClassName={styles.previewImg}
+          placeholderShape="round"
+        />
+        <Field
+          label="URL da foto de perfil"
+          value={photo}
+          onChange={(profilePhoto) => onChange({ ...c, profilePhoto })}
+        />
+        <p className={styles.help}>
+          Por omissão: <code>/profile-photo.png</code> na pasta <code>public/</code>. Também pode usar um link{' '}
+          <code>https://…</code>. A foto aparece na barra superior e como ícone da aba (favicon).
+        </p>
 
         <p className={styles.help}>
           <strong>Links do bloco Contato</strong>: edite os segmentos no passo <strong>Contato → Links dos canais</strong>{' '}
@@ -443,15 +278,26 @@ export function ProjectsPtForm({
               onChange(next)
             }}
           />
-          <ProjectImageUploadBlock
-            image={p.image}
-            projectId={p.id}
-            onImageChange={(v) => {
-              const next = [...projects]
-              next[pi] = { ...next[pi]!, image: v }
-              onChange(next)
-            }}
-          />
+          <div className={styles.uploadBlock}>
+            <ImageUrlPreview
+              label="Pré-visualização do cartão"
+              image={p.image}
+              previewClassName={styles.previewImgProject}
+              placeholderShape="card"
+            />
+            <Field
+              label="URL da imagem do cartão (opcional)"
+              value={p.image}
+              onChange={(v) => {
+                const next = [...projects]
+                next[pi] = { ...next[pi]!, image: v }
+                onChange(next)
+              }}
+            />
+            <p className={styles.help}>
+              Coloque um ficheiro em <code>public/</code> e use <code>/nome.png</code>, ou um link externo.
+            </p>
+          </div>
           <div className={styles.grid2}>
             <Field
               label="Demo URL"

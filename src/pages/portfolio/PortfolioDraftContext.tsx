@@ -8,8 +8,8 @@ import {
   type ReactNode,
 } from 'react'
 import { useAdminSession } from '../../admin/useAdminSession'
-import type { ProjectEntry, SiteConfig, SiteContent, SiteRuntimeManifest } from '../../site/types'
-import { useSite, useSiteManifest } from '../../i18n/SiteProvider'
+import type { ProjectEntry, SiteConfig, SiteContent } from '../../site/types'
+import { useSite } from '../../i18n/SiteProvider'
 import { getMergedConfig, getMergedContent, getMergedProjects, saveOverride } from '../../site/overrides'
 
 export type PortfolioDraftApi = {
@@ -37,33 +37,27 @@ type PortfolioPreviewValue = {
 
 const PortfolioPreviewContext = createContext<PortfolioPreviewValue | null>(null)
 
-function makePtBaseline(manifest: SiteRuntimeManifest | null) {
+function readPtBaseline() {
   return {
-    config: getMergedConfig(manifest),
+    config: getMergedConfig(),
     content: getMergedContent('pt'),
-    projects: getMergedProjects('pt', manifest),
+    projects: getMergedProjects('pt'),
   }
 }
 
 export function PortfolioDraftProvider({ children }: { children: ReactNode }) {
   const admin = useAdminSession()
-  const manifest = useSiteManifest()
-  const manifestKey = JSON.stringify(manifest)
-
-  const [{ config, content, projects }, setAll] = useState(() => makePtBaseline(null))
+  const [{ config, content, projects }, setAll] = useState(readPtBaseline)
 
   const reload = useCallback(() => {
-    setAll(makePtBaseline(manifest))
-  }, [manifest])
+    const b = readPtBaseline()
+    setAll({ config: b.config, content: b.content, projects: b.projects })
+  }, [])
 
   useEffect(() => {
     reload()
-  }, [manifestKey, reload])
-
-  useEffect(() => {
-    const fn = () => reload()
-    window.addEventListener('portfolio-overrides-changed', fn)
-    return () => window.removeEventListener('portfolio-overrides-changed', fn)
+    window.addEventListener('portfolio-overrides-changed', reload)
+    return () => window.removeEventListener('portfolio-overrides-changed', reload)
   }, [reload])
 
   const patchContent = useCallback((u: ((c: SiteContent) => SiteContent) | Partial<SiteContent>) => {
@@ -94,10 +88,11 @@ export function PortfolioDraftProvider({ children }: { children: ReactNode }) {
     }))
   }, [])
 
-  const baseline = useMemo(() => makePtBaseline(manifest), [manifest, manifestKey])
+  const baseline = readPtBaseline()
   const discard = useCallback(() => {
-    setAll(makePtBaseline(manifest))
-  }, [manifest])
+    const b = readPtBaseline()
+    setAll({ config: b.config, content: b.content, projects: b.projects })
+  }, [])
 
   const save = useCallback(() => {
     saveOverride('config', config)

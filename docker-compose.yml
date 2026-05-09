@@ -1,23 +1,6 @@
-# Site estático (nginx) + API de upload (Node).
-# Build: docker compose up --build
-# Env: copie .env ou defina UPLOAD_SECRET / credenciais VITE_* para o build do frontend.
+# Site estático (nginx). Build: docker compose up --build
 
 services:
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile.api
-    environment:
-      PORT: 3001
-      UPLOAD_DIR: /data/uploads
-      UPLOAD_SECRET: ${UPLOAD_SECRET:-}
-      UPLOAD_PUBLIC_PREFIX: ${UPLOAD_PUBLIC_PREFIX:-}
-    volumes:
-      - uploads_data:/data/uploads
-    expose:
-      - "3001"
-    restart: unless-stopped
-
   web:
     build:
       context: .
@@ -26,15 +9,6 @@ services:
         VITE_ADMIN_USERNAME: ${VITE_ADMIN_USERNAME:-}
         VITE_ADMIN_PASSWORD: ${VITE_ADMIN_PASSWORD:-}
         VITE_TRANSLATION_EMAIL: ${VITE_TRANSLATION_EMAIL:-}
-        VITE_UPLOAD_SECRET: ${VITE_UPLOAD_SECRET:-}
     ports:
       - "${PORT:-8080}:80"
-    volumes:
-      - uploads_data:/usr/share/nginx/html/uploads
-      - ./nginx/compose.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      - api
     restart: unless-stopped
-
-volumes:
-  uploads_data:

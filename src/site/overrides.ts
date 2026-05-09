@@ -1,5 +1,5 @@
 import { normalizeContactLinkSegments } from './contactLinks'
-import type { Locale, ProjectEntry, SiteConfig, SiteContent, SiteRuntimeManifest } from './types'
+import type { Locale, ProjectEntry, SiteConfig, SiteContent } from './types'
 import configDefault from './config.json'
 import contentEnDefault from './content.en.json'
 import contentPtDefault from './content.pt.json'
@@ -55,25 +55,8 @@ function readOverride<T>(file: OverrideFile, fallback: T): T {
   }
 }
 
-/**
- * Ordem: defaults JSON → manifest no servidor (`uploads/site-runtime.json`) → localStorage.
- * Assim, limpar dados do site remove só o override local; fotos em disco continuam visíveis.
- */
-export function getMergedConfig(manifest: SiteRuntimeManifest | null = null): SiteConfig {
-  let c = { ...defaults.config }
-  if (manifest?.profilePhoto?.trim()) {
-    c = { ...c, profilePhoto: manifest.profilePhoto.trim() }
-  }
-  try {
-    const raw = localStorage.getItem(OVERRIDE_STORAGE.config)
-    if (raw) {
-      const parsed = JSON.parse(raw) as Partial<SiteConfig>
-      c = { ...c, ...parsed }
-    }
-  } catch {
-    /* ignore */
-  }
-  return c
+export function getMergedConfig(): SiteConfig {
+  return readOverride('config', defaults.config)
 }
 
 export function getMergedContent(locale: Locale): SiteContent {
@@ -88,29 +71,9 @@ export function getMergedContent(locale: Locale): SiteContent {
   }
 }
 
-export function getMergedProjects(
-  locale: Locale,
-  manifest: SiteRuntimeManifest | null = null,
-): ProjectEntry[] {
+export function getMergedProjects(locale: Locale): ProjectEntry[] {
   const file = locale === 'pt' ? 'projectsPt' : 'projectsEn'
-  const baseList = defaults[file]
-  let projects = baseList.map((p) => ({ ...p }))
-  if (manifest?.projectImages) {
-    const map = manifest.projectImages
-    projects = projects.map((p) => {
-      const url = map[p.id]?.trim()
-      return url ? { ...p, image: url } : p
-    })
-  }
-  try {
-    const raw = localStorage.getItem(OVERRIDE_STORAGE[file])
-    if (raw) {
-      return JSON.parse(raw) as ProjectEntry[]
-    }
-  } catch {
-    /* ignore */
-  }
-  return projects
+  return readOverride(file, defaults[file])
 }
 
 export function getDefaultJson(file: OverrideFile): string {
