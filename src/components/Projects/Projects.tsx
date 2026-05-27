@@ -80,29 +80,27 @@ function ProjectCard({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects
     <article
       className={`${styles.card} ${inDevelopment ? styles.cardInDevelopment : ''}`}
       aria-label={inDevelopment ? `${proj.title} — ${p.inDevelopment}` : proj.title}
+      tabIndex={inDevelopment ? 0 : undefined}
     >
-      {hasImages ? (
-        <div className={styles.cardImg}>
-          <ProjectCardMedia images={images} alt={proj.title} />
-          <span className={styles.cat}>{p.categories[proj.category]}</span>
-          {inDevelopment ? (
-            <span className={styles.devOverlay} aria-hidden>
-              <span className={styles.devBadge}>{p.inDevelopment}</span>
-            </span>
+      <div className={`${styles.cardBodyWrap} ${inDevelopment ? styles.cardBodyWrapBlurred : ''}`}>
+        {hasImages ? (
+          <div className={styles.cardImg}>
+            <ProjectCardMedia images={images} alt={proj.title} />
+            <span className={styles.cat}>{p.categories[proj.category]}</span>
+          </div>
+        ) : null}
+        <div className={styles.cardPad}>
+          {!hasImages ? (
+            <span className={`${styles.cat} ${styles.catInline}`}>{p.categories[proj.category]}</span>
           ) : null}
+          <CardBody proj={proj} p={p} inDevelopment={inDevelopment} />
+        </div>
+      </div>
+      {inDevelopment ? (
+        <div className={styles.devDiagonalOverlay} aria-hidden="true">
+          <span className={styles.devDiagonalText}>{p.inDevelopment}</span>
         </div>
       ) : null}
-      <div className={styles.cardPad}>
-        {!hasImages ? (
-          <>
-            <span className={`${styles.cat} ${styles.catInline}`}>{p.categories[proj.category]}</span>
-            {inDevelopment ? (
-              <span className={`${styles.devBadge} ${styles.devBadgeInline}`}>{p.inDevelopment}</span>
-            ) : null}
-          </>
-        ) : null}
-        <CardBody proj={proj} p={p} inDevelopment={inDevelopment} />
-      </div>
     </article>
   )
 }
@@ -132,11 +130,7 @@ function CardBody({
         <p>{proj.challenges}</p>
       </div>
       <div className={styles.linksSm}>
-        {inDevelopment ? (
-          <span className={styles.inDevelopment} aria-disabled="true">
-            {p.inDevelopment}
-          </span>
-        ) : (
+        {inDevelopment ? null : (
           <>
             {hasDemo ? (
               <a

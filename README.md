@@ -46,8 +46,6 @@ Default data lives in `src/site/`:
 | `content.en.json` | Site copy (nav, sections, meta) |
 | `projects.en.json` | Project cards |
 
-Browser `localStorage` keys (`portfolio-override-*`) may still override JSON if present from an older session; clear site data or use devtools to reset.
-
 ## Production build
 
 ```bash

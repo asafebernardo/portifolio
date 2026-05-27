@@ -24,27 +24,12 @@
     <title>Asafe Bernardo</title>
     <script>
       (function () {
-        try {
-          var visual = localStorage.getItem('portfolio-visual-theme');
-          if (visual === 'classic') visual = 'pro';
-          if (visual !== 'xp' && visual !== 'pro') visual = 'pro';
-          document.documentElement.setAttribute('data-visual-theme', visual);
-
-          var schemePref = localStorage.getItem('portfolio-color-scheme');
-          if (schemePref !== 'light' && schemePref !== 'dark' && schemePref !== 'system') {
-            schemePref = 'system';
-          }
-          var resolved =
-            schemePref === 'light' || schemePref === 'dark'
-              ? schemePref
-              : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light';
-          document.documentElement.setAttribute('data-color-scheme', resolved);
-        } catch (e) {
-          document.documentElement.setAttribute('data-visual-theme', 'pro');
-          document.documentElement.setAttribute('data-color-scheme', 'dark');
-        }
+        document.documentElement.setAttribute('data-visual-theme', 'pro');
+        var resolved =
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+        document.documentElement.setAttribute('data-color-scheme', resolved);
       })();
     </script>
   </head>

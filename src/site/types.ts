@@ -27,7 +27,7 @@ export type ProjectEntry = {
   description: string
   challenges: string
   /** Primary / legacy single image (kept in sync with first entry of `images` when editing). */
-  image: string
+  image?: string
   /** Optional gallery — fades between URLs when more than one. */
   images?: string[]
   demoUrl: string
@@ -88,6 +88,8 @@ export type SiteContent = {
     menuClose: string
     scrimClose: string
     ariaLanguage: string
+    downloadResume: string
+    downloadResumeAria: string
   }
   hero: {
     kicker: string

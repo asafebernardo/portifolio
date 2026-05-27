@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { PORTFOLIO_NAV, portfolioNavKeyFromLocation } from '../../site/portfolioPaths'
 import { resolveProfilePhoto } from '../../site/profilePhoto'
@@ -36,9 +36,23 @@ function IconMoon({ className }: { className?: string }) {
   )
 }
 
+function IconDownload({ className }: { className?: string }) {
+  return (
+    <svg className={className} width="18" height="18" viewBox="0 0 24 24" aria-hidden fill="none">
+      <path
+        d="M12 3v12m0 0l4-4m-4 4l-4-4M4 21h16"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 export function Header() {
   const { pathname, hash } = useLocation()
-  const { config, content } = usePortfolioDisplay()
+  const { config, content, projects } = usePortfolioDisplay()
   const profilePhoto = resolveProfilePhoto(config.profilePhoto)
   const { nav } = content
   const activeNavKey = portfolioNavKeyFromLocation(pathname, hash)
@@ -46,6 +60,21 @@ export function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [photoModalOpen, setPhotoModalOpen] = useState(false)
+  const [downloadingPdf, setDownloadingPdf] = useState(false)
+
+  const handleDownloadResume = useCallback(async () => {
+    if (downloadingPdf) return
+    setDownloadingPdf(true)
+    try {
+      const { downloadResumePdf } = await import('../../lib/downloadResumePdf')
+      await downloadResumePdf({ config, content, projects })
+      setOpen(false)
+    } catch {
+      window.alert('Could not generate the PDF. Please try again.')
+    } finally {
+      setDownloadingPdf(false)
+    }
+  }, [config, content, projects, downloadingPdf])
 
   useEffect(() => {
     const scrollRoot = getPortfolioScrollRoot()
@@ -106,25 +135,48 @@ export function Header() {
               </ul>
             </div>
             <div className={`${styles.navSection} ${styles.navSectionTools}`}>
-              <p className={styles.navSectionLabel}>Theme</p>
-              <div className={styles.themeSwitch}>
+              <p className={styles.navSectionLabel}>Tools</p>
+              <div className={styles.navToolsRow}>
                 <button
                   type="button"
-                  className={styles.themeToggleBtn}
-                  onClick={() => setPreference(resolved === 'dark' ? 'light' : 'dark')}
-                  aria-label={resolved === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+                  className={styles.pdfDownloadBtn}
+                  onClick={() => void handleDownloadResume()}
+                  disabled={downloadingPdf}
+                  aria-label={nav.downloadResumeAria}
                 >
-                  {resolved === 'dark' ? (
-                    <IconMoon className={styles.themeIcon} />
-                  ) : (
-                    <IconSun className={styles.themeIcon} />
-                  )}
+                  <IconDownload className={styles.themeIcon} />
+                  <span>{downloadingPdf ? '…' : nav.downloadResume}</span>
                 </button>
+                <div className={styles.themeSwitch}>
+                  <button
+                    type="button"
+                    className={styles.themeToggleBtn}
+                    onClick={() => setPreference(resolved === 'dark' ? 'light' : 'dark')}
+                    aria-label={resolved === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+                  >
+                    {resolved === 'dark' ? (
+                      <IconMoon className={styles.themeIcon} />
+                    ) : (
+                      <IconSun className={styles.themeIcon} />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           </nav>
 
           <div className={styles.headerActions}>
+            <button
+              type="button"
+              className={styles.pdfDownloadBtnDesktop}
+              onClick={() => void handleDownloadResume()}
+              disabled={downloadingPdf}
+              aria-label={nav.downloadResumeAria}
+              title={nav.downloadResume}
+            >
+              <IconDownload className={styles.themeIcon} />
+              <span className={styles.pdfDownloadLabel}>{downloadingPdf ? '…' : nav.downloadResume}</span>
+            </button>
             <div className={styles.themeSwitchDesktop}>
               <button
                 type="button"

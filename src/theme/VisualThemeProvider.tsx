@@ -1,10 +1,10 @@
 import { useLayoutEffect, type ReactNode } from 'react'
-import { applyVisualTheme, getStoredVisualTheme } from './visualTheme'
+import { applyVisualTheme, DEFAULT_VISUAL_THEME } from './visualTheme'
 
-/** Applies the persisted visual theme (Pro/XP). */
+/** Applies the default visual theme on mount. */
 export function VisualThemeProvider({ children }: { children: ReactNode }) {
   useLayoutEffect(() => {
-    applyVisualTheme(getStoredVisualTheme())
+    applyVisualTheme(DEFAULT_VISUAL_THEME)
   }, [])
 
   return <>{children}</>

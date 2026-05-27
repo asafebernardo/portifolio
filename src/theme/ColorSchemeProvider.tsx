@@ -9,9 +9,8 @@ import {
 } from 'react'
 import {
   applyResolvedColorScheme,
-  getStoredColorSchemePreference,
+  DEFAULT_COLOR_SCHEME_PREFERENCE,
   resolveColorScheme,
-  storeColorSchemePreference,
   type ColorSchemePreference,
   type ResolvedColorScheme,
 } from './colorScheme'
@@ -25,14 +24,13 @@ type ColorSchemeContextValue = {
 const ColorSchemeContext = createContext<ColorSchemeContextValue | null>(null)
 
 export function ColorSchemeProvider({ children }: { children: ReactNode }) {
-  const [preference, setPreferenceState] = useState<ColorSchemePreference>(() =>
-    typeof window === 'undefined' ? 'system' : getStoredColorSchemePreference(),
+  const [preference, setPreferenceState] = useState<ColorSchemePreference>(
+    DEFAULT_COLOR_SCHEME_PREFERENCE,
   )
 
   const resolved = useMemo(() => resolveColorScheme(preference), [preference])
 
   const setPreference = useCallback((pref: ColorSchemePreference) => {
-    storeColorSchemePreference(pref)
     setPreferenceState(pref)
   }, [])
 
@@ -48,26 +46,6 @@ export function ColorSchemeProvider({ children }: { children: ReactNode }) {
     mq.addEventListener('change', sync)
     return () => mq.removeEventListener('change', sync)
   }, [preference])
-
-  // If user ever stored an invalid value, fall back to system.
-  useLayoutEffect(() => {
-    if (preference === 'light' || preference === 'dark' || preference === 'system') return
-    setPreferenceState('system')
-  }, [preference])
-
-  useLayoutEffect(() => {
-    const onStorage = (e: StorageEvent) => {
-      if (e.key !== 'portfolio-color-scheme') return
-      setPreferenceState(getStoredColorSchemePreference())
-    }
-    const onCustom = () => setPreferenceState(getStoredColorSchemePreference())
-    window.addEventListener('storage', onStorage)
-    window.addEventListener('portfolio-color-scheme-changed', onCustom)
-    return () => {
-      window.removeEventListener('storage', onStorage)
-      window.removeEventListener('portfolio-color-scheme-changed', onCustom)
-    }
-  }, [])
 
   const value = useMemo<ColorSchemeContextValue>(
     () => ({ preference, resolved, setPreference }),

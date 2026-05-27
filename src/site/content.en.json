@@ -14,7 +14,9 @@
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
     "scrimClose": "Close menu",
-    "ariaLanguage": "Site language"
+    "ariaLanguage": "Site language",
+    "downloadResume": "Download PDF",
+    "downloadResumeAria": "Download resume as PDF"
   },
   "hero": {
     "kicker": "Hi, I'm",
