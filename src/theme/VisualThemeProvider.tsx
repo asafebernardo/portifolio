@@ -1,10 +1,10 @@
 import { useLayoutEffect, type ReactNode } from 'react'
-import { applyVisualTheme } from './visualTheme'
+import { applyVisualTheme, getStoredVisualTheme } from './visualTheme'
 
-/** Mantém sempre o visual Pro (sem alternativa XP). */
+/** Applies the persisted visual theme (Pro/XP). */
 export function VisualThemeProvider({ children }: { children: ReactNode }) {
   useLayoutEffect(() => {
-    applyVisualTheme('pro')
+    applyVisualTheme(getStoredVisualTheme())
   }, [])
 
   return <>{children}</>

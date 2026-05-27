@@ -1,25 +1,19 @@
-import { useMemo, useState } from 'react'
-import type { FilterId, ProjectEntry, SiteContent } from '../../site/types'
+import type { ProjectEntry, SiteContent } from '../../site/types'
+import { getProjectImages } from '../../site/projectImages'
+import { isDemoAvailable, isProjectInDevelopment } from '../../lib/projectDemo'
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
+import { ProjectCardMedia } from './ProjectCardMedia'
 import styles from './Projects.module.css'
 
-const FILTER_ORDER: FilterId[] = ['all', 'frontend', 'backend', 'fullstack']
-
 export type ProjectsProps = {
-  /** Pré-visualização do wizard: mostra só o cartão deste índice (sem filtros nem destaque em layout separado). */
+  /** Wizard preview: show only the card at this index. */
   previewProjectIndex?: number
 }
 
 export function Projects({ previewProjectIndex }: ProjectsProps = {}) {
   const { content, projects } = usePortfolioDisplay()
   const { projects: p } = content
-  const [active, setActive] = useState<FilterId>('all')
-
-  const filtered = useMemo(() => {
-    if (active === 'all') return projects
-    return projects.filter((x) => x.category === active)
-  }, [active, projects])
 
   const previewProj =
     previewProjectIndex !== undefined && projects.length > 0
@@ -28,9 +22,9 @@ export function Projects({ previewProjectIndex }: ProjectsProps = {}) {
 
   if (previewProjectIndex !== undefined) {
     return (
-      <section id="projetos" className={styles.section}>
+      <section id="projects" className={styles.section}>
         <div className={styles.container}>
-          <Reveal>
+          <Reveal instant>
             <header className={styles.head}>
               <p className={styles.kicker}>{p.kicker}</p>
               <h2 className={styles.title}>{p.title}</h2>
@@ -41,14 +35,7 @@ export function Projects({ previewProjectIndex }: ProjectsProps = {}) {
           {previewProj ? (
             <div className={`${styles.grid} ${styles.gridPreviewOne}`}>
               <Reveal key={previewProj.id}>
-                <article className={styles.card}>
-                  <div className={styles.cardPad}>
-                    <span className={`${styles.cat} ${styles.catInline}`}>
-                      {p.categories[previewProj.category]}
-                    </span>
-                    <CardBody proj={previewProj} p={p} />
-                  </div>
-                </article>
+                <ProjectCard proj={previewProj} p={p} />
               </Reveal>
             </div>
           ) : (
@@ -59,13 +46,10 @@ export function Projects({ previewProjectIndex }: ProjectsProps = {}) {
     )
   }
 
-  const featured = filtered.find((x) => x.featured)
-  const rest = filtered.filter((x) => !x.featured || active !== 'all')
-
   return (
-    <section id="projetos" className={styles.section}>
+    <section id="projects" className={styles.section}>
       <div className={styles.container}>
-        <Reveal>
+        <Reveal instant>
           <header className={styles.head}>
             <p className={styles.kicker}>{p.kicker}</p>
             <h2 className={styles.title}>{p.title}</h2>
@@ -73,80 +57,67 @@ export function Projects({ previewProjectIndex }: ProjectsProps = {}) {
           </header>
         </Reveal>
 
-        <Reveal>
-          <div className={styles.filters} role="tablist" aria-label={p.filterAria}>
-            {FILTER_ORDER.map((key) => (
-              <button
-                key={key}
-                type="button"
-                role="tab"
-                aria-selected={active === key}
-                className={`${styles.filter} ${active === key ? styles.filterActive : ''}`}
-                onClick={() => setActive(key)}
-              >
-                {p.filters[key]}
-              </button>
-            ))}
-          </div>
-        </Reveal>
-
-        {featured && active === 'all' ? (
-          <Reveal>
-            <article className={`${styles.featured} ${styles.featuredNoImage}`}>
-              <div className={styles.featuredBody}>
-                <span className={styles.case}>{p.featuredCase}</span>
-                <FeaturedBody proj={featured} p={p} />
-              </div>
-            </article>
-          </Reveal>
-        ) : null}
-
         <div className={styles.grid}>
-          {rest.map((proj) => (
+          {projects.map((proj) => (
             <Reveal key={proj.id}>
-              <article className={styles.card}>
-                <div className={styles.cardPad}>
-                  <span className={`${styles.cat} ${styles.catInline}`}>{p.categories[proj.category]}</span>
-                  <CardBody proj={proj} p={p} />
-                </div>
-              </article>
+              <ProjectCard proj={proj} p={p} />
             </Reveal>
           ))}
         </div>
 
-        {filtered.length === 0 ? <p className={styles.empty}>{p.empty}</p> : null}
+        {projects.length === 0 ? <p className={styles.empty}>{p.empty}</p> : null}
       </div>
     </section>
   )
 }
 
-function FeaturedBody({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects'] }) {
+function ProjectCard({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects'] }) {
+  const images = getProjectImages(proj)
+  const hasImages = images.length > 0
+  const inDevelopment = isProjectInDevelopment(proj)
+
   return (
-    <>
-      <h3 className={styles.cardTitle}>{proj.title}</h3>
-      <ul className={styles.stack}>
-        {proj.stack.map((s) => (
-          <li key={s}>{s}</li>
-        ))}
-      </ul>
-      <p className={styles.cardDesc}>{proj.description}</p>
-      <div className={styles.challenges}>
-        <span className={styles.chLabel}>{p.challenges}</span>
-        <p>{proj.challenges}</p>
+    <article
+      className={`${styles.card} ${inDevelopment ? styles.cardInDevelopment : ''}`}
+      aria-label={inDevelopment ? `${proj.title} — ${p.inDevelopment}` : proj.title}
+    >
+      {hasImages ? (
+        <div className={styles.cardImg}>
+          <ProjectCardMedia images={images} alt={proj.title} />
+          <span className={styles.cat}>{p.categories[proj.category]}</span>
+          {inDevelopment ? (
+            <span className={styles.devOverlay} aria-hidden>
+              <span className={styles.devBadge}>{p.inDevelopment}</span>
+            </span>
+          ) : null}
+        </div>
+      ) : null}
+      <div className={styles.cardPad}>
+        {!hasImages ? (
+          <>
+            <span className={`${styles.cat} ${styles.catInline}`}>{p.categories[proj.category]}</span>
+            {inDevelopment ? (
+              <span className={`${styles.devBadge} ${styles.devBadgeInline}`}>{p.inDevelopment}</span>
+            ) : null}
+          </>
+        ) : null}
+        <CardBody proj={proj} p={p} inDevelopment={inDevelopment} />
       </div>
-      <div className={styles.links}>
-        <a href={proj.demoUrl} className={styles.demo}>
-          {p.demo}
-        </a>
-        <a href={proj.codeUrl} className={styles.code} target="_blank" rel="noreferrer noopener">
-          {p.code}
-        </a>
-      </div>
-    </>
+    </article>
   )
 }
 
-function CardBody({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects'] }) {
+function CardBody({
+  proj,
+  p,
+  inDevelopment,
+}: {
+  proj: ProjectEntry
+  p: SiteContent['projects']
+  inDevelopment: boolean
+}) {
+  const hasDemo = isDemoAvailable(proj.demoUrl)
+
   return (
     <>
       <h3 className={styles.cardTitleSm}>{proj.title}</h3>
@@ -161,12 +132,27 @@ function CardBody({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects'] 
         <p>{proj.challenges}</p>
       </div>
       <div className={styles.linksSm}>
-        <a href={proj.demoUrl} className={styles.demo}>
-          {p.demo}
-        </a>
-        <a href={proj.codeUrl} className={styles.code} target="_blank" rel="noreferrer noopener">
-          {p.code}
-        </a>
+        {inDevelopment ? (
+          <span className={styles.inDevelopment} aria-disabled="true">
+            {p.inDevelopment}
+          </span>
+        ) : (
+          <>
+            {hasDemo ? (
+              <a
+                href={proj.demoUrl.trim()}
+                className={styles.demo}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {p.demo}
+              </a>
+            ) : null}
+            <a href={proj.codeUrl} className={styles.code} target="_blank" rel="noreferrer noopener">
+              {p.code}
+            </a>
+          </>
+        )}
       </div>
     </>
   )

@@ -1,39 +1,40 @@
+import { imageAnonymousProps } from '../../lib/imageLoadProps'
+import { resolveProfilePhoto } from '../../site/profilePhoto'
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
 import styles from './About.module.css'
 
 export function About() {
-  const { content } = usePortfolioDisplay()
+  const { config, content } = usePortfolioDisplay()
   const { about } = content
+  const profilePhoto = resolveProfilePhoto(config.profilePhoto)
 
   return (
-    <section id="sobre" className={styles.section}>
+    <section id="home" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.layout}>
-          <Reveal>
+          <Reveal className={styles.copyCol} instant>
             <div className={styles.copy}>
               <p className={styles.kicker}>{about.kicker}</p>
-              <h2 className={styles.title}>{about.title}</h2>
+              <h1 className={styles.name}>{config.brandName}</h1>
+              <p className={styles.role}>{about.title}</p>
               <p className={styles.lead}>{about.lead}</p>
               <p className={styles.para}>{about.para}</p>
             </div>
           </Reveal>
 
-          <Reveal>
-            <ol className={styles.timeline}>
-              {about.timeline.map((t, i) => (
-                <li key={`${t.phase}-${t.title}-${i}`} className={styles.tItem}>
-                  <span className={styles.marker} aria-hidden="true">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div className={styles.tBody}>
-                    <span className={styles.phase}>{t.phase}</span>
-                    <h3 className={styles.tTitle}>{t.title}</h3>
-                    <p className={styles.tText}>{t.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+          <Reveal className={styles.photoCol} instant>
+            <figure className={styles.photoFrame}>
+              <img
+                src={profilePhoto}
+                alt={`Photo of ${config.brandName}`}
+                className={styles.photo}
+                width={480}
+                height={560}
+                decoding="async"
+                {...imageAnonymousProps(profilePhoto)}
+              />
+            </figure>
           </Reveal>
         </div>
       </div>

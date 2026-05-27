@@ -22,7 +22,7 @@
 .btn:hover {
   transform: translateY(-3px);
   border-color: var(--border-glow);
-  box-shadow: var(--shadow-soft), 0 0 40px rgba(34, 211, 238, 0.12);
+  box-shadow: var(--shadow-soft), 0 0 40px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 .btn:active {

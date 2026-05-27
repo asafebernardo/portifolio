@@ -1,7 +1,11 @@
 ﻿.section {
   padding: 4rem 1rem;
   border-top: 1px solid var(--border-subtle);
-  background: radial-gradient(120% 80% at 50% 0%, rgba(34, 211, 238, 0.04), transparent 50%);
+  background: radial-gradient(
+    120% 80% at 50% 0%,
+    color-mix(in srgb, var(--accent) 8%, transparent),
+    transparent 50%
+  );
 }
 
 .container {
@@ -51,7 +55,7 @@
   padding: 1.35rem 1.25rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  background: rgba(14, 16, 24, 0.65);
+  background: var(--surface-card);
   backdrop-filter: blur(12px);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
   transition:
@@ -61,9 +65,9 @@
 }
 
 .card:hover {
-  border-color: rgba(34, 211, 238, 0.3);
+  border-color: var(--border-glow);
   transform: translateY(-4px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 0 50px rgba(34, 211, 238, 0.05);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 0 50px color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
 .listEdit {
@@ -88,21 +92,29 @@
 
 .item {
   display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.6rem;
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.45;
 }
 
-.dot {
-  margin-top: 0.45rem;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+.skillIcon {
+  width: 1.125rem;
+  height: 1.125rem;
   flex-shrink: 0;
-  background: linear-gradient(135deg, var(--accent), #818cf8);
-  box-shadow: 0 0 12px rgba(34, 211, 238, 0.35);
+  object-fit: contain;
+}
+
+.genericIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+:global(html[data-color-scheme='dark']) .genericIcon {
+  color: var(--text-secondary);
 }
 
 /* Windows XP */
@@ -191,19 +203,13 @@
 
 :global(html[data-visual-theme='xp']) .item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.45;
 }
 
-:global(html[data-visual-theme='xp']) .dot {
-  margin-top: 0.45rem;
-  width: 8px;
-  height: 8px;
-  border-radius: 0;
-  flex-shrink: 0;
-  background: var(--xp-selection);
-  border: 1px solid var(--xp-button-dk-shadow);
+:global(html[data-visual-theme='xp']) .genericIcon {
+  color: var(--xp-selection);
 }

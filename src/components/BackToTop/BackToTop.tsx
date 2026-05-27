@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { getPortfolioScrollRoot, scrollPortfolioTo } from '../../lib/portfolioScroll'
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import styles from './BackToTop.module.css'
 
@@ -7,10 +8,12 @@ export function BackToTop() {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 420)
+    const scrollRoot = getPortfolioScrollRoot()
+    if (!scrollRoot) return
+    const onScroll = () => setShow(scrollRoot.scrollTop > 420)
     onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    scrollRoot.addEventListener('scroll', onScroll, { passive: true })
+    return () => scrollRoot.removeEventListener('scroll', onScroll)
   }, [])
 
   if (!show) return null
@@ -19,7 +22,7 @@ export function BackToTop() {
     <button
       type="button"
       className={styles.btn}
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      onClick={() => scrollPortfolioTo(0, 'smooth')}
       aria-label={content.backToTop}
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">

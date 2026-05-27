@@ -1,10 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_ADMIN_USERNAME?: string
-  readonly VITE_ADMIN_PASSWORD?: string
-  /** Email opcional para maior limite na API MyMemory (tradução PT→EN) */
-  readonly VITE_TRANSLATION_EMAIL?: string
+  readonly env: Record<string, string | undefined>
 }
 
 interface ImportMeta {

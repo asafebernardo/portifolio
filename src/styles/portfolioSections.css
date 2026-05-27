@@ -1,0 +1,28 @@
+/* One section per viewport when navigating — avoids showing two sections at once. */
+html[data-visual-theme='pro'] {
+  scroll-snap-type: y mandatory;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-visual-theme='pro'] {
+    scroll-snap-type: y proximity;
+  }
+}
+
+html[data-visual-theme='pro'] main section[id] {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: calc(100svh - var(--header-h));
+  box-sizing: border-box;
+}
+
+html[data-visual-theme='pro'] #home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+html[data-visual-theme='pro'] #contact {
+  min-height: calc(100svh - var(--header-h));
+  padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+}

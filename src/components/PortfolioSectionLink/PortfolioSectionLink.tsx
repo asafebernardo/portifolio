@@ -1,29 +1,29 @@
-import type { MouseEvent, ReactNode } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { scrollToPortfolioSection } from '../../site/portfolioNavigation'
+import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import { scrollToPortfolioNav } from '../../lib/portfolioScroll'
+import { portfolioSectionLinkTo, type PortfolioNavKey } from '../../site/portfolioPaths'
 
 type Props = {
-  sectionId: string
+  navKey: PortfolioNavKey
   className?: string
   children: ReactNode
-  /** Chamado depois do scroll (ex.: fechar menu mobile). */
+  /** Called after navigation (e.g. close mobile menu). */
   onNavigate?: () => void
 }
 
-/** Link interno que só faz scroll — mantém a URL em `/` sem `#` nem query. */
-export function PortfolioSectionLink({ sectionId, className, children, onNavigate }: Props) {
-  const navigate = useNavigate()
-
-  function onClick(e: MouseEvent<HTMLAnchorElement>) {
-    e.preventDefault()
-    scrollToPortfolioSection(sectionId)
-    navigate('/', { replace: true })
-    onNavigate?.()
-  }
-
+export function PortfolioSectionLink({ navKey, className, children, onNavigate }: Props) {
   return (
-    <a href="/" className={className} onClick={onClick}>
+    <Link
+      to={portfolioSectionLinkTo(navKey)}
+      className={className}
+      onClick={() => {
+        if (navKey === 'home') {
+          requestAnimationFrame(() => scrollToPortfolioNav('home', 'smooth'))
+        }
+        onNavigate?.()
+      }}
+    >
       {children}
-    </a>
+    </Link>
   )
 }

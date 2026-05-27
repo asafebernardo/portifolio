@@ -1,5 +1,6 @@
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
+import { SkillIcon } from './SkillIcon'
 import styles from './Skills.module.css'
 
 export function Skills() {
@@ -9,7 +10,7 @@ export function Skills() {
   return (
     <section id="skills" className={styles.section}>
       <div className={styles.container}>
-        <Reveal>
+        <Reveal instant>
           <header className={styles.head}>
             <p className={styles.kicker}>{skills.kicker}</p>
             <h2 className={styles.title}>{skills.title}</h2>
@@ -25,8 +26,8 @@ export function Skills() {
                 <ul className={styles.list}>
                   {g.items.map((item) => (
                     <li key={item} className={styles.item}>
-                      <span className={styles.dot} aria-hidden="true" />
-                      {item}
+                      <SkillIcon name={item} />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>

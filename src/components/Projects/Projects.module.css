@@ -35,39 +35,6 @@
   line-height: 1.65;
 }
 
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.filter {
-  padding: 0.45rem 0.95rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  border: 1px solid transparent;
-  background: rgba(148, 163, 184, 0.06);
-  transition:
-    color 0.2s,
-    border-color 0.2s,
-    background 0.2s,
-    transform 0.15s;
-}
-
-.filter:hover {
-  color: var(--text-primary);
-  border-color: var(--border-subtle);
-}
-
-.filterActive {
-  color: var(--bg-root);
-  background: linear-gradient(135deg, rgba(34, 211, 238, 0.95), #818cf8);
-  border-color: transparent;
-  box-shadow: 0 8px 24px rgba(34, 211, 238, 0.18);
-}
 
 .featured {
   display: grid;
@@ -76,7 +43,7 @@
   padding: 1.25rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
-  background: linear-gradient(145deg, rgba(34, 211, 238, 0.06), rgba(15, 23, 42, 0.85));
+  background: linear-gradient(145deg, var(--accent-soft), var(--surface-featured-end));
   box-shadow: var(--shadow-soft);
   transition:
     border-color 0.35s,
@@ -84,7 +51,7 @@
 }
 
 .featured:hover {
-  border-color: rgba(34, 211, 238, 0.35);
+  border-color: var(--border-glow);
   transform: translateY(-4px);
 }
 
@@ -124,7 +91,7 @@
   position: absolute;
   inset: auto 0 0 0;
   height: 45%;
-  background: linear-gradient(to top, rgba(7, 8, 13, 0.85), transparent);
+  background: linear-gradient(to top, var(--surface-scrim-strong), transparent);
   pointer-events: none;
 }
 
@@ -162,7 +129,7 @@
   padding: 0.25rem 0.55rem;
   border-radius: 999px;
   border: 1px solid var(--border-subtle);
-  background: rgba(15, 23, 42, 0.55);
+  background: var(--surface-chip);
   font-family: var(--font-mono);
   color: var(--text-secondary);
 }
@@ -177,8 +144,8 @@
 .challenges {
   padding: 0.85rem 1rem;
   border-radius: var(--radius-md);
-  border: 1px dashed rgba(148, 163, 184, 0.25);
-  background: rgba(7, 8, 13, 0.35);
+  border: 1px dashed var(--surface-border-dashed);
+  background: var(--surface-chip-subtle);
 }
 
 .challenges p {
@@ -208,9 +175,11 @@
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.88rem;
-  color: var(--bg-root);
-  background: linear-gradient(135deg, var(--accent), #67e8f9);
-  box-shadow: 0 8px 22px rgba(34, 211, 238, 0.2);
+  font-family: inherit;
+  color: var(--text-on-accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 35%, transparent);
+  text-decoration: none;
   transition:
     transform 0.2s,
     box-shadow 0.2s;
@@ -218,7 +187,7 @@
 
 .demo:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(34, 211, 238, 0.28);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .code {
@@ -228,7 +197,7 @@
   font-size: 0.88rem;
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
-  background: rgba(15, 23, 42, 0.5);
+  background: var(--surface-inset);
   transition:
     border-color 0.2s,
     background 0.2s,
@@ -237,7 +206,7 @@
 
 .code:hover {
   border-color: var(--border-glow);
-  background: rgba(34, 211, 238, 0.08);
+  background: var(--accent-soft);
   transform: translateY(-2px);
 }
 
@@ -271,7 +240,7 @@
   flex-direction: column;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  background: rgba(14, 16, 24, 0.85);
+  background: var(--surface-card-solid);
   overflow: hidden;
   transition:
     border-color 0.35s,
@@ -280,9 +249,75 @@
 }
 
 .card:hover {
-  border-color: rgba(34, 211, 238, 0.28);
+  border-color: var(--border-glow);
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 40px rgba(34, 211, 238, 0.06);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 40px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.cardInDevelopment {
+  opacity: 0.88;
+  filter: grayscale(0.35);
+}
+
+.cardInDevelopment:hover {
+  transform: none;
+  border-color: var(--border-subtle);
+  box-shadow: none;
+}
+
+.cardInDevelopment .cardMediaSlideActive,
+.cardInDevelopment:hover .cardMediaSlideActive {
+  transform: scale(1.02);
+}
+
+.devOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--bg-root) 62%, transparent);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+.devBadge {
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: var(--surface-panel);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+}
+
+.devBadgeInline {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  font-size: 0.68rem;
+}
+
+.inDevelopment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--surface-inset);
+  border: 1px dashed var(--border-subtle);
+  cursor: not-allowed;
+  user-select: none;
 }
 
 .cardImg {
@@ -291,15 +326,59 @@
   overflow: hidden;
 }
 
-.cardImg img {
+.cardMedia {
+  position: absolute;
+  inset: 0;
+}
+
+.cardMediaSlide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.55s var(--ease-out);
+  opacity: 0;
+  transition: opacity 0.65s ease;
+  transform: scale(1.02);
 }
 
-.card:hover .cardImg img {
+.cardMediaSlideActive {
+  opacity: 1;
+  z-index: 1;
+}
+
+.card:hover .cardMediaSlideActive {
   transform: scale(1.05);
+  transition:
+    opacity 0.65s ease,
+    transform 0.55s var(--ease-out);
+}
+
+.cardMediaDots {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  gap: 0.35rem;
+  transform: translateX(-50%);
+  padding: 0.25rem 0.45rem;
+  border-radius: 999px;
+  background: var(--surface-scrim);
+  backdrop-filter: blur(6px);
+}
+
+.cardMediaDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--surface-dot-inactive);
+  transition: background 0.25s, transform 0.25s;
+}
+
+.cardMediaDotActive {
+  background: var(--accent);
+  transform: scale(1.15);
 }
 
 .cat {
@@ -310,9 +389,10 @@
   border-radius: 999px;
   font-size: 0.68rem;
   font-weight: 600;
-  background: rgba(7, 8, 13, 0.75);
+  background: var(--surface-panel);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border-subtle);
+  color: var(--text-on-media);
 }
 
 /* Cartão sem imagem: categoria no corpo do card */
@@ -364,8 +444,8 @@
 .challengesSm {
   padding: 0.65rem 0.75rem;
   border-radius: var(--radius-sm);
-  background: rgba(7, 8, 13, 0.45);
-  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: var(--surface-chip-subtle);
+  border: 1px solid var(--surface-tag-border);
 }
 
 .challengesSm p {
@@ -452,7 +532,7 @@
   flex-direction: column;
   gap: 0.25rem;
   padding: 0.5rem 0.65rem;
-  background: rgba(7, 8, 13, 0.92);
+  background: var(--surface-modal);
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -550,34 +630,6 @@
   line-height: 1.65;
 }
 
-:global(html[data-visual-theme='xp']) .filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-:global(html[data-visual-theme='xp']) .filter {
-  padding: 0.4rem 0.85rem;
-  border-radius: 0;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #000000;
-  border: 2px solid #333333;
-  background: #ffffff;
-  transition: none;
-}
-
-:global(html[data-visual-theme='xp']) .filter:hover {
-  background: #ffff99;
-}
-
-:global(html[data-visual-theme='xp']) .filterActive {
-  color: #000000;
-  background: #ff9900;
-  border-color: #000000;
-  box-shadow: 2px 2px 0 #333333;
-}
 
 :global(html[data-visual-theme='xp']) .featured {
   display: grid;
@@ -798,15 +850,14 @@
   overflow: hidden;
 }
 
-:global(html[data-visual-theme='xp']) .cardImg img {
+:global(html[data-visual-theme='xp']) .cardMediaSlide {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.55s var(--ease-out);
 }
 
-:global(html[data-visual-theme='xp']) .card:hover .cardImg img {
-  transform: scale(1.05);
+:global(html[data-visual-theme='xp']) .card:hover .cardMediaSlideActive {
+  transform: none;
 }
 
 :global(html[data-visual-theme='xp']) .cat {

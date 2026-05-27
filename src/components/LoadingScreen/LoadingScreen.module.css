@@ -4,7 +4,11 @@
   z-index: 9999;
   display: grid;
   place-items: center;
-  background: radial-gradient(120% 80% at 50% 0%, #0f172a 0%, #07080d 55%);
+  background: radial-gradient(
+    120% 80% at 50% 0%,
+    color-mix(in srgb, var(--accent) 16%, #000000) 0%,
+    var(--bg-root) 55%
+  );
   transition: opacity 0.45s var(--ease-out), visibility 0.45s;
 }
 
@@ -49,8 +53,8 @@
   position: absolute;
   inset: 18px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), #6366f1);
-  box-shadow: 0 0 24px rgba(34, 211, 238, 0.45);
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 55%, transparent);
   animation: pulse 1.2s ease-in-out infinite;
 }
 
@@ -58,7 +62,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 2px solid rgba(34, 211, 238, 0.35);
+  border: 2px solid var(--border-glow);
   animation: spin 2.4s linear infinite;
 }
 

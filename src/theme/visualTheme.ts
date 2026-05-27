@@ -3,7 +3,12 @@ export type VisualTheme = 'pro'
 export const VISUAL_THEME_STORAGE_KEY = 'portfolio-visual-theme'
 
 export function getStoredVisualTheme(): VisualTheme {
-  return 'pro'
+  try {
+    const stored = localStorage.getItem(VISUAL_THEME_STORAGE_KEY) as VisualTheme | null
+    return stored === 'pro' || stored === 'xp' ? stored : 'pro'
+  } catch {
+    return 'pro'
+  }
 }
 
 export function applyVisualTheme(theme: VisualTheme) {

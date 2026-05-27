@@ -1,19 +1,17 @@
 import { About } from '../../components/About/About'
-import { Architecture } from '../../components/Architecture/Architecture'
 import { Contact } from '../../components/Contact/Contact'
-import { Hero } from '../../components/Hero/Hero'
 import { Projects } from '../../components/Projects/Projects'
 import { Skills } from '../../components/Skills/Skills'
+import { WorkExperience } from '../../components/WorkExperience/WorkExperience'
 
-/** Página única: todas as secções em sequência (navegação por âncoras). */
-export function PortfolioHome() {
+/** Single page: each menu item maps to its own section id. */
+export function PortfolioPage() {
   return (
     <>
-      <Hero />
+      <About />
       <Projects />
       <Skills />
-      <Architecture />
-      <About />
+      <WorkExperience />
       <Contact />
     </>
   )

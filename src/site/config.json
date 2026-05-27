@@ -1,14 +1,15 @@
 {
-  "brandName": "Asafe",
+  "brandName": "Asafe Bernardo",
+  "siteTitle": "Portfolio",
   "profilePhoto": "/profile-photo.png",
   "links": {
-    "github": "https://github.com",
-    "linkedin": "https://linkedin.com",
-    "email": "mailto:contato@exemplo.com",
-    "emailDisplay": "contato@exemplo.com",
-    "githubDisplay": "github.com/seu-usuario",
-    "linkedinDisplay": "linkedin.com/in/seu-perfil",
-    "whatsapp": "https://wa.me/5500000000000",
-    "whatsappDisplay": "+55 (00) 00000-0000"
+    "github": "https://github.com/asafebernardo",
+    "linkedin": "https://www.linkedin.com/in/asafebernardo",
+    "email": "mailto:asafe.kohler@gmail.com",
+    "emailDisplay": "asafe.kohler@gmail.com",
+    "githubDisplay": "github.com/asafebernardo",
+    "linkedinDisplay": "linkedin.com/in/asafebernardo",
+    "whatsapp": "https://wa.me/5549998062305",
+    "whatsappDisplay": "+55 (49) 99806-2305"
   }
 }

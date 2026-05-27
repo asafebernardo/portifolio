@@ -1,16 +1,13 @@
 import { normalizeContactLinkSegments } from './contactLinks'
-import type { Locale, ProjectEntry, SiteConfig, SiteContent } from './types'
+import { resolveProfilePhoto } from './profilePhoto'
+import type { ProjectEntry, SiteConfig, SiteContent } from './types'
 import configDefault from './config.json'
 import contentEnDefault from './content.en.json'
-import contentPtDefault from './content.pt.json'
 import projectsEnDefault from './projects.en.json'
-import projectsPtDefault from './projects.pt.json'
 
 export const OVERRIDE_STORAGE = {
   config: 'portfolio-override-config',
-  contentPt: 'portfolio-override-content-pt',
   contentEn: 'portfolio-override-content-en',
-  projectsPt: 'portfolio-override-projects-pt',
   projectsEn: 'portfolio-override-projects-en',
 } as const
 
@@ -18,9 +15,7 @@ export type OverrideFile = keyof typeof OVERRIDE_STORAGE
 
 const defaults = {
   config: configDefault as SiteConfig,
-  contentPt: contentPtDefault as SiteContent,
   contentEn: contentEnDefault as SiteContent,
-  projectsPt: projectsPtDefault as ProjectEntry[],
   projectsEn: projectsEnDefault as ProjectEntry[],
 }
 
@@ -56,12 +51,16 @@ function readOverride<T>(file: OverrideFile, fallback: T): T {
 }
 
 export function getMergedConfig(): SiteConfig {
-  return readOverride('config', defaults.config)
+  const config = readOverride('config', defaults.config)
+  return {
+    ...config,
+    siteTitle: config.siteTitle?.trim() || defaults.config.siteTitle,
+    profilePhoto: resolveProfilePhoto(config.profilePhoto ?? defaults.config.profilePhoto),
+  }
 }
 
-export function getMergedContent(locale: Locale): SiteContent {
-  const file = locale === 'pt' ? 'contentPt' : 'contentEn'
-  const c = readOverride(file, defaults[file])
+export function getMergedContent(): SiteContent {
+  const c = readOverride('contentEn', defaults.contentEn)
   return {
     ...c,
     contact: {
@@ -71,9 +70,8 @@ export function getMergedContent(locale: Locale): SiteContent {
   }
 }
 
-export function getMergedProjects(locale: Locale): ProjectEntry[] {
-  const file = locale === 'pt' ? 'projectsPt' : 'projectsEn'
-  return readOverride(file, defaults[file])
+export function getMergedProjects(): ProjectEntry[] {
+  return readOverride('projectsEn', defaults.projectsEn)
 }
 
 export function getDefaultJson(file: OverrideFile): string {

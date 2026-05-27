@@ -5,12 +5,15 @@ import styles from './Reveal.module.css'
 type Props = {
   children: ReactNode
   className?: string
+  /** No fade — use on section headers to avoid overlapping the previous section. */
+  instant?: boolean
 }
 
-export function Reveal({ children, className = '' }: Props) {
+export function Reveal({ children, className = '', instant = false }: Props) {
   const { ref, visible } = useReveal<HTMLDivElement>()
+  const show = instant || visible
   return (
-    <div ref={ref} className={`${styles.wrap} ${visible ? styles.visible : ''} ${className}`.trim()}>
+    <div ref={ref} className={`${styles.wrap} ${show ? styles.visible : ''} ${className}`.trim()}>
       {children}
     </div>
   )

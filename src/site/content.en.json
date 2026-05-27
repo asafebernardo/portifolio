@@ -8,8 +8,7 @@
     "home": "Home",
     "projects": "Projects",
     "skills": "Skills",
-    "architecture": "Architecture",
-    "about": "About",
+    "experience": "Experience",
     "contact": "Contact",
     "ctaProjects": "View projects",
     "menuOpen": "Open menu",
@@ -24,13 +23,7 @@
     "description": "I build modern interfaces, scalable APIs and web systems focused on performance, usability and clean architecture.",
     "ctaProjects": "View projects",
     "github": "GitHub",
-    "linkedin": "LinkedIn",
-    "mockTitle": "dashboard.app",
-    "chartLabel": "Performance",
-    "badgeLive": "Live",
-    "floatApi": { "label": "API", "sub": "REST / JSON" },
-    "floatFe": { "label": "Frontend", "sub": "React" },
-    "floatDb": { "label": "Database", "sub": "SQL / NoSQL" }
+    "linkedin": "LinkedIn"
   },
   "projects": {
     "kicker": "Selected work",
@@ -46,8 +39,9 @@
     "featuredCase": "Featured case",
     "challenges": "Technical challenges",
     "challengesShort": "Challenges",
-    "demo": "Demo",
-    "code": "Code",
+    "demo": "Live demo",
+    "code": "Source code",
+    "inDevelopment": "In development",
     "empty": "No projects in this category yet.",
     "categories": {
       "frontend": "Frontend",
@@ -62,46 +56,112 @@
     "groups": [
       {
         "title": "Frontend",
-        "items": ["React", "TypeScript", "Next.js", "CSS Modules", "Accessibility", "Web performance"]
+        "items": [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "CSS Modules",
+          "Responsive Design",
+          "Performance Optimization"
+        ]
       },
       {
         "title": "Backend",
-        "items": ["Node.js", "Express / Fastify", "REST & GraphQL", "WebSockets", "Automated testing"]
+        "items": [
+          "Node.js",
+          "Express",
+          "REST APIs",
+          "WebSockets",
+          "JWT Authentication",
+          "Automated Testing"
+        ]
       },
       {
         "title": "Database",
-        "items": ["PostgreSQL", "MongoDB", "Redis", "Modeling & indexes", "Migrations"]
+        "items": [
+          "MongoDB",
+          "Redis",
+          "Database Modeling",
+          "SQL Queries",
+          "Migrations"
+        ]
       },
       {
-        "title": "DevOps / Tools",
-        "items": ["Docker", "CI/CD", "Git", "Cloud (AWS/GCP)", "Observability"]
+        "title": "DevOps & Tools",
+        "items": [
+          "Docker",
+          "Git & GitHub",
+          "CI/CD",
+          "Linux",
+          "Monitoring & Logs"
+        ]
       }
     ]
   },
-  "architecture": {
-    "kicker": "Delivery flow",
-    "title": "Architecture",
-    "sub": "Layered view — from UI to deploy — with clear contracts between each step.",
-    "pipeline": {
-      "frontend": "Frontend",
-      "api": "API",
-      "database": "Database",
-      "deploy": "Deploy"
-    },
-    "nodes": [
-      { "key": "react", "label": "React", "sub": "UI & state" },
-      { "key": "node", "label": "Node", "sub": "API & domain" },
-      { "key": "auth", "label": "Auth", "sub": "JWT / OAuth" },
-      { "key": "db", "label": "Database", "sub": "Postgres" },
-      { "key": "docker", "label": "Docker", "sub": "Containers" },
-      { "key": "cloud", "label": "Cloud", "sub": "Deploy & CDN" }
+  "experience": {
+    "kicker": "Career",
+    "title": "Work experience",
+    "sub": "Professional journey building digital products — from end-to-end delivery to cross-functional squad collaboration.",
+    "items": [
+      {
+        "id": "exp-ixc-qa",
+        "period": "May 2025 — Present",
+        "role": "QA Analyst",
+        "company": "IXC Soft",
+        "location": "Chapecó, Santa Catarina, Brazil · On-site",
+        "description": "Implemented automated tests with Postman for system validation, helping keep IXC Soft releases reliable and high quality.",
+        "highlights": [
+          "Automated testing",
+          "Postman",
+          "API validation",
+          "QA/QC",
+          "Quality assurance",
+          "Cypress",
+          "Vitest",
+          "Node.js",
+          "React.js",
+          "Git",
+          "Docker",
+          "MongoDB",
+          "Redis"
+        ]
+      },
+      {
+        "id": "exp-ixc-support",
+        "period": "Jul 2023 — May 2025",
+        "role": "Technical Support Analyst",
+        "company": "IXC Soft",
+        "location": "Chapecó, Santa Catarina, Brazil · On-site",
+        "description": "Resolved complex technical incidents at IXC Soft, using React.js knowledge for advanced frontend diagnostics.",
+        "highlights": [
+          "Technical support",
+          "Incident resolution",
+          "Frontend diagnostics",
+          "React.js",
+          "User support"
+        ]
+      },
+      {
+        "id": "exp-loy-support",
+        "period": "Mar 2023 — Jun 2023",
+        "role": "Technical Support",
+        "company": "Loy Legal",
+        "location": "Chapecó, Santa Catarina, Brazil · On-site",
+        "description": "Provided specialized technical support at Loy Legal, fixing critical issues that affected users’ day-to-day operations.",
+        "highlights": [
+          "Technical support",
+          "Troubleshooting",
+          "User support",
+          "Critical incidents"
+        ]
+      }
     ]
   },
   "about": {
     "kicker": "About",
-    "title": "Product-minded software engineer",
-    "lead": "I work at the intersection of UX and backend engineering: clear API contracts, predictable frontends and reliable deploys. Readable tests where they matter and documentation that ages well.",
-    "para": "I value continuous feedback, metrics (Core Web Vitals, p99 latency, error rates) and a culture where refactoring is an investment — not a luxury.",
+    "title": "Full Stack Developer",
+    "lead": "I am a software developer focused on web applications and REST APIs, with experience in documentation, system integration, and building solutions for modern environments.\n\nAt IXC Soft, I started in Technical Support and gradually transitioned into development-focused activities, gaining hands-on experience with Node.js, React.js, MongoDB, and API tools such as Postman. I have an analytical mindset, strong adaptability to new technologies, and a continuous interest in building solutions that improve processes and product delivery.",
+    "para": "I am looking for opportunities where I can continue growing technically, contribute to challenging projects, and further develop my career in software engineering.",
     "timeline": [
       {
         "phase": "Studies",

@@ -7,10 +7,11 @@ import {
   type ReactNode,
 } from 'react'
 import type { ProjectEntry, SiteConfig, SiteContent } from '../site/types'
+import { SITE_LOCALE } from '../site'
 import { getMergedConfig, getMergedContent, getMergedProjects } from '../site/overrides'
 
 type SiteContextValue = {
-  locale: 'pt'
+  locale: typeof SITE_LOCALE
   config: SiteConfig
   content: SiteContent
   projects: ProjectEntry[]
@@ -32,12 +33,12 @@ export function SiteProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const config = useMemo(() => getMergedConfig(), [revision])
-  const content = useMemo(() => getMergedContent('pt'), [revision])
-  const projects = useMemo(() => getMergedProjects('pt'), [revision])
+  const content = useMemo(() => getMergedContent(), [revision])
+  const projects = useMemo(() => getMergedProjects(), [revision])
 
   const value = useMemo<SiteContextValue>(
     () => ({
-      locale: 'pt',
+      locale: SITE_LOCALE,
       config,
       content,
       projects,

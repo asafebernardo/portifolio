@@ -1,28 +1,59 @@
-import { useEffect, useMemo, useState } from 'react'
-import { imageAnonymousProps } from '../../lib/imageLoadProps'
-import { PORTFOLIO_NAV, PORTFOLIO_SECTION_IDS } from '../../site/portfolioPaths'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { PORTFOLIO_NAV, portfolioNavKeyFromLocation } from '../../site/portfolioPaths'
+import { resolveProfilePhoto } from '../../site/profilePhoto'
+import { useColorScheme } from '../../theme/ColorSchemeProvider'
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
-import { usePortfolioSectionSpy } from '../../hooks/usePortfolioSectionSpy'
 import { PortfolioSectionLink } from '../PortfolioSectionLink/PortfolioSectionLink'
+import { imageAnonymousProps } from '../../lib/imageLoadProps'
+import { getPortfolioScrollRoot } from '../../lib/portfolioScroll'
 import styles from './Header.module.css'
 
-const SECTION_IDS = PORTFOLIO_NAV.map((i) => i.sectionId)
+function IconSun({ className }: { className?: string }) {
+  return (
+    <svg className={className} width="18" height="18" viewBox="0 0 24 24" aria-hidden fill="none">
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+      <path
+        d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+function IconMoon({ className }: { className?: string }) {
+  return (
+    <svg className={className} width="18" height="18" viewBox="0 0 24 24" aria-hidden fill="none">
+      <path
+        d="M21 13.2A8.5 8.5 0 1110.8 3a6.5 6.5 0 0010.2 10.2z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
 
 export function Header() {
+  const { pathname, hash } = useLocation()
   const { config, content } = usePortfolioDisplay()
-  const profilePhoto = config.profilePhoto?.trim()
+  const profilePhoto = resolveProfilePhoto(config.profilePhoto)
   const { nav } = content
-  const sectionIds = useMemo(() => SECTION_IDS, [])
-  const activeSectionId = usePortfolioSectionSpy(sectionIds)
+  const activeNavKey = portfolioNavKeyFromLocation(pathname, hash)
+  const { resolved, setPreference } = useColorScheme()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [photoModalOpen, setPhotoModalOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    const scrollRoot = getPortfolioScrollRoot()
+    if (!scrollRoot) return
+    const onScroll = () => setScrolled(scrollRoot.scrollTop > 12)
     onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    scrollRoot.addEventListener('scroll', onScroll, { passive: true })
+    return () => scrollRoot.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
@@ -41,97 +72,86 @@ export function Header() {
     return () => window.removeEventListener('keydown', onKey)
   }, [photoModalOpen])
 
-  function navActive(sectionId: string): boolean {
-    if (sectionId === PORTFOLIO_SECTION_IDS.home) {
-      return activeSectionId === PORTFOLIO_SECTION_IDS.home
-    }
-    return activeSectionId === sectionId
-  }
-
   return (
     <>
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.inner}>
-          <div className={styles.brand}>
-            {profilePhoto ? (
-              <button
-                type="button"
-                className={styles.brandAvatarBtn}
-                onClick={() => setPhotoModalOpen(true)}
-                aria-label="Ampliar foto de perfil"
-                aria-haspopup="dialog"
-                aria-expanded={photoModalOpen}
-              >
-                <img
-                  src={profilePhoto}
-                  alt=""
-                  className={styles.brandAvatar}
-                  width={36}
-                  height={36}
-                  decoding="async"
-                  {...imageAnonymousProps(profilePhoto)}
-                />
-              </button>
-            ) : (
-              <PortfolioSectionLink
-                sectionId={PORTFOLIO_SECTION_IDS.home}
-                className={styles.brandMarkLink}
-                onNavigate={() => setOpen(false)}
-              >
-                <span className={styles.brandMark} aria-hidden="true" />
-              </PortfolioSectionLink>
-            )}
-            <PortfolioSectionLink
-              sectionId={PORTFOLIO_SECTION_IDS.home}
-              className={styles.brandNameLink}
-              onNavigate={() => setOpen(false)}
-            >
-              <span className={styles.brandText}>{config.brandName}</span>
-            </PortfolioSectionLink>
-          </div>
+          <PortfolioSectionLink
+            navKey="home"
+            className={styles.brand}
+            onNavigate={() => setOpen(false)}
+          >
+            <span className={styles.brandText}>{config.siteTitle}</span>
+          </PortfolioSectionLink>
 
           <nav
             id="site-nav"
             className={`${styles.nav} ${open ? styles.navOpen : ''}`}
             aria-label={nav.ariaMain}
           >
-            <ul className={styles.list}>
-              {PORTFOLIO_NAV.map((item) => (
-                <li key={item.sectionId}>
-                  <PortfolioSectionLink
-                    sectionId={item.sectionId}
-                    className={`${styles.link} ${navActive(item.sectionId) ? styles.linkActive : ''}`}
-                    onNavigate={() => setOpen(false)}
-                  >
-                    {nav[item.key]}
-                  </PortfolioSectionLink>
-                </li>
-              ))}
-            </ul>
-
-            <div className={styles.actions}>
-              <PortfolioSectionLink
-                sectionId={PORTFOLIO_SECTION_IDS.projects}
-                className={styles.cta}
-                onNavigate={() => setOpen(false)}
-              >
-                {nav.ctaProjects}
-              </PortfolioSectionLink>
+            <div className={styles.navSection}>
+              <p className={styles.navSectionLabel}>Menu</p>
+              <ul className={styles.list}>
+                {PORTFOLIO_NAV.map((item) => (
+                  <li key={item.key}>
+                    <PortfolioSectionLink
+                      navKey={item.key}
+                      className={`${styles.link} ${activeNavKey === item.key ? styles.linkActive : ''}`}
+                      onNavigate={() => setOpen(false)}
+                    >
+                      {nav[item.key]}
+                    </PortfolioSectionLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={`${styles.navSection} ${styles.navSectionTools}`}>
+              <p className={styles.navSectionLabel}>Theme</p>
+              <div className={styles.themeSwitch}>
+                <button
+                  type="button"
+                  className={styles.themeToggleBtn}
+                  onClick={() => setPreference(resolved === 'dark' ? 'light' : 'dark')}
+                  aria-label={resolved === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+                >
+                  {resolved === 'dark' ? (
+                    <IconMoon className={styles.themeIcon} />
+                  ) : (
+                    <IconSun className={styles.themeIcon} />
+                  )}
+                </button>
+              </div>
             </div>
           </nav>
 
-          <button
-            type="button"
-            className={`${styles.burger} ${open ? styles.burgerOpen : ''}`}
-            aria-expanded={open}
-            aria-controls="site-nav"
-            aria-label={open ? nav.menuClose : nav.menuOpen}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+          <div className={styles.headerActions}>
+            <div className={styles.themeSwitchDesktop}>
+              <button
+                type="button"
+                className={styles.themeToggleBtn}
+                onClick={() => setPreference(resolved === 'dark' ? 'light' : 'dark')}
+                aria-label={resolved === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              >
+                {resolved === 'dark' ? (
+                  <IconMoon className={styles.themeIcon} />
+                ) : (
+                  <IconSun className={styles.themeIcon} />
+                )}
+              </button>
+            </div>
+            <button
+              type="button"
+              className={`${styles.burger} ${open ? styles.burgerOpen : ''}`}
+              aria-expanded={open}
+              aria-controls="site-nav"
+              aria-label={open ? nav.menuClose : nav.menuOpen}
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
         </div>
         {open ? (
           <button type="button" className={styles.scrim} aria-label={nav.scrimClose} onClick={() => setOpen(false)} />
@@ -148,7 +168,7 @@ export function Header() {
           <button
             type="button"
             className={styles.photoModalBackdrop}
-            aria-label="Fechar"
+            aria-label="Close"
             onClick={() => setPhotoModalOpen(false)}
           />
           <div className={styles.photoModalSheet}>
@@ -158,7 +178,7 @@ export function Header() {
             <button
               type="button"
               className={styles.photoModalClose}
-              aria-label="Fechar"
+              aria-label="Close"
               onClick={() => setPhotoModalOpen(false)}
             >
               ×
@@ -166,7 +186,7 @@ export function Header() {
             <div className={styles.photoModalFrame}>
               <img
                 src={profilePhoto}
-                alt={`Foto de ${config.brandName}`}
+                alt={`Photo of ${config.brandName}`}
                 className={styles.photoModalImg}
                 decoding="async"
                 {...imageAnonymousProps(profilePhoto)}

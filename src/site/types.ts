@@ -1,11 +1,11 @@
-export type Locale = 'pt' | 'en'
-
 export type ProjectCategoryId = 'frontend' | 'backend' | 'fullstack'
 
 export type FilterId = 'all' | ProjectCategoryId
 
 export type SiteConfig = {
   brandName: string
+  /** Navbar site title (e.g. Portfolio). */
+  siteTitle: string
   /** URL da foto (ex.: /perfil.jpg na pasta `public` ou https…) — omitir ou vazio oculta */
   profilePhoto?: string
   links: {
@@ -26,11 +26,16 @@ export type ProjectEntry = {
   stack: string[]
   description: string
   challenges: string
+  /** Primary / legacy single image (kept in sync with first entry of `images` when editing). */
   image: string
+  /** Optional gallery — fades between URLs when more than one. */
+  images?: string[]
   demoUrl: string
   codeUrl: string
   category: ProjectCategoryId
   featured?: boolean
+  /** When true, card is locked and shows “In development” instead of live demo. */
+  inDevelopment?: boolean
 }
 
 export type SkillGroup = {
@@ -38,10 +43,14 @@ export type SkillGroup = {
   items: string[]
 }
 
-export type ArchNode = {
-  key: string
-  label: string
-  sub: string
+export type WorkExperienceEntry = {
+  id: string
+  period: string
+  role: string
+  company: string
+  location: string
+  description: string
+  highlights: string[]
 }
 
 export type TimelineEntry = {
@@ -50,15 +59,15 @@ export type TimelineEntry = {
   body: string
 }
 
-/** Segmentos após CONTACT_URL_BASE / mailto (passo Contato no editor). */
+/** Segments after CONTACT_URL_BASE / mailto: base. */
 export type ContactLinkSegments = {
-  /** Endereço para mailto (ex.: contato@mail.com). */
+  /** mailto address (e.g. hello@mail.com). */
   email: string
-  /** Utilizador ou caminho após github.com/ */
+  /** Username or path after github.com/ */
   github: string
-  /** Slug após linkedin.com/in/ */
+  /** Slug after linkedin.com/in/ */
   linkedin: string
-  /** Número com código do país (dígitos; pode incluir espaços, são removidos na URL). */
+  /** Country code + digits (spaces stripped in URL). */
   whatsapp: string
 }
 
@@ -72,8 +81,7 @@ export type SiteContent = {
     home: string
     projects: string
     skills: string
-    architecture: string
-    about: string
+    experience: string
     contact: string
     ctaProjects: string
     menuOpen: string
@@ -89,12 +97,6 @@ export type SiteContent = {
     ctaProjects: string
     github: string
     linkedin: string
-    mockTitle: string
-    chartLabel: string
-    badgeLive: string
-    floatApi: { label: string; sub: string }
-    floatFe: { label: string; sub: string }
-    floatDb: { label: string; sub: string }
   }
   projects: {
     kicker: string
@@ -107,6 +109,7 @@ export type SiteContent = {
     challengesShort: string
     demo: string
     code: string
+    inDevelopment: string
     empty: string
     categories: Record<ProjectCategoryId, string>
   }
@@ -116,12 +119,11 @@ export type SiteContent = {
     sub: string
     groups: SkillGroup[]
   }
-  architecture: {
+  experience: {
     kicker: string
     title: string
     sub: string
-    pipeline: { frontend: string; api: string; database: string; deploy: string }
-    nodes: ArchNode[]
+    items: WorkExperienceEntry[]
   }
   about: {
     kicker: string

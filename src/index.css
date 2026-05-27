@@ -1,6 +1,6 @@
-/* Visual Pro (único) */
+/* Visual Pro + color scheme (light/dark) */
 
-html[data-visual-theme='pro'] {
+html[data-visual-theme='pro'][data-color-scheme='dark'] {
   background-color: var(--bg-root);
   --xp-face: rgba(18, 22, 35, 0.65);
   --xp-window: #0e1018;
@@ -8,42 +8,154 @@ html[data-visual-theme='pro'] {
   --xp-button-light: rgba(148, 163, 184, 0.12);
   --xp-button-shadow: rgba(56, 189, 248, 0.15);
   --xp-button-dk-shadow: rgba(7, 8, 13, 0.65);
-  --xp-frame-active: #22d3ee;
+  --xp-frame-active: var(--accent);
   --xp-title-text: #f4f7ff;
   --xp-desktop-top: #07080d;
   --xp-desktop-mid: #0e1018;
   --xp-desktop-grass: #07080d;
   --xp-desktop-bottom: #07080d;
-  --xp-selection: rgba(34, 211, 238, 0.25);
+  --xp-selection: var(--accent-soft);
   --xp-selection-text: #f4f7ff;
   --xp-taskbar-1: rgba(7, 8, 13, 0.72);
   --xp-taskbar-2: rgba(7, 8, 13, 0.82);
   --xp-taskbar-3: rgba(7, 8, 13, 0.88);
 
-  --bg-root: #07080d;
-  --bg-elevated: #0e1018;
-  --bg-glass: rgba(18, 22, 35, 0.65);
-  --border-subtle: rgba(56, 189, 248, 0.12);
-  --border-glow: rgba(34, 211, 238, 0.35);
-  --text-primary: #f4f7ff;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent: #22d3ee;
-  --accent-deep: #0891b2;
-  --accent-soft: rgba(34, 211, 238, 0.12);
+  /* Black + gray + red (dark mode) */
+  /* Palette inspired by your reference: charcoal + grays + vivid red */
+  --bg-root: #050509;
+  --bg-elevated: #101114;
+  --bg-glass: rgba(0, 0, 0, 0.72);
+  --border-subtle: rgba(244, 244, 245, 0.12);
+  --border-glow: rgba(239, 68, 68, 0.35);
+  --text-primary: #f8fafc;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
+  --accent: #ef4444;
+  --accent-deep: #b91c1c;
+  --accent-soft: rgba(239, 68, 68, 0.14);
+  --header-scrolled-bg: rgba(0, 0, 0, 0.82);
+  --overlay-bg: rgba(0, 0, 0, 0.72);
+  --panel-bg: rgba(0, 0, 0, 0.92);
   --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 0 60px rgba(34, 211, 238, 0.08);
+  --shadow-glow: 0 0 60px rgba(239, 68, 68, 0.08);
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-signature: 'Great Vibes', 'Segoe Script', cursive;
   --header-h: 72px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --scrollbar-track: rgba(14, 16, 24, 0.92);
-  --scrollbar-thumb: linear-gradient(180deg, rgba(34, 211, 238, 0.45), rgba(99, 102, 241, 0.38));
-  --scrollbar-thumb-hover: linear-gradient(180deg, rgba(34, 211, 238, 0.75), rgba(99, 102, 241, 0.55));
-  --scrollbar-border: rgba(7, 8, 13, 0.65);
+  --scrollbar-track: rgba(16, 17, 20, 0.92);
+  --scrollbar-thumb: linear-gradient(180deg, rgba(239, 68, 68, 0.55), rgba(185, 28, 28, 0.5));
+  --scrollbar-thumb-hover: linear-gradient(180deg, rgba(239, 68, 68, 0.85), rgba(185, 28, 28, 0.7));
+  --scrollbar-border: rgba(0, 0, 0, 0.65);
+
+  /* Surfaces & chrome (dark) */
+  --surface-card: rgba(14, 16, 24, 0.65);
+  --surface-card-solid: rgba(14, 16, 24, 0.85);
+  --surface-chip: rgba(15, 23, 42, 0.55);
+  --surface-chip-subtle: rgba(7, 8, 13, 0.35);
+  --surface-inset: rgba(15, 23, 42, 0.5);
+  --surface-panel: rgba(7, 8, 13, 0.75);
+  --surface-scrim: rgba(7, 8, 13, 0.55);
+  --surface-scrim-strong: rgba(7, 8, 13, 0.85);
+  --surface-modal: rgba(7, 8, 13, 0.92);
+  --surface-border-dashed: rgba(148, 163, 184, 0.25);
+  --surface-tag-border: rgba(148, 163, 184, 0.18);
+  --surface-tag-bg: rgba(15, 23, 42, 0.45);
+  --surface-section-gradient: linear-gradient(180deg, rgba(15, 23, 42, 0.35), transparent 40%);
+  --surface-featured-end: color-mix(in srgb, var(--bg-elevated) 85%, black);
+  --surface-line-muted: rgba(148, 163, 184, 0.15);
+  --surface-dot-inactive: rgba(248, 250, 252, 0.35);
+  --text-on-media: #f8fafc;
+  --text-on-accent: #ffffff;
+  --header-bg: var(--bg-root);
+  --header-bg-scrolled: color-mix(in srgb, var(--bg-elevated) 92%, #000);
+  --header-fg: #f8fafc;
+  --header-link: #c4c4cc;
+  --header-link-hover-fg: #ffffff;
+  --header-link-hover-bg: rgba(255, 255, 255, 0.06);
+  --header-link-active-fg: #ffffff;
+  --header-control-border: rgba(255, 255, 255, 0.14);
+  --header-control-bg: rgba(255, 255, 255, 0.06);
+  --header-border: color-mix(in srgb, var(--accent) 40%, var(--border-subtle));
+  --header-border-scrolled: color-mix(in srgb, var(--accent) 55%, var(--border-subtle));
+  --header-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --header-shadow-scrolled: 0 10px 36px rgba(0, 0, 0, 0.5);
+  --nav-drawer-bg: var(--panel-bg);
+}
+
+html[data-visual-theme='pro'][data-color-scheme='light'] {
+  background-color: var(--bg-root);
+
+  /* White + gray + red (light mode) */
+  --bg-root: #ffffff;
+  --bg-elevated: #f4f4f5;
+  --bg-glass: rgba(255, 255, 255, 0.88);
+  --border-subtle: rgba(15, 23, 42, 0.16);
+  --border-glow: rgba(185, 28, 28, 0.42);
+  --text-primary: #0c1222;
+  --text-secondary: #334155;
+  --text-muted: #4b5563;
+  --accent: #dc2626;
+  --accent-deep: #991b1b;
+  --accent-soft: rgba(220, 38, 38, 0.12);
+  --header-scrolled-bg: rgba(255, 255, 255, 0.86);
+  --overlay-bg: rgba(15, 23, 42, 0.55);
+  --panel-bg: rgba(255, 255, 255, 0.92);
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.16);
+  --shadow-glow: 0 0 40px rgba(220, 38, 38, 0.14);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-signature: 'Great Vibes', 'Segoe Script', cursive;
+  --header-h: 72px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --scrollbar-track: rgba(241, 245, 249, 0.95);
+  --scrollbar-thumb: linear-gradient(180deg, rgba(148, 163, 184, 0.7), rgba(100, 116, 139, 0.85));
+  --scrollbar-thumb-hover: linear-gradient(180deg, rgba(148, 163, 184, 0.95), rgba(71, 85, 105, 0.95));
+  --scrollbar-border: rgba(148, 163, 184, 0.65);
+
+  /* Surfaces & chrome (light page, dark navbar) */
+  --surface-card: #ffffff;
+  --surface-card-solid: #ffffff;
+  --surface-chip: #f1f5f9;
+  --surface-chip-subtle: #f8fafc;
+  --surface-inset: #eef2f7;
+  --surface-panel: rgba(255, 255, 255, 0.94);
+  --surface-scrim: rgba(15, 23, 42, 0.52);
+  --surface-scrim-strong: rgba(15, 23, 42, 0.72);
+  --surface-modal: #ffffff;
+  --surface-border-dashed: rgba(15, 23, 42, 0.22);
+  --surface-tag-border: rgba(15, 23, 42, 0.14);
+  --surface-tag-bg: #f1f5f9;
+  --surface-section-gradient: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 7%, transparent),
+    transparent 42%
+  );
+  --surface-featured-end: color-mix(in srgb, var(--bg-elevated) 88%, white);
+  --surface-line-muted: rgba(15, 23, 42, 0.14);
+  --surface-dot-inactive: rgba(15, 23, 42, 0.28);
+  --text-on-media: #f8fafc;
+  --text-on-accent: #ffffff;
+  --header-bg: #050509;
+  --header-bg-scrolled: #101114;
+  --header-fg: #f8fafc;
+  --header-link: #c4c4cc;
+  --header-link-hover-fg: #ffffff;
+  --header-link-hover-bg: rgba(255, 255, 255, 0.08);
+  --header-link-active-fg: #ffffff;
+  --header-control-border: rgba(255, 255, 255, 0.16);
+  --header-control-bg: rgba(255, 255, 255, 0.08);
+  --header-border: color-mix(in srgb, var(--accent) 45%, rgba(255, 255, 255, 0.12));
+  --header-border-scrolled: color-mix(in srgb, var(--accent) 55%, rgba(255, 255, 255, 0.14));
+  --header-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+  --header-shadow-scrolled: 0 10px 32px rgba(0, 0, 0, 0.28);
+  --nav-drawer-bg: #101114;
 }
 
 *,
@@ -54,6 +166,22 @@ html[data-visual-theme='pro'] {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  --site-scale: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: visible;
+  min-height: 100%;
+}
+
+#root {
+  min-height: 100%;
+  overflow: visible;
 }
 
 html[data-visual-theme='pro'] body {
@@ -67,10 +195,27 @@ html[data-visual-theme='pro'] body {
   text-rendering: optimizeLegibility;
 }
 
+html[data-visual-theme='pro'] section[id] {
+  scroll-margin-top: var(--header-h);
+}
+
 /* Barra de rolagem — documento + elementos (Firefox) */
 html[data-visual-theme='pro'] {
   scrollbar-width: thin;
-  scrollbar-color: rgba(34, 211, 238, 0.55) var(--scrollbar-track);
+  scrollbar-color: color-mix(in srgb, var(--accent) 70%, transparent) var(--scrollbar-track);
+}
+
+/* Hide scrollbars (keep scrolling) */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 html[data-visual-theme='xp'] {
@@ -100,20 +245,24 @@ html[data-visual-theme='pro'] *::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
   border-radius: 100px;
   border: 2px solid var(--scrollbar-border);
-  box-shadow: 0 0 12px rgba(34, 211, 238, 0.12);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 html[data-visual-theme='pro']::-webkit-scrollbar-thumb:hover,
 html[data-visual-theme='pro'] body::-webkit-scrollbar-thumb:hover,
 html[data-visual-theme='pro'] *::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
-  border-color: rgba(34, 211, 238, 0.22);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 html[data-visual-theme='pro']::-webkit-scrollbar-thumb:active,
 html[data-visual-theme='pro'] body::-webkit-scrollbar-thumb:active,
 html[data-visual-theme='pro'] *::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(180deg, rgba(34, 211, 238, 0.85), rgba(129, 140, 248, 0.55));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 90%, transparent),
+    color-mix(in srgb, var(--accent-deep) 75%, transparent)
+  );
 }
 
 html[data-visual-theme='pro']::-webkit-scrollbar-corner,
@@ -169,6 +318,7 @@ html[data-visual-theme='xp'] *::-webkit-scrollbar-corner {
 
 #root {
   min-height: 100vh;
+  width: 100%;
 }
 
 main section[id] {
@@ -183,8 +333,8 @@ main section[id]::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(ellipse 95% 65% at 50% -15%, rgba(34, 211, 238, 0.075), transparent 58%);
-  animation: sectionBgPulse 20s ease-in-out infinite alternate;
+  background: transparent;
+  animation: none;
 }
 
 @keyframes sectionBgPulse {
@@ -229,7 +379,7 @@ img {
 }
 
 html[data-visual-theme='pro'] ::selection {
-  background: rgba(34, 211, 238, 0.25);
+  background: var(--accent-soft);
   color: var(--text-primary);
 }
 

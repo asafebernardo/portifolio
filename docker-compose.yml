@@ -1,14 +1,10 @@
-# Site estático (nginx). Build: docker compose up --build
+# Static site (nginx). Build: docker compose up --build
 
 services:
   web:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        VITE_ADMIN_USERNAME: ${VITE_ADMIN_USERNAME:-}
-        VITE_ADMIN_PASSWORD: ${VITE_ADMIN_PASSWORD:-}
-        VITE_TRANSLATION_EMAIL: ${VITE_TRANSLATION_EMAIL:-}
     ports:
       - "${PORT:-8080}:80"
     restart: unless-stopped

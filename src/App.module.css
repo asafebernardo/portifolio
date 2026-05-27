@@ -1,11 +1,15 @@
-.shell {
-  position: relative;
-  isolation: isolate;
-  min-height: 100vh;
-}
-
-.routes {
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-}
+.shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+.routes {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
+  overflow: visible;
+}
+

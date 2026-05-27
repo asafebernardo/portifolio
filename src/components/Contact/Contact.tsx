@@ -10,10 +10,10 @@ export function Contact() {
   const links = resolveContactLinksFromContent(content, config)
 
   return (
-    <section id="contato" className={styles.section}>
+    <section id="contact" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.layout}>
-          <Reveal>
+          <Reveal instant>
             <header className={styles.head}>
               <p className={styles.kicker}>{contact.kicker}</p>
               <h2 className={styles.title}>{contact.title}</h2>
@@ -21,7 +21,7 @@ export function Contact() {
             </header>
           </Reveal>
 
-          <Reveal>
+          <Reveal instant>
             <ul className={styles.channels}>
               <li>
                 <a href={links.mailto} className={styles.channel}>

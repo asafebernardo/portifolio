@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { usePortfolioDisplay } from '../pages/portfolio/PortfolioDraftContext'
+import { resolveProfilePhoto } from '../site/profilePhoto'
 
 /** Shown in the browser tab and og:title. */
 const TAB_BRAND_TITLE = 'Asafe Bernardo'
@@ -34,7 +35,7 @@ export function DocumentMeta() {
   const { content, config } = usePortfolioDisplay()
 
   useEffect(() => {
-    document.documentElement.lang = 'pt-BR'
+    document.documentElement.lang = 'en'
     document.title = TAB_BRAND_TITLE
 
     const apply = (selector: string, attr: string, value: string) => {
@@ -46,8 +47,7 @@ export function DocumentMeta() {
     apply('meta[property="og:title"]', 'content', TAB_BRAND_TITLE)
     apply('meta[property="og:description"]', 'content', content.meta.description)
 
-    const photo = config.profilePhoto?.trim()
-    setFaviconLink(photo && photo.length > 0 ? photo : '/favicon.svg')
+    setFaviconLink(resolveProfilePhoto(config.profilePhoto))
   }, [content, config.profilePhoto])
 
   return null
