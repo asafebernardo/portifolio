@@ -1,3 +1,4 @@
+import { isProjectInDevelopment } from '../lib/projectDemo'
 import { normalizeContactLinkSegments } from './contactLinks'
 import { resolveProfilePhoto } from './profilePhoto'
 import type { ProjectEntry, SiteConfig, SiteContent } from './types'
@@ -30,5 +31,10 @@ export function getSiteContent(): SiteContent {
 }
 
 export function getSiteProjects(): ProjectEntry[] {
-  return defaultProjects
+  return [...defaultProjects].sort((a, b) => {
+    const aDev = isProjectInDevelopment(a)
+    const bDev = isProjectInDevelopment(b)
+    if (aDev === bDev) return 0
+    return aDev ? 1 : -1
+  })
 }

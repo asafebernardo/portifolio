@@ -5,6 +5,13 @@
     "stack": ["React", "Vite", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
     "description": "Institutional website for ICER Church — events, community content, and admin-managed media with a responsive public experience.",
     "challenges": "Split frontend/API deployment, MongoDB-backed auth when enabled, and file uploads stored on the server with URLs in the database.",
+    "images": [
+      "/projects/icer-home.png",
+      "/projects/icer-postagens.png",
+      "/projects/icer-recursos.png",
+      "/projects/icer-agenda.png",
+      "/projects/icer-eventos.png"
+    ],
     "demoUrl": "https://icer.com.br",
     "codeUrl": "https://github.com/asafebernardo/icer",
     "category": "fullstack",
@@ -13,13 +20,32 @@
   {
     "id": "auth-api",
     "title": "JWT Auth API",
-    "stack": ["Node.js", "Express", "JWT", "Redis", "PostgreSQL"],
-    "description": "REST authentication service with sign-up, login, refresh tokens, role-based access and rate limiting for client apps.",
+    "stack": ["React", "Node.js", "Express", "JWT", "Web Crypto"],
+    "description": "Authentication demo with login and a JWT-protected profile — includes a live route in this portfolio (HS256 signed in the browser, token in sessionStorage) and a standalone Express + vanilla UI implementation on GitHub.",
     "challenges": "Secure token rotation, bcrypt password hashing, Redis-backed session revocation and consistent error contracts across endpoints.",
-    "demoUrl": "#",
-    "codeUrl": "https://github.com/asafebernardo",
+    "images": ["/projects/jwt-user-auth-login.png", "/projects/jwt-user-auth-profile.png"],
+    "demoUrl": "/demo/jwt-auth",
+    "codeUrl": "https://github.com/asafebernardo/jwtUserAuth",
     "category": "backend",
-    "inDevelopment": true
+    "inDevelopment": false
+  },
+  {
+    "id": "acs-inspector",
+    "title": "ACS Inspector",
+    "stack": ["Node.js", "Vitest", "Cypress", "REST"],
+    "description": "Test automation for ACS — REST suites with Vitest, browser flows with Cypress, helper scripts and a browsable HTML checklist report.",
+    "challenges": "Stable OAuth/API configuration, meaningful assertions across views and filters, and keeping generated checklist artifacts easy to review and share.",
+    "images": [
+      "/projects/acs-inspector-navbar.png",
+      "/projects/acs-inspector-home.png",
+      "/projects/acs-inspector-dispositivos.png",
+      "/projects/acs-inspector-ferramentas.png",
+      "/projects/acs-inspector-usuarios.png",
+      "/projects/acs-inspector-grupos.png"
+    ],
+    "demoUrl": "https://asafebernardo.github.io/acs-inspector/testsChecklist.html",
+    "codeUrl": "https://github.com/asafebernardo/acs-inspector",
+    "category": "fullstack"
   },
   {
     "id": "saas-dashboard",
@@ -45,14 +71,21 @@
   },
   {
     "id": "boutique-showcase",
-    "title": "Boutique Brand Showcase",
-    "stack": ["React", "Vite", "CSS Modules", "Framer Motion"],
-    "description": "Premium landing experience with motion design, typography-led layout, scroll reveals and polished micro-interactions.",
-    "challenges": "Smooth 60fps animations, accessible contrast ratios, and strong Lighthouse scores on mid-range mobile devices.",
-    "demoUrl": "#",
-    "codeUrl": "https://github.com/asafebernardo",
+    "title": "Portfolio Website",
+    "stack": ["React", "Vite", "TypeScript", "React Router", "CSS Modules"],
+    "description": "Single-page developer portfolio with light/dark theme, section-based navigation, and JSON-driven content for easy maintenance.",
+    "challenges": "Consistent theming, smooth hash navigation between sections, and a layout that stays readable on both large monitors and small mobile screens.",
+    "images": [
+      "/projects/portfolio-home.png",
+      "/projects/portfolio-projects.png",
+      "/projects/portfolio-skills.png",
+      "/projects/portfolio-experience.png",
+      "/projects/portfolio-contact.png"
+    ],
+    "demoUrl": "/",
+    "codeUrl": "https://github.com/asafebernardo/portifolio",
     "category": "frontend",
-    "inDevelopment": true
+    "inDevelopment": false
   },
   {
     "id": "ixc-provedor-doc-api",

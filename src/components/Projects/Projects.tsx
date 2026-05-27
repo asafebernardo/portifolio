@@ -75,6 +75,8 @@ function ProjectCard({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects
   const images = getProjectImages(proj)
   const hasImages = images.length > 0
   const inDevelopment = isProjectInDevelopment(proj)
+  const coverMedia =
+    proj.id === 'icer' || proj.id === 'acs-inspector' || proj.id === 'boutique-showcase'
 
   return (
     <article
@@ -84,14 +86,18 @@ function ProjectCard({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects
     >
       <div className={`${styles.cardBodyWrap} ${inDevelopment ? styles.cardBodyWrapBlurred : ''}`}>
         {hasImages ? (
-          <div className={styles.cardImg}>
+          <div className={`${styles.cardImg} ${coverMedia ? styles.cardImgCover : ''}`}>
             <ProjectCardMedia images={images} alt={proj.title} />
-            <span className={styles.cat}>{p.categories[proj.category]}</span>
+            <span className={styles.cat} data-category={proj.category}>
+              {p.categories[proj.category]}
+            </span>
           </div>
         ) : null}
         <div className={styles.cardPad}>
           {!hasImages ? (
-            <span className={`${styles.cat} ${styles.catInline}`}>{p.categories[proj.category]}</span>
+            <span className={`${styles.cat} ${styles.catInline}`} data-category={proj.category}>
+              {p.categories[proj.category]}
+            </span>
           ) : null}
           <CardBody proj={proj} p={p} inDevelopment={inDevelopment} />
         </div>

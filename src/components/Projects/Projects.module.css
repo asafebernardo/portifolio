@@ -43,6 +43,7 @@
   padding: 1.25rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
+  background: var(--surface-inset);
   background: linear-gradient(145deg, var(--accent-soft), var(--surface-featured-end));
   box-shadow: var(--shadow-soft);
   transition:
@@ -73,18 +74,19 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   min-height: 220px;
+  background: var(--surface-inset);
 }
 
 .img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transform: scale(1.02);
+  object-fit: contain;
+  object-position: center;
   transition: transform 0.6s var(--ease-out);
 }
 
 .featured:hover .img {
-  transform: scale(1.06);
+  transform: scale(1.02);
 }
 
 .featuredGlow {
@@ -343,13 +345,19 @@
 
 .cardImg {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 8;
   overflow: hidden;
+}
+
+.cardImgCover .cardMediaSlide {
+  object-fit: cover;
 }
 
 .cardMedia {
   position: absolute;
   inset: 0;
+  z-index: 0;
+  background: var(--surface-inset);
 }
 
 .cardMediaSlide {
@@ -357,10 +365,10 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   opacity: 0;
   transition: opacity 0.65s ease;
-  transform: scale(1.02);
 }
 
 .cardMediaSlideActive {
@@ -369,7 +377,6 @@
 }
 
 .card:hover .cardMediaSlideActive {
-  transform: scale(1.05);
   transition:
     opacity 0.65s ease,
     transform 0.55s var(--ease-out);
@@ -406,14 +413,35 @@
   position: absolute;
   top: 0.65rem;
   right: 0.65rem;
+  z-index: 6;
   padding: 0.25rem 0.55rem;
   border-radius: 999px;
   font-size: 0.68rem;
   font-weight: 600;
-  background: var(--surface-panel);
+  background: linear-gradient(180deg, var(--surface-panel), color-mix(in srgb, var(--surface-panel) 65%, transparent));
   backdrop-filter: blur(8px);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid color-mix(in srgb, var(--border-glow) 55%, var(--border-subtle));
   color: var(--text-on-media);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.22),
+    0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent) inset;
+  letter-spacing: 0.02em;
+}
+
+/* Category accents */
+.cat[data-category='frontend'] {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 22%, var(--surface-panel)), var(--surface-panel));
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border-subtle));
+}
+
+.cat[data-category='backend'] {
+  background: linear-gradient(180deg, rgba(88, 161, 255, 0.22), var(--surface-panel));
+  border-color: color-mix(in srgb, rgba(88, 161, 255, 0.7) 55%, var(--border-subtle));
+}
+
+.cat[data-category='fullstack'] {
+  background: linear-gradient(180deg, rgba(147, 99, 255, 0.22), var(--surface-panel));
+  border-color: color-mix(in srgb, rgba(147, 99, 255, 0.7) 55%, var(--border-subtle));
 }
 
 /* Cartão sem imagem: categoria no corpo do card */
@@ -421,6 +449,7 @@
   position: static;
   align-self: flex-start;
   margin: 0 0 0.15rem;
+  z-index: auto;
 }
 
 .cardPad {
@@ -690,13 +719,13 @@
 :global(html[data-visual-theme='xp']) .img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transform: scale(1.02);
+  object-fit: contain;
+  object-position: center;
   transition: transform 0.6s var(--ease-out);
 }
 
 :global(html[data-visual-theme='xp']) .featured:hover .img {
-  transform: scale(1.06);
+  transform: scale(1.02);
 }
 
 :global(html[data-visual-theme='xp']) .featuredGlow {
@@ -867,14 +896,19 @@
 
 :global(html[data-visual-theme='xp']) .cardImg {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 8;
   overflow: hidden;
+}
+
+:global(html[data-visual-theme='xp']) .cardImgCover .cardMediaSlide {
+  object-fit: cover;
 }
 
 :global(html[data-visual-theme='xp']) .cardMediaSlide {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 
 :global(html[data-visual-theme='xp']) .card:hover .cardMediaSlideActive {
@@ -885,6 +919,7 @@
   position: absolute;
   top: 0.65rem;
   right: 0.65rem;
+  z-index: 6;
   padding: 0.25rem 0.55rem;
   border-radius: 0;
   font-size: 0.68rem;

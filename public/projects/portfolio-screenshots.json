@@ -1,0 +1,10 @@
+{
+  "baseUrl": "http://localhost:5173/",
+  "images": [
+    "/projects/portfolio-home.png",
+    "/projects/portfolio-projects.png",
+    "/projects/portfolio-skills.png",
+    "/projects/portfolio-experience.png",
+    "/projects/portfolio-contact.png"
+  ]
+}
