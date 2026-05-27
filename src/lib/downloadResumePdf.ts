@@ -95,8 +95,34 @@ async function loadImageDataUrl(src: string): Promise<string | null> {
   }
 }
 
-function imageFormat(dataUrl: string): 'PNG' | 'JPEG' {
-  return dataUrl.startsWith('data:image/png') ? 'PNG' : 'JPEG'
+/** Display size is 28mm; ~150px is enough for print without bloating the PDF. */
+const PDF_PHOTO_MAX_PX = 150
+const PDF_PHOTO_JPEG_QUALITY = 0.82
+
+async function compressImageForPdf(dataUrl: string): Promise<string | null> {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.onload = () => {
+      const longest = Math.max(img.width, img.height)
+      const scale = longest > PDF_PHOTO_MAX_PX ? PDF_PHOTO_MAX_PX / longest : 1
+      const w = Math.max(1, Math.round(img.width * scale))
+      const h = Math.max(1, Math.round(img.height * scale))
+      const canvas = document.createElement('canvas')
+      canvas.width = w
+      canvas.height = h
+      const ctx = canvas.getContext('2d')
+      if (!ctx) {
+        resolve(null)
+        return
+      }
+      ctx.fillStyle = '#ffffff'
+      ctx.fillRect(0, 0, w, h)
+      ctx.drawImage(img, 0, 0, w, h)
+      resolve(canvas.toDataURL('image/jpeg', PDF_PHOTO_JPEG_QUALITY))
+    }
+    img.onerror = () => resolve(null)
+    img.src = dataUrl
+  })
 }
 
 function buildHeader(layout: Layout, input: ResumeInput, photoDataUrl: string | null) {
@@ -107,7 +133,7 @@ function buildHeader(layout: Layout, input: ResumeInput, photoDataUrl: string | 
   const textWidth = contentWidth() - (photoDataUrl ? photoSize + 8 : 0)
 
   if (photoDataUrl) {
-    layout.doc.addImage(photoDataUrl, imageFormat(photoDataUrl), PAGE.margin, layout.y - 2, photoSize, photoSize)
+    layout.doc.addImage(photoDataUrl, 'JPEG', PAGE.margin, layout.y - 2, photoSize, photoSize)
   }
 
   layout.doc.setFont('helvetica', 'bold')
@@ -240,9 +266,10 @@ function slugify(value: string) {
 }
 
 export async function downloadResumePdf(input: ResumeInput): Promise<void> {
-  const doc = new jsPDF({ unit: 'mm', format: 'a4' })
+  const doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true })
   const photoSrc = resolveProfilePhoto(input.config.profilePhoto)
-  const photoDataUrl = await loadImageDataUrl(photoSrc)
+  const rawPhoto = await loadImageDataUrl(photoSrc)
+  const photoDataUrl = rawPhoto ? await compressImageForPdf(rawPhoto) : null
 
   const layout: Layout = { doc, y: PAGE.margin }
   buildHeader(layout, input, photoDataUrl)
