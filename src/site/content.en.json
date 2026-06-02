@@ -43,6 +43,12 @@
     "challengesShort": "Challenges",
     "demo": "Live demo",
     "code": "Source code",
+    "viewImageAria": "View full screenshot of {title}",
+    "imageModal": {
+      "close": "Close",
+      "prev": "Previous image",
+      "next": "Next image"
+    },
     "inDevelopment": "In development",
     "empty": "No projects in this category yet.",
     "categories": {

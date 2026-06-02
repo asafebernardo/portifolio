@@ -18,6 +18,18 @@
     "featured": true
   },
   {
+    "id": "slidesong",
+    "title": "SlideSong",
+    "stack": ["React", "Vite", "Node.js", "Express", "Tailwind CSS", "PptxGenJS"],
+    "description": "Web app to import song lyrics (PDF, DOCX, TXT, or links from Letras.mus and Cifra Club), detect hymns automatically, edit verses and chorus, and export slide decks (PPTX, PDF, ODP). Integrates third-party APIs: Pexels for background images and optional lyric import from Letras.mus and Cifra Club.",
+    "challenges": "Reliable lyric parsing across formats, third-party API integration (Pexels image search with daily per-IP limits; Letras.mus and Cifra Club URL import with graceful fallback when layouts change), and a 3-step wizard (import → edit with live preview → export) with batch ZIP generation.",
+    "images": ["/projects/slidesong-home.png"],
+    "demoUrl": "https://slidesong.online/",
+    "codeUrl": "https://github.com/asafebernardo/slidesong",
+    "category": "fullstack",
+    "featured": true
+  },
+  {
     "id": "auth-api",
     "title": "JWT Auth API",
     "stack": ["React", "Node.js", "Express", "JWT", "Web Crypto"],
@@ -48,28 +60,6 @@
     "category": "fullstack"
   },
   {
-    "id": "saas-dashboard",
-    "title": "Analytics Dashboard SaaS",
-    "stack": ["React", "TypeScript", "Node.js", "PostgreSQL", "Recharts"],
-    "description": "Multi-tenant SaaS dashboard with KPI cards, date filters, exportable reports and subscription-aware feature flags.",
-    "challenges": "Tenant data isolation, aggregated metrics without blocking the UI, and responsive charts on tablet and mobile.",
-    "demoUrl": "#",
-    "codeUrl": "https://github.com/asafebernardo",
-    "category": "fullstack",
-    "inDevelopment": true
-  },
-  {
-    "id": "external-integration",
-    "title": "ERP External Integration",
-    "stack": ["Node.js", "REST", "Webhooks", "Redis", "MongoDB"],
-    "description": "Integration layer syncing orders, customers and inventory between internal services and external ERP APIs.",
-    "challenges": "Idempotent webhook processing, retry policies with backoff, and normalizing inconsistent third-party payloads into a single domain model.",
-    "demoUrl": "#",
-    "codeUrl": "https://github.com/asafebernardo",
-    "category": "backend",
-    "inDevelopment": true
-  },
-  {
     "id": "boutique-showcase",
     "title": "Portfolio Website",
     "stack": ["React", "Vite", "TypeScript", "React Router", "CSS Modules"],
@@ -88,25 +78,21 @@
     "inDevelopment": false
   },
   {
-    "id": "ixc-provedor-doc-api",
-    "title": "IXC Provedor Doc API",
-    "stack": ["Node.js", "Express", "OpenAPI", "Swagger UI", "MongoDB"],
-    "description": "Documentation API for IXC Provedor — structured endpoints, versioned schemas and searchable reference for integrators and internal teams.",
-    "challenges": "Keeping OpenAPI specs in sync with production routes, fast full-text search across modules, and clear auth examples for partner integrations.",
-    "demoUrl": "#",
-    "codeUrl": "https://github.com/asafebernardo",
-    "category": "backend",
-    "inDevelopment": true
-  },
-  {
     "id": "simple-backup",
     "title": "SimpleBackup",
-    "stack": ["Electron", "TypeScript", "Node.js", "SQLite", "React"],
-    "description": "Cross-platform backup app for non-technical users — guided setup, scheduled copies to local or cloud folders with plain-language status.",
-    "challenges": "Simple UX without hiding reliability, conflict-safe restores on Windows/macOS/Linux, and low resource usage during background sync.",
-    "demoUrl": "#",
-    "codeUrl": "https://github.com/asafebernardo",
+    "stack": ["Rust", "Tauri 2", "TypeScript", "Vite"],
+    "description": "Cross-platform backup app for non-technical users — protects documents, photos, and chosen folders with guided setup and plain-language status, without backing up programs, cache, or the entire user profile.",
+    "challenges": "Rust backup engine shared with a Tauri desktop UI, sensible default include/exclude rules, and low resource usage during scheduled copies on Windows, macOS, and Linux.",
+    "images": [
+      "/projects/simplebackup-inicio.png",
+      "/projects/simplebackup-pastas.png",
+      "/projects/simplebackup-dashboard.png"
+    ],
+    "demoUrl": "https://github.com/asafebernardo/SimpleBackup",
+    "demoLabel": "Beta",
+    "demoBlocked": true,
+    "codeUrl": "https://github.com/asafebernardo/SimpleBackup",
     "category": "fullstack",
-    "inDevelopment": true
+    "inDevelopment": false
   }
 ]

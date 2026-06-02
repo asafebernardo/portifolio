@@ -3,9 +3,12 @@ const SKILL_ICON_SLUGS: Record<string, string> = {
   // Frontend
   react: 'react',
   typescript: 'typescript',
+  vite: 'vite',
+  'tailwind css': 'tailwindcss',
+  'react router': 'reactrouter',
+  'css modules': 'cssmodules',
   'next.js': 'nextdotjs',
   nextjs: 'nextdotjs',
-  'css modules': 'cssmodules',
   'responsive design': 'w3c',
   'performance optimization': 'googlelighthouse',
   acessibilidade: 'w3c',
@@ -20,7 +23,19 @@ const SKILL_ICON_SLUGS: Record<string, string> = {
   'rest apis': 'openapi',
   'rest & graphql': 'graphql',
   websockets: 'socketdotio',
+  jwt: 'jsonwebtokens',
   'jwt authentication': 'jsonwebtokens',
+  'web crypto': 'w3c',
+  vitest: 'vitest',
+  cypress: 'cypress',
+  rest: 'openapi',
+  recharts: 'plotly',
+  openapi: 'openapi',
+  'swagger ui': 'swagger',
+  rust: 'rust',
+  tauri: 'tauri',
+  'tauri 2': 'tauri',
+  pptxgenjs: 'microsoftpowerpoint',
   'automated testing': 'vitest',
   'testes automatizados': 'vitest',
 
@@ -69,6 +84,9 @@ const LIGHT_ON_DARK_SLUGS = new Set([
   'amazonwebservices',
   'githubactions',
   'flyway',
+  'microsoftpowerpoint',
+  'swagger',
+  'rust',
 ])
 
 const SKILL_ICON_LIGHT = 'e2e8f0'

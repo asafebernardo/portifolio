@@ -126,7 +126,11 @@
   gap: 0.4rem;
 }
 
+.stackTag,
 .stack li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-size: 0.72rem;
   padding: 0.25rem 0.55rem;
   border-radius: 999px;
@@ -134,6 +138,29 @@
   background: var(--surface-chip);
   font-family: var(--font-mono);
   color: var(--text-secondary);
+}
+
+.stackTagIcon {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex-shrink: 0;
+}
+
+.stackTagIconMd {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.stackTagLabel {
+  line-height: 1.2;
+}
+
+.stackTag[data-tech]:not([data-tech='default']),
+.stack li[data-tech]:not([data-tech='default']) {
+  border-color: color-mix(in srgb, var(--stack-brand) 55%, var(--border-subtle));
+  background: color-mix(in srgb, var(--stack-brand) 18%, var(--surface-chip));
+  color: color-mix(in srgb, var(--stack-brand) 72%, var(--text-primary));
 }
 
 .cardDesc {
@@ -190,6 +217,22 @@
 .demo:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.demo.demoBlocked {
+  color: var(--text-primary);
+  background: var(--surface-inset);
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, var(--border-subtle));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.92;
+  pointer-events: none;
+}
+
+.demo.demoBlocked:hover {
+  transform: none;
+  box-shadow: none;
+  background: var(--surface-inset);
 }
 
 .code {
@@ -358,6 +401,187 @@
   inset: 0;
   z-index: 0;
   background: var(--surface-inset);
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-in;
+  font: inherit;
+  text-align: inherit;
+  color: inherit;
+}
+
+.cardMedia:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  z-index: 2;
+}
+
+.cardMediaExpand {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+  background: var(--surface-scrim);
+  color: var(--text-on-media);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.cardMedia:hover .cardMediaExpand,
+.cardMedia:focus-visible .cardMediaExpand {
+  opacity: 1;
+}
+
+.imageModalRoot {
+  position: fixed;
+  inset: 0;
+  z-index: 11000;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+
+.imageModalBackdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  cursor: pointer;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(8px);
+  animation: imageModalFade 0.22s ease both;
+}
+
+.imageModalSheet {
+  position: relative;
+  z-index: 1;
+  max-width: min(96vw, 1200px);
+  max-height: min(92vh, 900px);
+  pointer-events: auto;
+  animation: imageModalPop 0.28s var(--ease-out) both;
+}
+
+.imageModalSrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.imageModalClose {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--panel-bg);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+.imageModalClose:hover {
+  border-color: var(--border-glow);
+  transform: scale(1.05);
+}
+
+.imageModalNav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  margin-top: -22px;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--panel-bg);
+  color: var(--text-primary);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+.imageModalNav:hover {
+  border-color: var(--border-glow);
+  transform: scale(1.05);
+}
+
+.imageModalNavPrev {
+  left: -12px;
+}
+
+.imageModalNavNext {
+  right: -12px;
+}
+
+.imageModalFrame {
+  border-radius: var(--radius-lg);
+  overflow: visible;
+  background: transparent;
+}
+
+.imageModalImg {
+  display: block;
+  width: auto;
+  max-width: min(96vw, 1200px);
+  height: auto;
+  max-height: min(88vh, 860px);
+  margin-inline: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 48px rgba(0, 0, 0, 0.45));
+}
+
+.imageModalCounter {
+  margin: 0.65rem 0 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+@keyframes imageModalFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes imageModalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .cardMediaSlide {
@@ -475,13 +699,25 @@
   gap: 0.35rem;
 }
 
+.stackTagSm,
 .stackSm li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   font-size: 0.68rem;
   padding: 0.2rem 0.45rem;
   border-radius: 999px;
   border: 1px solid var(--border-subtle);
   font-family: var(--font-mono);
   color: var(--text-muted);
+  background: var(--surface-chip);
+}
+
+.stackTagSm[data-tech]:not([data-tech='default']),
+.stackSm li[data-tech]:not([data-tech='default']) {
+  border-color: color-mix(in srgb, var(--stack-brand) 55%, var(--border-subtle));
+  background: color-mix(in srgb, var(--stack-brand) 18%, var(--surface-chip));
+  color: color-mix(in srgb, var(--stack-brand) 78%, var(--text-primary));
 }
 
 .cardDescSm {
@@ -765,6 +1001,7 @@
   gap: 0.4rem;
 }
 
+:global(html[data-visual-theme='xp']) .stackTag,
 :global(html[data-visual-theme='xp']) .stack li {
   font-size: 0.72rem;
   padding: 0.25rem 0.55rem;
@@ -773,6 +1010,12 @@
   background: var(--xp-face);
   font-family: var(--font-mono);
   color: var(--text-secondary);
+}
+
+:global(html[data-visual-theme='xp']) .stackTag[data-tech]:not([data-tech='default']),
+:global(html[data-visual-theme='xp']) .stack li[data-tech]:not([data-tech='default']) {
+  border-color: color-mix(in srgb, var(--stack-brand) 60%, var(--border-subtle));
+  background: color-mix(in srgb, var(--stack-brand) 22%, var(--xp-face));
 }
 
 :global(html[data-visual-theme='xp']) .cardDesc {
@@ -833,6 +1076,15 @@
 
 :global(html[data-visual-theme='xp']) .demo:active {
   border-color: var(--xp-button-dk-shadow) var(--xp-button-hilight) var(--xp-button-hilight) var(--xp-button-dk-shadow);
+}
+
+:global(html[data-visual-theme='xp']) .demo.demoBlocked {
+  color: var(--text-primary);
+  background: var(--xp-button-light);
+  border: 2px solid color-mix(in srgb, var(--accent) 65%, var(--xp-button-dk-shadow));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.92;
 }
 
 :global(html[data-visual-theme='xp']) .code {
@@ -952,6 +1204,7 @@
   gap: 0.35rem;
 }
 
+:global(html[data-visual-theme='xp']) .stackTagSm,
 :global(html[data-visual-theme='xp']) .stackSm li {
   font-size: 0.68rem;
   padding: 0.2rem 0.45rem;
@@ -960,6 +1213,13 @@
   font-family: var(--font-mono);
   color: var(--text-muted);
   background: var(--xp-face);
+}
+
+:global(html[data-visual-theme='xp']) .stackTagSm[data-tech]:not([data-tech='default']),
+:global(html[data-visual-theme='xp']) .stackSm li[data-tech]:not([data-tech='default']) {
+  border-color: color-mix(in srgb, var(--stack-brand) 60%, var(--border-subtle));
+  background: color-mix(in srgb, var(--stack-brand) 22%, var(--xp-face));
+  color: color-mix(in srgb, var(--stack-brand) 75%, var(--text-primary));
 }
 
 :global(html[data-visual-theme='xp']) .cardDescSm {

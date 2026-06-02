@@ -5,13 +5,14 @@ import styles from './Skills.module.css'
 
 type SkillIconProps = {
   name: string
+  className?: string
 }
 
 /** Generic stack icon for skills without a brand mapping. */
-export function GenericSkillIcon() {
+export function GenericSkillIcon({ className }: { className?: string }) {
   return (
     <svg
-      className={styles.genericIcon}
+      className={className ? `${styles.genericIcon} ${className}` : styles.genericIcon}
       viewBox="0 0 24 24"
       aria-hidden="true"
       focusable="false"
@@ -24,22 +25,23 @@ export function GenericSkillIcon() {
   )
 }
 
-export function SkillIcon({ name }: SkillIconProps) {
+export function SkillIcon({ name, className }: SkillIconProps) {
   const { resolved } = useColorScheme()
   const slug = getSkillIconSlug(name)
   const [imgFailed, setImgFailed] = useState(false)
+  const iconClass = className ? `${styles.skillIcon} ${className}` : styles.skillIcon
 
   useEffect(() => {
     setImgFailed(false)
   }, [name, resolved])
 
   if (!slug || imgFailed) {
-    return <GenericSkillIcon />
+    return <GenericSkillIcon className={className} />
   }
 
   return (
     <img
-      className={styles.skillIcon}
+      className={iconClass}
       src={skillIconUrl(slug, resolved)}
       alt=""
       width={18}

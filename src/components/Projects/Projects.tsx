@@ -4,6 +4,7 @@ import { isDemoAvailable, isProjectInDevelopment } from '../../lib/projectDemo'
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
 import { ProjectCardMedia } from './ProjectCardMedia'
+import { StackTag } from './StackTag'
 import styles from './Projects.module.css'
 
 export type ProjectsProps = {
@@ -87,7 +88,12 @@ function ProjectCard({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects
       <div className={`${styles.cardBodyWrap} ${inDevelopment ? styles.cardBodyWrapBlurred : ''}`}>
         {hasImages ? (
           <div className={`${styles.cardImg} ${coverMedia ? styles.cardImgCover : ''}`}>
-            <ProjectCardMedia images={images} alt={proj.title} />
+            <ProjectCardMedia
+              images={images}
+              alt={proj.title}
+              viewImageAria={p.viewImageAria.replace('{title}', proj.title)}
+              imageModal={p.imageModal}
+            />
             <span className={styles.cat} data-category={proj.category}>
               {p.categories[proj.category]}
             </span>
@@ -127,7 +133,7 @@ function CardBody({
       <h3 className={styles.cardTitleSm}>{proj.title}</h3>
       <ul className={styles.stackSm}>
         {proj.stack.map((s) => (
-          <li key={s}>{s}</li>
+          <StackTag key={s} name={s} />
         ))}
       </ul>
       <p className={styles.cardDescSm}>{proj.description}</p>
@@ -139,14 +145,25 @@ function CardBody({
         {inDevelopment ? null : (
           <>
             {hasDemo ? (
-              <a
-                href={proj.demoUrl.trim()}
-                className={styles.demo}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                {p.demo}
-              </a>
+              proj.demoBlocked ? (
+                <span
+                  className={`${styles.demo} ${styles.demoBlocked}`}
+                  role="status"
+                  aria-disabled="true"
+                  title="Beta — coming soon"
+                >
+                  {proj.demoLabel?.trim() || p.demo}
+                </span>
+              ) : (
+                <a
+                  href={proj.demoUrl.trim()}
+                  className={styles.demo}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {proj.demoLabel?.trim() || p.demo}
+                </a>
+              )
             ) : null}
             <a href={proj.codeUrl} className={styles.code} target="_blank" rel="noreferrer noopener">
               {p.code}

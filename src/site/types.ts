@@ -31,6 +31,10 @@ export type ProjectEntry = {
   /** Optional gallery — fades between URLs when more than one. */
   images?: string[]
   demoUrl: string
+  /** Overrides the default “Live demo” button label (e.g. Beta). */
+  demoLabel?: string
+  /** Demo button visible but not clickable (accent border, code-style fill). */
+  demoBlocked?: boolean
   codeUrl: string
   category: ProjectCategoryId
   featured?: boolean
@@ -111,6 +115,12 @@ export type SiteContent = {
     challengesShort: string
     demo: string
     code: string
+    viewImageAria: string
+    imageModal: {
+      close: string
+      prev: string
+      next: string
+    }
     inDevelopment: string
     empty: string
     categories: Record<ProjectCategoryId, string>
