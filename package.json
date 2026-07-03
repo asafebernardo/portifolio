@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build:pages": "GITHUB_PAGES=true npm run build",
+    "preview": "vite preview",
+    "preview:pages": "npm run build:pages && vite preview --base /portifolio/"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",

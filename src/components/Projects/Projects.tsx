@@ -1,6 +1,7 @@
 import type { ProjectEntry, SiteContent } from '../../site/types'
 import { getProjectImages } from '../../site/projectImages'
 import { isDemoAvailable, isProjectInDevelopment } from '../../lib/projectDemo'
+import { resolvePublicUrl } from '../../lib/publicUrl'
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
 import { ProjectCardMedia } from './ProjectCardMedia'
@@ -156,7 +157,7 @@ function CardBody({
                 </span>
               ) : (
                 <a
-                  href={proj.demoUrl.trim()}
+                  href={resolvePublicUrl(proj.demoUrl.trim())}
                   className={styles.demo}
                   target="_blank"
                   rel="noreferrer noopener"
