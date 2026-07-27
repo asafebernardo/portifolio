@@ -6,13 +6,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
 const distIndex = join(root, 'dist', 'index.html')
 
-const SITE_URL = (process.env.SITE_URL ?? 'https://asafebernardo.github.io/portifolio').replace(/\/$/, '')
+const SITE_ORIGIN = (process.env.SITE_URL ?? 'https://asafebernardo.github.io').replace(/\/$/, '')
 const BASE = process.env.GITHUB_PAGES === 'true' ? '/portifolio/' : '/'
 
 function publicUrl(path) {
   const normalized = path.startsWith('/') ? path.slice(1) : path
   if (BASE === '/') return `/${normalized}`
   return `${BASE}${normalized}`.replace(/\/+/g, '/')
+}
+
+function absoluteUrl(path = '/') {
+  return `${SITE_ORIGIN}${publicUrl(path)}`
 }
 
 function escapeHtml(value) {
@@ -61,7 +65,7 @@ function buildStructuredResume(content, config, projects, resumeBase, catalog) {
     name: config.brandName,
     jobTitle: content.about.title,
     description: content.about.lead.replace(/\n+/g, ' '),
-    url: config.portfolioUrl || `${SITE_URL}${BASE === '/' ? '' : BASE.replace(/\/$/, '')}`,
+    url: config.portfolioUrl || absoluteUrl('/'),
     email: config.links.emailDisplay,
     telephone: config.links.whatsappDisplay,
     address: config.address
@@ -109,7 +113,7 @@ function buildStructuredResume(content, config, projects, resumeBase, catalog) {
       '@type': 'DigitalDocument',
       name: `${config.brandName} — Currículo PDF`,
       encodingFormat: 'application/pdf',
-      url: `${SITE_URL}${publicUrl(resumeBase.pdfUrl || '/asafe-bernardo-cv.pdf')}`,
+      url: absoluteUrl(resumeBase.pdfUrl || '/asafe-bernardo-cv.pdf'),
     },
   }
 }
@@ -262,12 +266,12 @@ function buildSeoArticle(content, config, projects, catalog) {
 }
 
 function buildSitemap() {
-  const base = SITE_URL + (BASE === '/' ? '' : BASE.replace(/\/$/, ''))
+  const base = absoluteUrl('/').replace(/\/$/, '')
   const paths = ['', '#projects', '#skills', '#experience', '#education']
   const urls = paths
     .map(
       (p) => `  <url>
-    <loc>${base}${p ? '/' + p : '/'}</loc>
+    <loc>${base}${p ? p : '/'}</loc>
     <changefreq>monthly</changefreq>
     <priority>${p ? '0.8' : '1.0'}</priority>
   </url>`,
@@ -276,12 +280,12 @@ function buildSitemap() {
 
   const extra = `
   <url>
-    <loc>${base}${publicUrl('/resume.json')}</loc>
+    <loc>${absoluteUrl('/resume.json')}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>${base}${publicUrl('/asafe-bernardo-cv.pdf')}</loc>
+    <loc>${absoluteUrl('/asafe-bernardo-cv.pdf')}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>`
@@ -294,7 +298,7 @@ ${urls}${extra}
 }
 
 function buildRobots() {
-  const sitemap = `${SITE_URL}${BASE === '/' ? '' : BASE.replace(/\/$/, '')}/sitemap.xml`
+  const sitemap = absoluteUrl('/sitemap.xml')
   return `User-agent: *
 Allow: /
 
@@ -362,7 +366,7 @@ async function main() {
   if (!html.includes('property="og:image"')) {
     html = html.replace(
       '<meta property="og:type"',
-      `<meta property="og:image" content="${escapeHtml(SITE_URL + publicUrl('/og-preview.svg'))}" />\n    <meta property="og:type"`,
+      `<meta property="og:image" content="${escapeHtml(absoluteUrl('/og-preview.svg'))}" />\n    <meta property="og:type"`,
     )
   }
 
