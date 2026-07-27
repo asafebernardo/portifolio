@@ -1,0 +1,203 @@
+{
+  "categoryLabels": {
+    "backend": "Back-end",
+    "testing": "Testes & QA",
+    "database": "Banco de dados",
+    "devops": "Infraestrutura & DevOps",
+    "frontend": "Frontend"
+  },
+  "categoryOrder": [
+    "backend",
+    "testing",
+    "database",
+    "devops",
+    "frontend"
+  ],
+  "levelLabels": {
+    "advanced": "Avançado",
+    "intermediate": "Intermediário",
+    "beginner": "Iniciante"
+  },
+  "items": [
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "aliases": [
+        "NodeJS",
+        "Node",
+        "node.js"
+      ],
+      "category": "backend",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — API REST em produção (icer.com.br)",
+        "Desenvolvimento Back-end pessoal"
+      ]
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "aliases": [
+        "TS",
+        "type script"
+      ],
+      "category": "backend",
+      "level": "intermediate",
+      "evidence": [
+        "Lumio — frontend React + TypeScript",
+        "Stack principal Back-end"
+      ]
+    },
+    {
+      "id": "express",
+      "name": "Express",
+      "aliases": [
+        "Express.js",
+        "ExpressJS"
+      ],
+      "category": "backend",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — API REST com Express e MongoDB"
+      ]
+    },
+    {
+      "id": "rest-apis",
+      "name": "REST APIs",
+      "aliases": [
+        "REST API",
+        "REST",
+        "APIs REST",
+        "HTTP API"
+      ],
+      "category": "backend",
+      "level": "advanced",
+      "evidence": [
+        "IXC Soft — Suporte API/Integrações (2 anos)",
+        "ICER — endpoints REST em produção"
+      ]
+    },
+    {
+      "id": "postman",
+      "name": "Postman",
+      "aliases": [
+        "Postman API Client"
+      ],
+      "category": "testing",
+      "level": "advanced",
+      "evidence": [
+        "IXC Soft — análise de requisições HTTP e integrações",
+        "IXC Soft — QA — validação de endpoints"
+      ]
+    },
+    {
+      "id": "cypress",
+      "name": "Cypress",
+      "aliases": [
+        "Cypress.io",
+        "Cypress E2E"
+      ],
+      "category": "testing",
+      "level": "intermediate",
+      "evidence": [
+        "Testes E2E em projetos pessoais",
+        "Stack de QA e automação"
+      ]
+    },
+    {
+      "id": "vitest",
+      "name": "Vitest",
+      "aliases": [
+        "Vite Test",
+        "Vitest unit tests"
+      ],
+      "category": "testing",
+      "level": "intermediate",
+      "evidence": [
+        "Testes unitários em projetos React/Node"
+      ]
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "aliases": [
+        "Mongo",
+        "Mongo DB"
+      ],
+      "category": "database",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — persistência de conteúdo e mídia"
+      ]
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "aliases": [
+        "Docker containers",
+        "Containerização"
+      ],
+      "category": "devops",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — API e frontend containerizados com Docker Compose"
+      ]
+    },
+    {
+      "id": "git",
+      "name": "Git",
+      "aliases": [
+        "Git SCM",
+        "Controle de versão Git"
+      ],
+      "category": "devops",
+      "level": "intermediate",
+      "evidence": [
+        "Projetos ICER e Lumio no GitHub",
+        "Fluxo de trabalho diário"
+      ]
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "aliases": [
+        "Git Hub",
+        "GitHub.com"
+      ],
+      "category": "devops",
+      "level": "intermediate",
+      "evidence": [
+        "Repositórios públicos — ICER, Lumio e portfólio"
+      ]
+    },
+    {
+      "id": "linux",
+      "name": "Linux",
+      "aliases": [
+        "GNU/Linux",
+        "Ubuntu",
+        "Servidor Linux"
+      ],
+      "category": "devops",
+      "level": "advanced",
+      "evidence": [
+        "Loy Legal — servidores Linux em produção",
+        "IXC Soft — implantação e suporte em ambientes Linux"
+      ]
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "aliases": [
+        "React.js",
+        "ReactJS"
+      ],
+      "category": "frontend",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — SPA consumindo API REST",
+        "Lumio — interface de projeção"
+      ]
+    }
+  ]
+}

@@ -9,10 +9,10 @@
 .solid {
   position: absolute;
   inset: 0;
-  background: #101114;
+  background: #0b1120;
 }
 
-/* Light mode: soft neutral gray */
+/* Light mode: soft cool gray */
 :global(html[data-visual-theme='pro'][data-color-scheme='light']) .solid {
-  background: #f2f2f2;
+  background: #eef2f7;
 }

@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
+import { resolvePublicUrl } from '../lib/publicUrl'
 import { usePortfolioDisplay } from '../pages/portfolio/PortfolioDraftContext'
 import { resolveProfilePhoto } from '../site/profilePhoto'
 
-/** Shown in the browser tab and og:title. */
-const TAB_BRAND_TITLE = 'Asafe Bernardo'
+const OG_IMAGE_PATH = '/og-preview.svg'
 
 function setFaviconLink(href: string) {
   let link = document.querySelector<HTMLLinkElement>('link[rel="icon"]')
@@ -31,21 +31,27 @@ function setFaviconLink(href: string) {
   }
 }
 
+function ensureMeta(property: string, attr: 'name' | 'property', content: string) {
+  let el = document.querySelector(`meta[${attr}="${property}"]`)
+  if (!el) {
+    el = document.createElement('meta')
+    el.setAttribute(attr, property)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('content', content)
+}
+
 export function DocumentMeta() {
   const { content, config } = usePortfolioDisplay()
 
   useEffect(() => {
-    document.documentElement.lang = 'en'
-    document.title = TAB_BRAND_TITLE
+    document.documentElement.lang = 'pt-BR'
+    document.title = content.meta.title
 
-    const apply = (selector: string, attr: string, value: string) => {
-      const el = document.querySelector(selector)
-      if (el) el.setAttribute(attr, value)
-    }
-
-    apply('meta[name="description"]', 'content', content.meta.description)
-    apply('meta[property="og:title"]', 'content', TAB_BRAND_TITLE)
-    apply('meta[property="og:description"]', 'content', content.meta.description)
+    ensureMeta('description', 'name', content.meta.description)
+    ensureMeta('og:title', 'property', content.meta.title)
+    ensureMeta('og:description', 'property', content.meta.description)
+    ensureMeta('og:image', 'property', resolvePublicUrl(OG_IMAGE_PATH))
 
     setFaviconLink(resolveProfilePhoto(config.profilePhoto))
   }, [content, config.profilePhoto])

@@ -5,6 +5,7 @@ import { resolvePublicUrl } from '../../lib/publicUrl'
 import { usePortfolioDisplay } from '../../pages/portfolio/PortfolioDraftContext'
 import { Reveal } from '../Reveal/Reveal'
 import { ProjectCardMedia } from './ProjectCardMedia'
+import { ProjectGalaxyPlaceholder } from './ProjectGalaxyPlaceholder'
 import { StackTag } from './StackTag'
 import styles from './Projects.module.css'
 
@@ -77,16 +78,17 @@ function ProjectCard({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects
   const images = getProjectImages(proj)
   const hasImages = images.length > 0
   const inDevelopment = isProjectInDevelopment(proj)
-  const coverMedia =
-    proj.id === 'icer' || proj.id === 'acs-inspector' || proj.id === 'boutique-showcase'
+  const showGalaxyPlaceholder = !hasImages
+  const showDevOverlay = inDevelopment && hasImages
+  const coverMedia = proj.id === 'icer' || proj.id === 'lumio'
 
   return (
     <article
-      className={`${styles.card} ${inDevelopment ? styles.cardInDevelopment : ''}`}
+      className={`${styles.card} ${showDevOverlay ? styles.cardInDevelopment : ''}`}
       aria-label={inDevelopment ? `${proj.title} — ${p.inDevelopment}` : proj.title}
-      tabIndex={inDevelopment ? 0 : undefined}
+      tabIndex={showDevOverlay ? 0 : undefined}
     >
-      <div className={`${styles.cardBodyWrap} ${inDevelopment ? styles.cardBodyWrapBlurred : ''}`}>
+      <div className={`${styles.cardBodyWrap} ${showDevOverlay ? styles.cardBodyWrapBlurred : ''}`}>
         {hasImages ? (
           <div className={`${styles.cardImg} ${coverMedia ? styles.cardImgCover : ''}`}>
             <ProjectCardMedia
@@ -99,9 +101,16 @@ function ProjectCard({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects
               {p.categories[proj.category]}
             </span>
           </div>
+        ) : showGalaxyPlaceholder ? (
+          <div className={`${styles.cardImg} ${styles.cardImgGalaxy}`}>
+            <ProjectGalaxyPlaceholder label={p.inDevelopment} />
+            <span className={styles.cat} data-category={proj.category}>
+              {p.categories[proj.category]}
+            </span>
+          </div>
         ) : null}
         <div className={styles.cardPad}>
-          {!hasImages ? (
+          {!hasImages && !showGalaxyPlaceholder ? (
             <span className={`${styles.cat} ${styles.catInline}`} data-category={proj.category}>
               {p.categories[proj.category]}
             </span>
@@ -109,7 +118,7 @@ function ProjectCard({ proj, p }: { proj: ProjectEntry; p: SiteContent['projects
           <CardBody proj={proj} p={p} inDevelopment={inDevelopment} />
         </div>
       </div>
-      {inDevelopment ? (
+      {showDevOverlay ? (
         <div className={styles.devDiagonalOverlay} aria-hidden="true">
           <span className={styles.devDiagonalText}>{p.inDevelopment}</span>
         </div>
@@ -138,14 +147,36 @@ function CardBody({
         ))}
       </ul>
       <p className={styles.cardDescSm}>{proj.description}</p>
+      {proj.impact?.trim() ? (
+        <div className={styles.impactSm}>
+          <span className={styles.chLabel}>{p.impact}</span>
+          <p>{proj.impact}</p>
+        </div>
+      ) : null}
+      {proj.role?.trim() ? (
+        <p className={styles.roleSm}>
+          <span className={styles.chLabel}>{p.role}: </span>
+          {proj.role}
+        </p>
+      ) : null}
+      {proj.technicalHighlights && proj.technicalHighlights.length > 0 ? (
+        <div className={styles.technicalSm}>
+          <span className={styles.chLabel}>{p.technical}</span>
+          <ul className={styles.technicalList}>
+            {proj.technicalHighlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
       <div className={styles.challengesSm}>
         <span className={styles.chLabel}>{p.challengesShort}</span>
         <p>{proj.challenges}</p>
       </div>
       <div className={styles.linksSm}>
-        {inDevelopment ? null : (
+        {inDevelopment && isDemoAvailable(proj.demoUrl) ? null : (
           <>
-            {hasDemo ? (
+            {!inDevelopment && hasDemo ? (
               proj.demoBlocked ? (
                 <span
                   className={`${styles.demo} ${styles.demoBlocked}`}
@@ -169,6 +200,16 @@ function CardBody({
             <a href={proj.codeUrl} className={styles.code} target="_blank" rel="noreferrer noopener">
               {p.code}
             </a>
+            {proj.postmanUrl?.trim() ? (
+              <a
+                href={proj.postmanUrl.trim()}
+                className={styles.postman}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {p.postman}
+              </a>
+            ) : null}
           </>
         )}
       </div>

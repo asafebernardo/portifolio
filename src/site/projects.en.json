@@ -1,10 +1,21 @@
 [
   {
     "id": "icer",
-    "title": "ICER Church Website",
-    "stack": ["React", "Vite", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
-    "description": "Institutional website for ICER Church — events, community content, and admin-managed media with a responsive public experience.",
-    "challenges": "Split frontend/API deployment, MongoDB-backed auth when enabled, and file uploads stored on the server with URLs in the database.",
+    "title": "ICER — API & Site Institucional",
+    "stack": ["Node.js", "Express", "MongoDB", "Docker", "React", "JWT"],
+    "description": "Back-end Node.js com Express e MongoDB para site institucional em produção (icer.com.br): rotas REST, autenticação JWT, upload de mídia e painel administrativo. Frontend React consome a API via HTTP/JSON. Deploy com Docker.",
+    "challenges": "Arquitetura com deploy separado (API + SPA em containers), middleware de auth JWT, persistência de uploads no servidor com URLs no MongoDB e tratamento de erros consistente nos endpoints.",
+    "impact": "Em produção em icer.com.br · 20+ endpoints REST · JWT · MongoDB · Docker Compose",
+    "role": "Back-end Node.js, API REST, Docker, deploy e integração com frontend",
+    "technicalHighlights": [
+      "20+ endpoints REST — auth, postagens, agenda, eventos, recursos e upload de mídia",
+      "Autenticação JWT com middleware de autorização no Express",
+      "MongoDB — modelagem de conteúdo, eventos e metadados de arquivos",
+      "Docker Compose — API e frontend em containers separados",
+      "Coleção Postman documentada para testes e validação da API",
+      "Tratamento centralizado de erros e respostas HTTP padronizadas"
+    ],
+    "postmanUrl": "https://github.com/asafebernardo/icer",
     "images": [
       "/projects/icer-home.png",
       "/projects/icer-postagens.png",
@@ -14,85 +25,21 @@
     ],
     "demoUrl": "https://icer.com.br",
     "codeUrl": "https://github.com/asafebernardo/icer",
-    "category": "fullstack",
-    "featured": true
-  },
-  {
-    "id": "slidesong",
-    "title": "SlideSong",
-    "stack": ["React", "Vite", "Node.js", "Express", "Tailwind CSS", "PptxGenJS"],
-    "description": "Web app to import song lyrics (PDF, DOCX, TXT, or links from Letras.mus and Cifra Club), detect hymns automatically, edit verses and chorus, and export slide decks (PPTX, PDF, ODP). Integrates third-party APIs: Pexels for background images and optional lyric import from Letras.mus and Cifra Club.",
-    "challenges": "Reliable lyric parsing across formats, third-party API integration (Pexels image search with daily per-IP limits; Letras.mus and Cifra Club URL import with graceful fallback when layouts change), and a 3-step wizard (import → edit with live preview → export) with batch ZIP generation.",
-    "images": ["/projects/slidesong-home.png"],
-    "demoUrl": "https://slidesong.online/",
-    "codeUrl": "https://github.com/asafebernardo/slidesong",
-    "category": "fullstack",
-    "featured": true
-  },
-  {
-    "id": "auth-api",
-    "title": "JWT Auth API",
-    "stack": ["React", "Node.js", "Express", "JWT", "Web Crypto"],
-    "description": "Authentication demo with login and a JWT-protected profile — includes a live route in this portfolio (HS256 signed in the browser, token in sessionStorage) and a standalone Express + vanilla UI implementation on GitHub.",
-    "challenges": "Secure token rotation, bcrypt password hashing, Redis-backed session revocation and consistent error contracts across endpoints.",
-    "images": ["/projects/jwt-user-auth-login.png", "/projects/jwt-user-auth-profile.png"],
-    "demoUrl": "/demo/jwt-auth",
-    "codeUrl": "https://github.com/asafebernardo/jwtUserAuth",
     "category": "backend",
-    "inDevelopment": false
+    "featured": true
   },
   {
-    "id": "acs-inspector",
-    "title": "ACS Inspector",
-    "stack": ["Node.js", "Vitest", "Cypress", "REST"],
-    "description": "Test automation for ACS — REST suites with Vitest, browser flows with Cypress, helper scripts and a browsable HTML checklist report.",
-    "challenges": "Stable OAuth/API configuration, meaningful assertions across views and filters, and keeping generated checklist artifacts easy to review and share.",
-    "images": [
-      "/projects/acs-inspector-navbar.png",
-      "/projects/acs-inspector-home.png",
-      "/projects/acs-inspector-dispositivos.png",
-      "/projects/acs-inspector-ferramentas.png",
-      "/projects/acs-inspector-usuarios.png",
-      "/projects/acs-inspector-grupos.png"
-    ],
-    "demoUrl": "https://asafebernardo.github.io/acs-inspector/testsChecklist.html",
-    "codeUrl": "https://github.com/asafebernardo/acs-inspector",
-    "category": "fullstack"
-  },
-  {
-    "id": "boutique-showcase",
-    "title": "Portfolio Website",
-    "stack": ["React", "Vite", "TypeScript", "React Router", "CSS Modules"],
-    "description": "Single-page developer portfolio with light/dark theme, section-based navigation, and JSON-driven content for easy maintenance.",
-    "challenges": "Consistent theming, smooth hash navigation between sections, and a layout that stays readable on both large monitors and small mobile screens.",
-    "images": [
-      "/projects/portfolio-home.png",
-      "/projects/portfolio-projects.png",
-      "/projects/portfolio-skills.png",
-      "/projects/portfolio-experience.png",
-      "/projects/portfolio-contact.png"
-    ],
-    "demoUrl": "/",
-    "codeUrl": "https://github.com/asafebernardo/portifolio",
-    "category": "frontend",
-    "inDevelopment": false
-  },
-  {
-    "id": "simple-backup",
-    "title": "SimpleBackup",
-    "stack": ["Rust", "Tauri 2", "TypeScript", "Vite"],
-    "description": "Cross-platform backup app for non-technical users — protects documents, photos, and chosen folders with guided setup and plain-language status, without backing up programs, cache, or the entire user profile.",
-    "challenges": "Rust backup engine shared with a Tauri desktop UI, sensible default include/exclude rules, and low resource usage during scheduled copies on Windows, macOS, and Linux.",
-    "images": [
-      "/projects/simplebackup-inicio.png",
-      "/projects/simplebackup-pastas.png",
-      "/projects/simplebackup-dashboard.png"
-    ],
-    "demoUrl": "https://github.com/asafebernardo/SimpleBackup",
-    "demoLabel": "Beta",
-    "demoBlocked": true,
-    "codeUrl": "https://github.com/asafebernardo/SimpleBackup",
+    "id": "lumio",
+    "title": "Lumio — Apresentações em Tempo Real",
+    "stack": ["React", "TypeScript", "Vite", ".NET", "SignalR", "Zustand"],
+    "description": "Software de apresentação para igrejas com API .NET e frontend React. Gerencia músicas, versículos e mídia com sincronização em tempo real entre operador e tela de projeção via SignalR.",
+    "challenges": "Integração front-end/back-end com SignalR para broadcast em tempo real, estado compartilhado com Zustand e app desktop para uso offline em ambiente de culto.",
+    "impact": "Projeto full stack ativo no GitHub · comunicação WebSocket/SignalR · arquitetura API + SPA",
+    "role": "Frontend React, integração com API e fluxo de projeção",
+    "demoUrl": "",
+    "codeUrl": "https://github.com/asafebernardo/lumio",
     "category": "fullstack",
-    "inDevelopment": false
+    "featured": true,
+    "inDevelopment": true
   }
 ]

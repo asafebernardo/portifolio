@@ -26,7 +26,7 @@ const SKILL_ICON_SLUGS: Record<string, string> = {
   jwt: 'jsonwebtokens',
   'jwt authentication': 'jsonwebtokens',
   'web crypto': 'w3c',
-  vitest: 'vitest',
+  postman: 'postman',
   cypress: 'cypress',
   rest: 'openapi',
   recharts: 'plotly',
@@ -51,8 +51,8 @@ const SKILL_ICON_SLUGS: Record<string, string> = {
 
   // DevOps & tools
   docker: 'docker',
-  'git & github': 'github',
   git: 'git',
+  github: 'github',
   'ci/cd': 'githubactions',
   aws: 'amazonwebservices',
   'cloud (aws/gcp)': 'googlecloud',

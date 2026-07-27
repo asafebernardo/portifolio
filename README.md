@@ -1,76 +1,88 @@
-# Portfolio
+# Portfólio — Asafe Bernardo
 
-Single-page English portfolio with a dark/light theme, section-based navigation, and static content in `src/site/`.
+Portfólio single-page em português, posicionado para **vagas de Desenvolvedor Back-end (Node.js)**, com diferencial em **QA, integração de APIs e testes automatizados**.
 
-## Features
+## Destaques
 
-- **Sections**: About (home), projects, skills, experience, and contact
-- **Theme**: Light/dark toggle in the header
-- **Content**: JSON files for copy and projects (`content.en.json`, `projects.en.json`, `config.json`)
-- **Profile photo**: Shown in the About section (`public/profile-photo.png` by default)
+- **Seções**: Sobre, projetos, habilidades, experiência e formação
+- **Posicionamento**: Node.js, TypeScript, REST APIs, MongoDB, Docker, Postman, Cypress
+- **Projetos**: ICER (site institucional em produção) e Lumio (projeção para igrejas)
+- **Tema**: Claro/escuro no header
+- **Conteúdo**: JSON em `src/site/` (`content.en.json`, `projects.en.json`, `config.json`, `resume.json`)
+- **SEO/ATS/IAs**: HTML estático injetado no build, JSON-LD Schema.org, `resume.json` estruturado, `robots.txt` e `sitemap.xml`
+- **Currículo PDF**: Gerado na hora pelo header — mesmo conteúdo do site (jsPDF)
 
 ## Stack
 
 - [Vite](https://vitejs.dev/) + [React](https://react.dev/) 19 + [TypeScript](https://www.typescriptlang.org/)
-- [React Router](https://reactrouter.com/) for legacy path redirects and hash navigation
-- CSS Modules and global tokens in `src/index.css`
+- [React Router](https://reactrouter.com/) para redirects legados e navegação por hash
+- CSS Modules e tokens globais em `src/index.css`
 
-## Requirements
+## Requisitos
 
-- [Node.js](https://nodejs.org/) (recommended: current LTS)
+- [Node.js](https://nodejs.org/) (LTS recomendado)
 
-## Getting started
+## Desenvolvimento
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the URL printed in the terminal (default `http://localhost:5173`).
+Abra a URL exibida no terminal (padrão `http://localhost:5173`).
 
-## npm scripts
+## Scripts npm
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Development server with hot reload |
-| `npm run build` | Typecheck + production build into `dist/` |
-| `npm run preview` | Serve `dist/` locally to verify the build |
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Servidor de desenvolvimento |
+| `npm run build` | Typecheck + build + injeção SEO em `dist/` |
+| `npm run build:pages` | Build para GitHub Pages (`/portifolio/`) |
+| `npm run preview` | Serve `dist/` localmente |
 
-## Content
+## Conteúdo
 
-Default data lives in `src/site/`:
+Arquivos em `src/site/`:
 
-| File | Contents |
-|------|----------|
-| `config.json` | Brand name, navbar title, profile photo URL |
-| `content.en.json` | Site copy (nav, sections, meta) |
-| `projects.en.json` | Project cards |
+| Arquivo | Conteúdo |
+|---------|----------|
+| `config.json` | Nome, links, endereço, URL do PDF |
+| `content.en.json` | Textos do site (PT), meta e SEO |
+| `projects.en.json` | Cards de projetos (stack, impacto, papel) |
+| `resume.json` | Currículo estruturado para IAs/ATS (gerado enriquecido no build) |
+| `skillsCatalog.json` | Catálogo de habilidades com aliases, categoria, nível e evidências |
 
-## Production build
+## Build e SEO
+
+O build executa `scripts/inject-seo-content.mjs`, que:
+
+1. Injeta um bloco HTML semântico (`#seo-resume`) legível por crawlers/ATS/IAs
+2. Adiciona JSON-LD `Person` no `<head>` (experiência, formação, idiomas, certificações)
+3. Gera `dist/resume.json` e `public/resume.json` com dados completos
+4. Copia `asafe-bernardo-cv.pdf` para `dist/`
+5. Gera `dist/sitemap.xml` e `dist/robots.txt`
+
+Variável opcional para URL canônica:
+
+```bash
+SITE_URL=https://seu-dominio.com npm run build
+```
+
+## Deploy
 
 ```bash
 npm run build
+# ou para GitHub Pages:
+npm run build:pages
 ```
 
-Deploy the `dist/` folder to any static host (Netlify, Vercel, GitHub Pages, etc.).
+Publique a pasta `dist/` em Netlify, Vercel, GitHub Pages, etc.
 
 ## Docker
-
-Multi-stage `Dockerfile` (Node build + nginx with SPA fallback):
 
 ```bash
 docker build -t portfolio:local .
 docker run --rm -p 8080:80 portfolio:local
 ```
 
-Or:
-
-```bash
-docker compose up --build
-```
-
-Open `http://localhost:8080`.
-
----
-
-Private project—update this README when you add routes, integrations, or deployment steps.
+Abra `http://localhost:8080`.

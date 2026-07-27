@@ -46,3 +46,14 @@ export function IconWhatsApp({ className }: IconProps) {
     </svg>
   )
 }
+
+export function IconDownload({ className }: IconProps) {
+  return (
+    <svg className={`${styles.icon} ${className ?? ''}`} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
+      />
+    </svg>
+  )
+}

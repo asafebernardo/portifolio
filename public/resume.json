@@ -1,0 +1,832 @@
+{
+  "@context": "https://schema.org",
+  "type": "Resume",
+  "name": "Asafe Bernardo",
+  "jobTitle": "Desenvolvedor Back-end",
+  "headline": "Backend Developer | Node.js | TypeScript | REST APIs | MongoDB | Docker",
+  "location": "Chapecó, Santa Catarina, Brasil",
+  "summary": "Profissional de tecnologia com 3 anos de experiência em QA e integração de APIs REST, em transição para Desenvolvedor Back-end. Stack principal: Node.js com TypeScript, Express, MongoDB e Docker. Case ICER em produção (icer.com.br). Candidatura ativa a vagas Back-end Node.js.",
+  "yearsOfExperience": 3,
+  "contact": {
+    "email": "asafe.kohler@gmail.com",
+    "phone": "+5549998062305",
+    "linkedin": "https://www.linkedin.com/in/asafebernardo",
+    "github": "https://github.com/asafebernardo",
+    "portfolio": "https://asafebernardo.github.io/portifolio/",
+    "address": "Rua Hermes da Fonseca, 1559, D, CEP 89804-132, Chapecó, SC, Brasil"
+  },
+  "languages": [
+    {
+      "name": "Português",
+      "level": "Nativo"
+    },
+    {
+      "name": "Inglês",
+      "level": "Professional Working"
+    }
+  ],
+  "certifications": [
+    "Introduction to Cybersecurity"
+  ],
+  "coursesInProgress": [
+    {
+      "name": "Noções Básicas de Redes",
+      "institution": "Cisco Networking Academy",
+      "period": "2026",
+      "status": "in_progress"
+    }
+  ],
+  "education": [
+    {
+      "institution": "UCEFF",
+      "degree": "Análise e Desenvolvimento de Sistemas",
+      "field": "Computer Programming / Programmer, General",
+      "startDate": "2021-01",
+      "endDate": "2024-04"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Analista de suporte e implantação — IXC ACS",
+      "company": "IXC Soft",
+      "startDate": "2026-06",
+      "endDate": null,
+      "location": "Chapecó, SC, Brasil"
+    },
+    {
+      "role": "Analista de QA — IXC ACS",
+      "company": "IXC Soft",
+      "startDate": "2025-05",
+      "endDate": "2026-07",
+      "location": "Chapecó, SC, Brasil"
+    },
+    {
+      "role": "Analista de suporte API/Integrações — IXC Provedor",
+      "company": "IXC Soft",
+      "startDate": "2023-07",
+      "endDate": "2025-05",
+      "location": "Chapecó, SC, Brasil"
+    },
+    {
+      "role": "Suporte técnico",
+      "company": "Loy Legal",
+      "startDate": "2023-03",
+      "endDate": "2023-06",
+      "location": "Chapecó, SC, Brasil"
+    }
+  ],
+  "projects": [
+    {
+      "name": "ICER",
+      "url": "https://icer.com.br",
+      "repository": "https://github.com/asafebernardo/icer",
+      "stack": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Docker",
+        "JWT",
+        "React",
+        "REST APIs"
+      ],
+      "highlights": [
+        "20+ endpoints REST",
+        "Autenticação JWT",
+        "Docker Compose",
+        "Coleção Postman",
+        "Em produção"
+      ]
+    },
+    {
+      "name": "Lumio",
+      "repository": "https://github.com/asafebernardo/lumio",
+      "stack": [
+        "React",
+        "TypeScript",
+        "REST APIs"
+      ]
+    }
+  ],
+  "availability": {
+    "status": "actively_aplying",
+    "remote": "Brasil",
+    "hybridAndOnsiteRegions": [
+      "Sul",
+      "Sudeste",
+      "Centro-Oeste"
+    ],
+    "openTo": [
+      "remote",
+      "hybrid",
+      "onsite"
+    ],
+    "location": "Chapecó, SC, Brasil"
+  },
+  "pdfUrl": "/asafe-bernardo-cv.pdf",
+  "generatedAt": "2026-07-27T19:43:10.935Z",
+  "source": "portfolio",
+  "skills": [
+    "Node.js",
+    "TypeScript",
+    "Express",
+    "REST APIs",
+    "Postman",
+    "Cypress",
+    "Vitest",
+    "MongoDB",
+    "Docker",
+    "Git",
+    "GitHub",
+    "Linux",
+    "React"
+  ],
+  "skillsDetailed": [
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "aliases": [
+        "NodeJS",
+        "Node",
+        "node.js"
+      ],
+      "category": "backend",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — API REST em produção (icer.com.br)",
+        "Desenvolvimento Back-end pessoal"
+      ]
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "aliases": [
+        "TS",
+        "type script"
+      ],
+      "category": "backend",
+      "level": "intermediate",
+      "evidence": [
+        "Lumio — frontend React + TypeScript",
+        "Stack principal Back-end"
+      ]
+    },
+    {
+      "id": "express",
+      "name": "Express",
+      "aliases": [
+        "Express.js",
+        "ExpressJS"
+      ],
+      "category": "backend",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — API REST com Express e MongoDB"
+      ]
+    },
+    {
+      "id": "rest-apis",
+      "name": "REST APIs",
+      "aliases": [
+        "REST API",
+        "REST",
+        "APIs REST",
+        "HTTP API"
+      ],
+      "category": "backend",
+      "level": "advanced",
+      "evidence": [
+        "IXC Soft — Suporte API/Integrações (2 anos)",
+        "ICER — endpoints REST em produção"
+      ]
+    },
+    {
+      "id": "postman",
+      "name": "Postman",
+      "aliases": [
+        "Postman API Client"
+      ],
+      "category": "testing",
+      "level": "advanced",
+      "evidence": [
+        "IXC Soft — análise de requisições HTTP e integrações",
+        "IXC Soft — QA — validação de endpoints"
+      ]
+    },
+    {
+      "id": "cypress",
+      "name": "Cypress",
+      "aliases": [
+        "Cypress.io",
+        "Cypress E2E"
+      ],
+      "category": "testing",
+      "level": "intermediate",
+      "evidence": [
+        "Testes E2E em projetos pessoais",
+        "Stack de QA e automação"
+      ]
+    },
+    {
+      "id": "vitest",
+      "name": "Vitest",
+      "aliases": [
+        "Vite Test",
+        "Vitest unit tests"
+      ],
+      "category": "testing",
+      "level": "intermediate",
+      "evidence": [
+        "Testes unitários em projetos React/Node"
+      ]
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "aliases": [
+        "Mongo",
+        "Mongo DB"
+      ],
+      "category": "database",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — persistência de conteúdo e mídia"
+      ]
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "aliases": [
+        "Docker containers",
+        "Containerização"
+      ],
+      "category": "devops",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — API e frontend containerizados com Docker Compose"
+      ]
+    },
+    {
+      "id": "git",
+      "name": "Git",
+      "aliases": [
+        "Git SCM",
+        "Controle de versão Git"
+      ],
+      "category": "devops",
+      "level": "intermediate",
+      "evidence": [
+        "Projetos ICER e Lumio no GitHub",
+        "Fluxo de trabalho diário"
+      ]
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "aliases": [
+        "Git Hub",
+        "GitHub.com"
+      ],
+      "category": "devops",
+      "level": "intermediate",
+      "evidence": [
+        "Repositórios públicos — ICER, Lumio e portfólio"
+      ]
+    },
+    {
+      "id": "linux",
+      "name": "Linux",
+      "aliases": [
+        "GNU/Linux",
+        "Ubuntu",
+        "Servidor Linux"
+      ],
+      "category": "devops",
+      "level": "advanced",
+      "evidence": [
+        "Loy Legal — servidores Linux em produção",
+        "IXC Soft — implantação e suporte em ambientes Linux"
+      ]
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "aliases": [
+        "React.js",
+        "ReactJS"
+      ],
+      "category": "frontend",
+      "level": "intermediate",
+      "evidence": [
+        "ICER — SPA consumindo API REST",
+        "Lumio — interface de projeção"
+      ]
+    }
+  ],
+  "skillsByCategory": {
+    "backend": [
+      {
+        "id": "nodejs",
+        "name": "Node.js",
+        "aliases": [
+          "NodeJS",
+          "Node",
+          "node.js"
+        ],
+        "category": "backend",
+        "level": "intermediate",
+        "evidence": [
+          "ICER — API REST em produção (icer.com.br)",
+          "Desenvolvimento Back-end pessoal"
+        ]
+      },
+      {
+        "id": "typescript",
+        "name": "TypeScript",
+        "aliases": [
+          "TS",
+          "type script"
+        ],
+        "category": "backend",
+        "level": "intermediate",
+        "evidence": [
+          "Lumio — frontend React + TypeScript",
+          "Stack principal Back-end"
+        ]
+      },
+      {
+        "id": "express",
+        "name": "Express",
+        "aliases": [
+          "Express.js",
+          "ExpressJS"
+        ],
+        "category": "backend",
+        "level": "intermediate",
+        "evidence": [
+          "ICER — API REST com Express e MongoDB"
+        ]
+      },
+      {
+        "id": "rest-apis",
+        "name": "REST APIs",
+        "aliases": [
+          "REST API",
+          "REST",
+          "APIs REST",
+          "HTTP API"
+        ],
+        "category": "backend",
+        "level": "advanced",
+        "evidence": [
+          "IXC Soft — Suporte API/Integrações (2 anos)",
+          "ICER — endpoints REST em produção"
+        ]
+      }
+    ],
+    "testing": [
+      {
+        "id": "postman",
+        "name": "Postman",
+        "aliases": [
+          "Postman API Client"
+        ],
+        "category": "testing",
+        "level": "advanced",
+        "evidence": [
+          "IXC Soft — análise de requisições HTTP e integrações",
+          "IXC Soft — QA — validação de endpoints"
+        ]
+      },
+      {
+        "id": "cypress",
+        "name": "Cypress",
+        "aliases": [
+          "Cypress.io",
+          "Cypress E2E"
+        ],
+        "category": "testing",
+        "level": "intermediate",
+        "evidence": [
+          "Testes E2E em projetos pessoais",
+          "Stack de QA e automação"
+        ]
+      },
+      {
+        "id": "vitest",
+        "name": "Vitest",
+        "aliases": [
+          "Vite Test",
+          "Vitest unit tests"
+        ],
+        "category": "testing",
+        "level": "intermediate",
+        "evidence": [
+          "Testes unitários em projetos React/Node"
+        ]
+      }
+    ],
+    "database": [
+      {
+        "id": "mongodb",
+        "name": "MongoDB",
+        "aliases": [
+          "Mongo",
+          "Mongo DB"
+        ],
+        "category": "database",
+        "level": "intermediate",
+        "evidence": [
+          "ICER — persistência de conteúdo e mídia"
+        ]
+      }
+    ],
+    "devops": [
+      {
+        "id": "docker",
+        "name": "Docker",
+        "aliases": [
+          "Docker containers",
+          "Containerização"
+        ],
+        "category": "devops",
+        "level": "intermediate",
+        "evidence": [
+          "ICER — API e frontend containerizados com Docker Compose"
+        ]
+      },
+      {
+        "id": "git",
+        "name": "Git",
+        "aliases": [
+          "Git SCM",
+          "Controle de versão Git"
+        ],
+        "category": "devops",
+        "level": "intermediate",
+        "evidence": [
+          "Projetos ICER e Lumio no GitHub",
+          "Fluxo de trabalho diário"
+        ]
+      },
+      {
+        "id": "github",
+        "name": "GitHub",
+        "aliases": [
+          "Git Hub",
+          "GitHub.com"
+        ],
+        "category": "devops",
+        "level": "intermediate",
+        "evidence": [
+          "Repositórios públicos — ICER, Lumio e portfólio"
+        ]
+      },
+      {
+        "id": "linux",
+        "name": "Linux",
+        "aliases": [
+          "GNU/Linux",
+          "Ubuntu",
+          "Servidor Linux"
+        ],
+        "category": "devops",
+        "level": "advanced",
+        "evidence": [
+          "Loy Legal — servidores Linux em produção",
+          "IXC Soft — implantação e suporte em ambientes Linux"
+        ]
+      }
+    ],
+    "frontend": [
+      {
+        "id": "react",
+        "name": "React",
+        "aliases": [
+          "React.js",
+          "ReactJS"
+        ],
+        "category": "frontend",
+        "level": "intermediate",
+        "evidence": [
+          "ICER — SPA consumindo API REST",
+          "Lumio — interface de projeção"
+        ]
+      }
+    ]
+  },
+  "skillTerms": [
+    "Node.js",
+    "NodeJS",
+    "Node",
+    "node.js",
+    "TypeScript",
+    "TS",
+    "type script",
+    "Express",
+    "Express.js",
+    "ExpressJS",
+    "REST APIs",
+    "REST API",
+    "REST",
+    "APIs REST",
+    "HTTP API",
+    "Postman",
+    "Postman API Client",
+    "Cypress",
+    "Cypress.io",
+    "Cypress E2E",
+    "Vitest",
+    "Vite Test",
+    "Vitest unit tests",
+    "MongoDB",
+    "Mongo",
+    "Mongo DB",
+    "Docker",
+    "Docker containers",
+    "Containerização",
+    "Git",
+    "Git SCM",
+    "Controle de versão Git",
+    "GitHub",
+    "Git Hub",
+    "GitHub.com",
+    "Linux",
+    "GNU/Linux",
+    "Ubuntu",
+    "Servidor Linux",
+    "React",
+    "React.js",
+    "ReactJS"
+  ],
+  "person": {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Asafe Bernardo",
+    "jobTitle": "Desenvolvedor Back-end · Node.js · TypeScript",
+    "description": "Profissional de tecnologia com 3 anos de experiência em QA e integração de APIs REST, em transição para Desenvolvedor Back-end. Minha stack principal é Node.js com TypeScript — desenvolvo APIs, aplicações web e ferramentas para resolver problemas reais. Vim de suporte a APIs e QA na IXC Soft: entendo requisições HTTP, contratos REST, regressão e o que quebra em produção. Hoje aplico isso no desenvolvimento — o ICER (icer.com.br) é meu case Back-end em produção com Express, MongoDB, JWT e Docker.",
+    "url": "https://asafebernardo.github.io/portifolio/",
+    "email": "asafe.kohler@gmail.com",
+    "telephone": "+55 (49) 99806-2305",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Hermes da Fonseca, 1559, D — CEP 89804-132, Chapecó, SC",
+      "addressLocality": "Chapecó",
+      "addressRegion": "SC",
+      "addressCountry": "BR"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/asafebernardo",
+      "https://github.com/asafebernardo",
+      "https://asafebernardo.github.io/portifolio/"
+    ],
+    "knowsAbout": [
+      "Node.js",
+      "NodeJS",
+      "Node",
+      "node.js",
+      "TypeScript",
+      "TS",
+      "type script",
+      "Express",
+      "Express.js",
+      "ExpressJS",
+      "REST APIs",
+      "REST API",
+      "REST",
+      "APIs REST",
+      "HTTP API",
+      "Postman",
+      "Postman API Client",
+      "Cypress",
+      "Cypress.io",
+      "Cypress E2E",
+      "Vitest",
+      "Vite Test",
+      "Vitest unit tests",
+      "MongoDB",
+      "Mongo",
+      "Mongo DB",
+      "Docker",
+      "Docker containers",
+      "Containerização",
+      "Git",
+      "Git SCM",
+      "Controle de versão Git",
+      "GitHub",
+      "Git Hub",
+      "GitHub.com",
+      "Linux",
+      "GNU/Linux",
+      "Ubuntu",
+      "Servidor Linux",
+      "React",
+      "React.js",
+      "ReactJS"
+    ],
+    "skillsDetailed": [
+      {
+        "@type": "DefinedTerm",
+        "name": "Node.js",
+        "alternateName": [
+          "NodeJS",
+          "Node",
+          "node.js"
+        ],
+        "termCode": "nodejs",
+        "inDefinedTermSet": "Back-end",
+        "description": "Intermediário — ICER — API REST em produção (icer.com.br); Desenvolvimento Back-end pessoal"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "TypeScript",
+        "alternateName": [
+          "TS",
+          "type script"
+        ],
+        "termCode": "typescript",
+        "inDefinedTermSet": "Back-end",
+        "description": "Intermediário — Lumio — frontend React + TypeScript; Stack principal Back-end"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "Express",
+        "alternateName": [
+          "Express.js",
+          "ExpressJS"
+        ],
+        "termCode": "express",
+        "inDefinedTermSet": "Back-end",
+        "description": "Intermediário — ICER — API REST com Express e MongoDB"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "REST APIs",
+        "alternateName": [
+          "REST API",
+          "REST",
+          "APIs REST",
+          "HTTP API"
+        ],
+        "termCode": "rest-apis",
+        "inDefinedTermSet": "Back-end",
+        "description": "Avançado — IXC Soft — Suporte API/Integrações (2 anos); ICER — endpoints REST em produção"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "Postman",
+        "alternateName": [
+          "Postman API Client"
+        ],
+        "termCode": "postman",
+        "inDefinedTermSet": "Testes & QA",
+        "description": "Avançado — IXC Soft — análise de requisições HTTP e integrações; IXC Soft — QA — validação de endpoints"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "Cypress",
+        "alternateName": [
+          "Cypress.io",
+          "Cypress E2E"
+        ],
+        "termCode": "cypress",
+        "inDefinedTermSet": "Testes & QA",
+        "description": "Intermediário — Testes E2E em projetos pessoais; Stack de QA e automação"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "Vitest",
+        "alternateName": [
+          "Vite Test",
+          "Vitest unit tests"
+        ],
+        "termCode": "vitest",
+        "inDefinedTermSet": "Testes & QA",
+        "description": "Intermediário — Testes unitários em projetos React/Node"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "MongoDB",
+        "alternateName": [
+          "Mongo",
+          "Mongo DB"
+        ],
+        "termCode": "mongodb",
+        "inDefinedTermSet": "Banco de dados",
+        "description": "Intermediário — ICER — persistência de conteúdo e mídia"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "Docker",
+        "alternateName": [
+          "Docker containers",
+          "Containerização"
+        ],
+        "termCode": "docker",
+        "inDefinedTermSet": "Infraestrutura & DevOps",
+        "description": "Intermediário — ICER — API e frontend containerizados com Docker Compose"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "Git",
+        "alternateName": [
+          "Git SCM",
+          "Controle de versão Git"
+        ],
+        "termCode": "git",
+        "inDefinedTermSet": "Infraestrutura & DevOps",
+        "description": "Intermediário — Projetos ICER e Lumio no GitHub; Fluxo de trabalho diário"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "GitHub",
+        "alternateName": [
+          "Git Hub",
+          "GitHub.com"
+        ],
+        "termCode": "github",
+        "inDefinedTermSet": "Infraestrutura & DevOps",
+        "description": "Intermediário — Repositórios públicos — ICER, Lumio e portfólio"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "Linux",
+        "alternateName": [
+          "GNU/Linux",
+          "Ubuntu",
+          "Servidor Linux"
+        ],
+        "termCode": "linux",
+        "inDefinedTermSet": "Infraestrutura & DevOps",
+        "description": "Avançado — Loy Legal — servidores Linux em produção; IXC Soft — implantação e suporte em ambientes Linux"
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "React",
+        "alternateName": [
+          "React.js",
+          "ReactJS"
+        ],
+        "termCode": "react",
+        "inDefinedTermSet": "Frontend",
+        "description": "Intermediário — ICER — SPA consumindo API REST; Lumio — interface de projeção"
+      }
+    ],
+    "knowsLanguage": [
+      {
+        "@type": "Language",
+        "name": "Português",
+        "proficiencyLevel": "Nativo"
+      },
+      {
+        "@type": "Language",
+        "name": "Inglês",
+        "proficiencyLevel": "Professional Working"
+      }
+    ],
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Introduction to Cybersecurity"
+      }
+    ],
+    "alumniOf": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "UCEFF"
+      }
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "IXC Soft"
+    },
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Backend Developer",
+      "skills": "Node.js, TypeScript, Express, REST APIs, Postman, Cypress, Vitest, MongoDB, Docker, Git, GitHub, Linux, React"
+    },
+    "workExample": [
+      {
+        "@type": "CreativeWork",
+        "name": "ICER — API & Site Institucional",
+        "description": "Back-end Node.js com Express e MongoDB para site institucional em produção (icer.com.br): rotas REST, autenticação JWT, upload de mídia e painel administrativo. Frontend React consome a API via HTTP/JSON. Deploy com Docker.",
+        "keywords": "Node.js, Express, MongoDB, Docker, React, JWT",
+        "url": "https://icer.com.br",
+        "codeRepository": "https://github.com/asafebernardo/icer"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Lumio — Apresentações em Tempo Real",
+        "description": "Software de apresentação para igrejas com API .NET e frontend React. Gerencia músicas, versículos e mídia com sincronização em tempo real entre operador e tela de projeção via SignalR.",
+        "keywords": "React, TypeScript, Vite, .NET, SignalR, Zustand",
+        "url": "https://github.com/asafebernardo/lumio",
+        "codeRepository": "https://github.com/asafebernardo/lumio"
+      }
+    ],
+    "subjectOf": {
+      "@type": "DigitalDocument",
+      "name": "Asafe Bernardo — Currículo PDF",
+      "encodingFormat": "application/pdf",
+      "url": "https://asafebernardo.github.io/portifolio/asafe-bernardo-cv.pdf"
+    }
+  }
+}

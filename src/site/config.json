@@ -1,7 +1,11 @@
 {
   "brandName": "Asafe Bernardo",
-  "siteTitle": "Portfolio",
+  "siteTitle": "Portfólio",
   "profilePhoto": "/profile-photo.png",
+  "resumePdf": "/asafe-bernardo-cv.pdf",
+  "portfolioUrl": "https://asafebernardo.github.io/portifolio/",
+  "location": "Chapecó, Santa Catarina, Brasil",
+  "address": "Rua Hermes da Fonseca, 1559, D — CEP 89804-132, Chapecó, SC",
   "links": {
     "github": "https://github.com/asafebernardo",
     "linkedin": "https://www.linkedin.com/in/asafebernardo",

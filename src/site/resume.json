@@ -1,0 +1,99 @@
+{
+  "@context": "https://schema.org",
+  "type": "Resume",
+  "name": "Asafe Bernardo",
+  "jobTitle": "Desenvolvedor Back-end",
+  "headline": "Backend Developer | Node.js | TypeScript | REST APIs | MongoDB | Docker",
+  "location": "Chapecó, Santa Catarina, Brasil",
+  "summary": "Profissional de tecnologia com 3 anos de experiência em QA e integração de APIs REST, em transição para Desenvolvedor Back-end. Stack principal: Node.js com TypeScript, Express, MongoDB e Docker. Case ICER em produção (icer.com.br). Candidatura ativa a vagas Back-end Node.js.",
+  "yearsOfExperience": 3,
+  "contact": {
+    "email": "asafe.kohler@gmail.com",
+    "phone": "+5549998062305",
+    "linkedin": "https://www.linkedin.com/in/asafebernardo",
+    "github": "https://github.com/asafebernardo",
+    "portfolio": "https://asafebernardo.github.io/portifolio/",
+    "address": "Rua Hermes da Fonseca, 1559, D, CEP 89804-132, Chapecó, SC, Brasil"
+  },
+  "skillsCatalog": "skillsCatalog.json",
+  "languages": [
+    { "name": "Português", "level": "Nativo" },
+    { "name": "Inglês", "level": "Professional Working" }
+  ],
+  "certifications": ["Introduction to Cybersecurity"],
+  "coursesInProgress": [
+    {
+      "name": "Noções Básicas de Redes",
+      "institution": "Cisco Networking Academy",
+      "period": "2026",
+      "status": "in_progress"
+    }
+  ],
+  "education": [
+    {
+      "institution": "UCEFF",
+      "degree": "Análise e Desenvolvimento de Sistemas",
+      "field": "Computer Programming / Programmer, General",
+      "startDate": "2021-01",
+      "endDate": "2024-04"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Analista de suporte e implantação — IXC ACS",
+      "company": "IXC Soft",
+      "startDate": "2026-06",
+      "endDate": null,
+      "location": "Chapecó, SC, Brasil"
+    },
+    {
+      "role": "Analista de QA — IXC ACS",
+      "company": "IXC Soft",
+      "startDate": "2025-05",
+      "endDate": "2026-07",
+      "location": "Chapecó, SC, Brasil"
+    },
+    {
+      "role": "Analista de suporte API/Integrações — IXC Provedor",
+      "company": "IXC Soft",
+      "startDate": "2023-07",
+      "endDate": "2025-05",
+      "location": "Chapecó, SC, Brasil"
+    },
+    {
+      "role": "Suporte técnico",
+      "company": "Loy Legal",
+      "startDate": "2023-03",
+      "endDate": "2023-06",
+      "location": "Chapecó, SC, Brasil"
+    }
+  ],
+  "projects": [
+    {
+      "name": "ICER",
+      "url": "https://icer.com.br",
+      "repository": "https://github.com/asafebernardo/icer",
+      "stack": ["Node.js", "Express", "MongoDB", "Docker", "JWT", "React", "REST APIs"],
+      "highlights": [
+        "20+ endpoints REST",
+        "Autenticação JWT",
+        "Docker Compose",
+        "Coleção Postman",
+        "Em produção"
+      ]
+    },
+    {
+      "name": "Lumio",
+      "repository": "https://github.com/asafebernardo/lumio",
+      "stack": ["React", "TypeScript", "REST APIs"]
+    }
+  ],
+  "availability": {
+    "status": "actively_aplying",
+    "remote": "Brasil",
+    "hybridAndOnsiteRegions": ["Sul", "Sudeste", "Centro-Oeste"],
+    "openTo": ["remote", "hybrid", "onsite"],
+    "location": "Chapecó, SC, Brasil"
+  },
+  "pdfUrl": "/asafe-bernardo-cv.pdf"
+}

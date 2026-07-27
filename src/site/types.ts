@@ -8,6 +8,11 @@ export type SiteConfig = {
   siteTitle: string
   /** URL da foto (ex.: /perfil.jpg na pasta `public` ou https…) — omitir ou vazio oculta */
   profilePhoto?: string
+  /** Static CV PDF for ATS (public path). */
+  resumePdf?: string
+  portfolioUrl?: string
+  location?: string
+  address?: string
   links: {
     github: string
     linkedin: string
@@ -40,6 +45,14 @@ export type ProjectEntry = {
   featured?: boolean
   /** When true, card is locked and shows “In development” instead of live demo. */
   inDevelopment?: boolean
+  /** Measurable outcome or production status (shown on project cards). */
+  impact?: string
+  /** Your role on the project. */
+  role?: string
+  /** Technical bullets for ATS/recruiters (endpoints, auth, tests, etc.). */
+  technicalHighlights?: string[]
+  /** Link to Postman collection or API docs. */
+  postmanUrl?: string
 }
 
 export type SkillGroup = {
@@ -47,14 +60,68 @@ export type SkillGroup = {
   items: string[]
 }
 
+export type SkillLevel = 'advanced' | 'intermediate' | 'beginner'
+
+export type SkillCategoryId = 'backend' | 'testing' | 'database' | 'devops' | 'frontend'
+
+export type SkillCatalogEntry = {
+  id: string
+  name: string
+  aliases: string[]
+  category: SkillCategoryId
+  level: SkillLevel
+  evidence: string[]
+}
+
+export type SkillCatalog = {
+  categoryLabels: Record<SkillCategoryId, string>
+  categoryOrder: SkillCategoryId[]
+  levelLabels: Record<SkillLevel, string>
+  items: SkillCatalogEntry[]
+}
+
 export type WorkExperienceEntry = {
   id: string
   period: string
+  /** ISO year-month for SEO (e.g. 2023-07). */
+  startDate: string
+  /** ISO year-month or null when current. */
+  endDate: string | null
   role: string
   company: string
-  location: string
+  location?: string
+  /** Why this role matters for Back-end positioning. */
+  relevance?: string
+  /** Highlights the most relevant card for recruiters. */
+  featured?: boolean
   description: string
+  /** Tech/tools used — shown as tags for ATS. */
+  skills: string[]
   highlights: string[]
+}
+
+export type EducationEntry = {
+  id: string
+  institution: string
+  degree: string
+  period: string
+  details?: string
+}
+
+export type CourseEntry = {
+  name: string
+  institution: string
+  period?: string
+  status: string
+}
+
+export type LanguageEntry = {
+  name: string
+  level: string
+}
+
+export type CertificationEntry = {
+  name: string
 }
 
 export type TimelineEntry = {
@@ -86,6 +153,7 @@ export type SiteContent = {
     projects: string
     skills: string
     experience: string
+    education: string
     contact: string
     ctaProjects: string
     menuOpen: string
@@ -113,6 +181,10 @@ export type SiteContent = {
     featuredCase: string
     challenges: string
     challengesShort: string
+    impact: string
+    role: string
+    technical: string
+    postman: string
     demo: string
     code: string
     viewImageAria: string
@@ -129,7 +201,6 @@ export type SiteContent = {
     kicker: string
     title: string
     sub: string
-    groups: SkillGroup[]
   }
   experience: {
     kicker: string
@@ -137,11 +208,26 @@ export type SiteContent = {
     sub: string
     items: WorkExperienceEntry[]
   }
+  education: {
+    kicker: string
+    title: string
+    sub: string
+    items: EducationEntry[]
+    languagesTitle: string
+    languages: LanguageEntry[]
+    certificationsTitle: string
+    certifications: CertificationEntry[]
+    coursesTitle: string
+    courses: CourseEntry[]
+  }
   about: {
     kicker: string
     title: string
     lead: string
     para: string
+    availabilityStatus: string
+    availabilityModes: string
+    availabilityNote: string
     timeline: TimelineEntry[]
   }
   contact: {

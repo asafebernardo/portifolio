@@ -1,56 +1,61 @@
 {
   "meta": {
-    "title": "Asafe's Portfolio",
-    "description": "Full Stack developer portfolio — React, Node.js and JavaScript. Modern interfaces, scalable APIs and clean architecture."
+    "title": "Asafe Bernardo · Desenvolvedor Back-end",
+    "description": "Desenvolvedor Back-end · Node.js · TypeScript · REST APIs · MongoDB · Docker · Chapecó/SC. Transição de QA e integração de APIs. ICER em produção. Candidatura ativa. Inglês profissional."
   },
   "nav": {
-    "ariaMain": "Main",
-    "home": "Home",
-    "projects": "Projects",
-    "skills": "Skills",
-    "experience": "Experience",
-    "contact": "Contact",
-    "ctaProjects": "View projects",
-    "menuOpen": "Open menu",
-    "menuClose": "Close menu",
-    "scrimClose": "Close menu",
-    "ariaLanguage": "Site language",
-    "downloadResume": "Download PDF",
-    "downloadResumeAria": "Download resume as PDF"
+    "ariaMain": "Principal",
+    "home": "Início",
+    "projects": "Projetos",
+    "skills": "Habilidades",
+    "experience": "Experiência",
+    "education": "Formação",
+    "contact": "Contato",
+    "ctaProjects": "Ver projetos",
+    "menuOpen": "Abrir menu",
+    "menuClose": "Fechar menu",
+    "scrimClose": "Fechar menu",
+    "ariaLanguage": "Idioma do site",
+    "downloadResume": "Baixar PDF",
+    "downloadResumeAria": "Baixar currículo em PDF"
   },
   "hero": {
-    "kicker": "Hi, I'm",
+    "kicker": "Olá, eu sou",
     "title": "",
-    "role": "Full Stack Developer",
-    "description": "I build modern interfaces, scalable APIs and web systems focused on performance, usability and clean architecture.",
-    "ctaProjects": "View projects",
+    "role": "Desenvolvedor Back-end · Node.js · TypeScript",
+    "description": "Transição de QA e integração de APIs REST para desenvolvimento Back-end. Construo APIs com Node.js, Express, MongoDB e Docker — case ICER em produção.",
+    "ctaProjects": "Ver projetos",
     "github": "GitHub",
     "linkedin": "LinkedIn"
   },
   "projects": {
-    "kicker": "Selected work",
-    "title": "Projects",
-    "sub": "Cases emphasizing architecture, trade-offs and measurable outcomes — not just pretty screens.",
+    "kicker": "Trabalhos selecionados",
+    "title": "Projetos",
+    "sub": "APIs, persistência, Docker e deploy — cases com código no GitHub.",
     "filters": {
-      "all": "All",
+      "all": "Todos",
       "frontend": "Frontend",
       "backend": "Backend",
       "fullstack": "Full Stack"
     },
-    "filterAria": "Filter projects",
-    "featuredCase": "Featured case",
-    "challenges": "Technical challenges",
-    "challengesShort": "Challenges",
-    "demo": "Live demo",
-    "code": "Source code",
-    "viewImageAria": "View full screenshot of {title}",
+    "filterAria": "Filtrar projetos",
+    "featuredCase": "Destaque",
+    "challenges": "Desafios técnicos",
+    "challengesShort": "Desafios",
+    "impact": "Resultado",
+    "role": "Papel",
+    "technical": "Detalhes técnicos",
+    "postman": "Postman / API",
+    "demo": "Ver ao vivo",
+    "code": "Código-fonte",
+    "viewImageAria": "Ver captura de tela de {title}",
     "imageModal": {
-      "close": "Close",
-      "prev": "Previous image",
-      "next": "Next image"
+      "close": "Fechar",
+      "prev": "Imagem anterior",
+      "next": "Próxima imagem"
     },
-    "inDevelopment": "In development",
-    "empty": "No projects in this category yet.",
+    "inDevelopment": "Em desenvolvimento",
+    "empty": "Nenhum projeto nesta categoria ainda.",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",
@@ -58,155 +63,163 @@
     }
   },
   "skills": {
-    "kicker": "Stack & practices",
-    "title": "Skills",
-    "sub": "Organized by layer — from what users see to what runs in production.",
-    "groups": [
-      {
-        "title": "Frontend",
-        "items": [
-          "React",
-          "TypeScript",
-          "Next.js",
-          "CSS Modules",
-          "Responsive Design",
-          "Performance Optimization"
-        ]
-      },
-      {
-        "title": "Backend",
-        "items": [
-          "Node.js",
-          "Express",
-          "REST APIs",
-          "WebSockets",
-          "JWT Authentication",
-          "Automated Testing"
-        ]
-      },
-      {
-        "title": "Database",
-        "items": [
-          "MongoDB",
-          "Redis",
-          "Database Modeling",
-          "SQL Queries",
-          "Migrations"
-        ]
-      },
-      {
-        "title": "DevOps & Tools",
-        "items": [
-          "Docker",
-          "Git & GitHub",
-          "CI/CD",
-          "Linux",
-          "Monitoring & Logs"
-        ]
-      }
-    ]
+    "kicker": "Stack & práticas",
+    "title": "Habilidades",
+    "sub": "Node.js, TypeScript, REST APIs, MongoDB, Docker e testes — com evidência no ICER (produção) e na experiência IXC Soft."
   },
   "experience": {
-    "kicker": "Career",
-    "title": "Work experience",
-    "sub": "Professional journey building digital products — from end-to-end delivery to cross-functional squad collaboration.",
+    "kicker": "Carreira",
+    "title": "Experiência profissional",
+    "sub": "3+ anos na IXC Soft (Chapecó/SC · presencial) — progressão APIs → QA → implantação. Trajetória que sustenta a transição para Desenvolvedor Back-end.",
     "items": [
       {
-        "id": "exp-ixc-qa",
-        "period": "May 2025 — Present",
-        "role": "QA Analyst",
+        "id": "exp-ixc-implantacao",
+        "period": "Jun 2026 — Presente",
+        "startDate": "2026-06",
+        "endDate": null,
+        "role": "Analista de suporte e implantação — IXC ACS",
         "company": "IXC Soft",
-        "location": "Chapecó, Santa Catarina, Brazil · On-site",
-        "description": "Implemented automated tests with Postman for system validation, helping keep IXC Soft releases reliable and high quality.",
+        "relevance": "Contato com ambientes Linux e produção — visão de ponta a ponta do software em operação.",
+        "description": "Suporte técnico, implantação e treinamento de clientes no produto IXC ACS, com registro de melhorias e acompanhamento de chamados.",
+        "skills": ["Linux", "Implantação", "Suporte técnico", "Treinamento"],
         "highlights": [
-          "Automated testing",
-          "Postman",
-          "API validation",
-          "QA/QC",
-          "Quality assurance",
-          "Cypress",
-          "Vitest",
-          "Node.js",
-          "React.js",
-          "Git",
-          "Docker",
-          "MongoDB",
-          "Redis"
+          "Implantação e configuração do software em ambientes Linux para clientes B2B",
+          "Resolução de incidentes em produção e interface com times de desenvolvimento",
+          "Registro de sugestões de melhoria com contexto técnico para o produto",
+          "Treinamentos remotos para capacitação de usuários finais"
         ]
       },
       {
-        "id": "exp-ixc-support",
-        "period": "Jul 2023 — May 2025",
-        "role": "Technical Support Analyst",
+        "id": "exp-ixc-qa",
+        "period": "Mai 2025 — Jul 2026",
+        "startDate": "2025-05",
+        "endDate": "2026-07",
+        "role": "Analista de QA — IXC ACS",
         "company": "IXC Soft",
-        "location": "Chapecó, Santa Catarina, Brazil · On-site",
-        "description": "Resolved complex technical incidents at IXC Soft, using React.js knowledge for advanced frontend diagnostics.",
+        "relevance": "Mindset de qualidade aplicado ao Back-end — regressão, contratos de API e entrega segura.",
+        "description": "Testes manuais e de regressão, documentação de bugs e colaboração com desenvolvimento para garantir qualidade das entregas.",
+        "skills": ["Postman", "QA", "Regressão", "Casos de teste", "Homologação"],
         "highlights": [
-          "Technical support",
-          "Incident resolution",
-          "Frontend diagnostics",
-          "React.js",
-          "User support"
+          "Validação de funcionalidades e endpoints com Postman antes de cada release",
+          "Elaboração de casos de teste e cenários de regressão em ciclos de entrega contínuos",
+          "Documentação e acompanhamento de bugs com o time de desenvolvimento",
+          "Homologação de novas funcionalidades em ambiente próximo ao de produção"
+        ]
+      },
+      {
+        "id": "exp-ixc-api",
+        "period": "Jul 2023 — Mai 2025",
+        "startDate": "2023-07",
+        "endDate": "2025-05",
+        "role": "Analista de suporte API/Integrações — IXC Provedor",
+        "company": "IXC Soft",
+        "featured": true,
+        "relevance": "Experiência mais direta para Back-end — 2 anos com APIs REST, HTTP/JSON e integrações em produção.",
+        "description": "Suporte a APIs REST e integrações entre sistemas ERP e aplicações de clientes, com análise de requisições HTTP via Postman e Swagger.",
+        "skills": ["REST APIs", "Postman", "Swagger", "HTTP/JSON", "Integrações"],
+        "highlights": [
+          "2 anos em suporte a APIs REST e integrações entre sistemas em ambiente de produção",
+          "Diagnóstico de falhas de comunicação entre aplicações (HTTP, payloads JSON e autenticação)",
+          "Análise de requisições e respostas com Postman e Swagger para clientes e parceiros",
+          "Documentação técnica de integrações e acompanhamento de incidentes até resolução"
         ]
       },
       {
         "id": "exp-loy-support",
         "period": "Mar 2023 — Jun 2023",
-        "role": "Technical Support",
+        "startDate": "2023-03",
+        "endDate": "2023-06",
+        "role": "Suporte técnico",
         "company": "Loy Legal",
-        "location": "Chapecó, Santa Catarina, Brazil · On-site",
-        "description": "Provided specialized technical support at Loy Legal, fixing critical issues that affected users’ day-to-day operations.",
+        "location": "Chapecó/SC · presencial",
+        "relevance": "Base em infraestrutura Linux e deploy — contexto para Docker e ambientes de produção.",
+        "description": "Infraestrutura Windows e Linux, deploy de aplicações e monitoramento de ambientes de produção.",
+        "skills": ["Linux", "Windows Server", "Deploy", "Monitoramento"],
         "highlights": [
-          "Technical support",
-          "Troubleshooting",
-          "User support",
-          "Critical incidents"
+          "Manutenção de servidores Linux e Windows em ambiente corporativo",
+          "Deploy de aplicações em produção e monitoramento de falhas",
+          "Documentação de procedimentos técnicos e ações corretivas"
         ]
       }
     ]
   },
+  "education": {
+    "kicker": "Formação",
+    "title": "Formação acadêmica",
+    "sub": "Graduação em Análise e Desenvolvimento de Sistemas e formação complementar em andamento.",
+    "items": [
+      {
+        "id": "edu-uceff",
+        "institution": "UCEFF",
+        "degree": "Análise e Desenvolvimento de Sistemas",
+        "period": "Jan 2021 — Abr 2024",
+        "details": "Computer Programming / Programmer, General"
+      }
+    ],
+    "languagesTitle": "Idiomas",
+    "languages": [
+      { "name": "Português", "level": "Nativo" },
+      { "name": "Inglês", "level": "Professional Working" }
+    ],
+    "certificationsTitle": "Certificações",
+    "certifications": [
+      { "name": "Introduction to Cybersecurity" }
+    ],
+    "coursesTitle": "Cursos em andamento",
+    "courses": [
+      {
+        "name": "Noções Básicas de Redes",
+        "institution": "Cisco Networking Academy",
+        "period": "2026",
+        "status": "Em andamento"
+      }
+    ]
+  },
   "about": {
-    "kicker": "About",
-    "title": "Full Stack Developer",
-    "lead": "I am a software developer focused on web applications and REST APIs, with experience in documentation, system integration, and building solutions for modern environments.\n\nAt IXC Soft, I started in Technical Support and gradually transitioned into development-focused activities, gaining hands-on experience with Node.js, React.js, MongoDB, and API tools such as Postman. I have an analytical mindset, strong adaptability to new technologies, and a continuous interest in building solutions that improve processes and product delivery.",
-    "para": "I am looking for opportunities where I can continue growing technically, contribute to challenging projects, and further develop my career in software engineering.",
+    "kicker": "Sobre",
+    "title": "Desenvolvedor Back-end · Node.js · TypeScript",
+    "lead": "Profissional de tecnologia com 3 anos de experiência em QA e integração de APIs REST, em transição para Desenvolvedor Back-end. Minha stack principal é Node.js com TypeScript — desenvolvo APIs, aplicações web e ferramentas para resolver problemas reais.\n\nVim de suporte a APIs e QA na IXC Soft: entendo requisições HTTP, contratos REST, regressão e o que quebra em produção. Hoje aplico isso no desenvolvimento — o ICER (icer.com.br) é meu case Back-end em produção com Express, MongoDB, JWT e Docker.",
+    "para": "Busco oportunidade como Desenvolvedor Back-end Node.js — remoto (Brasil) ou híbrido/presencial no Sul, Sudeste e Centro-Oeste — em squad que valorize qualidade, testes e entrega incremental.",
+    "availabilityStatus": "Disponível · candidatura ativa",
+    "availabilityModes": "Remoto (BR) · Híbrido e presencial: Sul, Sudeste e Centro-Oeste",
+    "availabilityNote": "Candidatura ativa a vagas Back-end Node.js. Presencial e híbrido apenas nas regiões Sul, Sudeste e Centro-Oeste. Remoto em todo o Brasil. Contato via LinkedIn, e-mail ou WhatsApp.",
     "timeline": [
       {
-        "phase": "Studies",
-        "title": "Strong CS & web foundations",
-        "body": "Algorithms, networking and engineering practices applied to real products."
+        "phase": "APIs",
+        "title": "Suporte a integrações REST",
+        "body": "2 anos com Postman, Swagger e diagnóstico de payloads HTTP em produção na IXC Soft."
       },
       {
-        "phase": "Projects",
-        "title": "Iterative delivery",
-        "body": "End-to-end apps with reviewable code, performance metrics and documented decisions."
+        "phase": "QA",
+        "title": "Qualidade e regressão",
+        "body": "Testes manuais, casos de teste, Postman e homologação antes de releases."
       },
       {
-        "phase": "Experience",
-        "title": "Squads at scale",
-        "body": "Collaboration with design and product, architecture reviews and focus on DX."
+        "phase": "Desenvolvimento",
+        "title": "Back-end Node.js",
+        "body": "ICER em produção — Express + MongoDB + JWT + Docker. Lumio com React, TypeScript e SignalR."
       },
       {
-        "phase": "Goals",
-        "title": "What’s next",
-        "body": "Even more observable distributed systems and blazing-fast interfaces for end users."
+        "phase": "Agora",
+        "title": "Transição para Back-end",
+        "body": "Candidatura ativa a vagas Node.js — stack comprovada em projeto real no ar."
       }
     ]
   },
   "contact": {
-    "kicker": "Contact",
-    "title": "Let’s talk",
-    "sub": "Pick whatever channel is fastest for you.",
-    "name": "Name",
-    "email": "Email",
-    "message": "Message",
-    "namePlaceholder": "Your name",
-    "emailPlaceholder": "you@email.com",
-    "messagePlaceholder": "How can I help?",
-    "submit": "Send message",
-    "feedback": "Thanks — in production this would POST to an endpoint or email service.",
+    "kicker": "Contato",
+    "title": "Vamos conversar",
+    "sub": "Escolha o canal que for mais prático para você.",
+    "name": "Nome",
+    "email": "E-mail",
+    "message": "Mensagem",
+    "namePlaceholder": "Seu nome",
+    "emailPlaceholder": "voce@email.com",
+    "messagePlaceholder": "Como posso ajudar?",
+    "submit": "Enviar mensagem",
+    "feedback": "Obrigado — em produção isso enviaria para um endpoint ou serviço de e-mail.",
     "channelLabels": {
-      "email": "Email",
+      "email": "E-mail",
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "whatsapp": "WhatsApp"
@@ -219,14 +232,14 @@
     }
   },
   "footer": {
-    "note": "© {{year}} {{brand}}. Built with React & attention to detail.",
-    "aria": "Footer",
-    "top": "Top",
-    "projects": "Projects",
-    "contact": "Contact"
+    "note": "© {{year}} {{brand}}. Feito com React e atenção aos detalhes.",
+    "aria": "Rodapé",
+    "top": "Topo",
+    "projects": "Projetos",
+    "contact": "Contato"
   },
   "loading": {
-    "role": "Full Stack"
+    "role": "Back-end"
   },
-  "backToTop": "Back to top"
+  "backToTop": "Voltar ao topo"
 }

@@ -70,7 +70,7 @@ export function Header() {
       await downloadResumePdf({ config, content, projects })
       setOpen(false)
     } catch {
-      window.alert('Could not generate the PDF. Please try again.')
+      window.alert('Não foi possível gerar o PDF. Tente novamente.')
     } finally {
       setDownloadingPdf(false)
     }
@@ -135,32 +135,20 @@ export function Header() {
               </ul>
             </div>
             <div className={`${styles.navSection} ${styles.navSectionTools}`}>
-              <p className={styles.navSectionLabel}>Tools</p>
-              <div className={styles.navToolsRow}>
+              <p className={styles.navSectionLabel}>Tema</p>
+              <div className={styles.themeSwitch}>
                 <button
                   type="button"
-                  className={styles.pdfDownloadBtn}
-                  onClick={() => void handleDownloadResume()}
-                  disabled={downloadingPdf}
-                  aria-label={nav.downloadResumeAria}
+                  className={styles.themeToggleBtn}
+                  onClick={() => setPreference(resolved === 'dark' ? 'light' : 'dark')}
+                  aria-label={resolved === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'}
                 >
-                  <IconDownload className={styles.themeIcon} />
-                  <span>{downloadingPdf ? '…' : nav.downloadResume}</span>
+                  {resolved === 'dark' ? (
+                    <IconMoon className={styles.themeIcon} />
+                  ) : (
+                    <IconSun className={styles.themeIcon} />
+                  )}
                 </button>
-                <div className={styles.themeSwitch}>
-                  <button
-                    type="button"
-                    className={styles.themeToggleBtn}
-                    onClick={() => setPreference(resolved === 'dark' ? 'light' : 'dark')}
-                    aria-label={resolved === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-                  >
-                    {resolved === 'dark' ? (
-                      <IconMoon className={styles.themeIcon} />
-                    ) : (
-                      <IconSun className={styles.themeIcon} />
-                    )}
-                  </button>
-                </div>
               </div>
             </div>
           </nav>
@@ -168,21 +156,20 @@ export function Header() {
           <div className={styles.headerActions}>
             <button
               type="button"
-              className={styles.pdfDownloadBtnDesktop}
+              className={styles.iconBtn}
               onClick={() => void handleDownloadResume()}
               disabled={downloadingPdf}
               aria-label={nav.downloadResumeAria}
               title={nav.downloadResume}
             >
-              <IconDownload className={styles.themeIcon} />
-              <span className={styles.pdfDownloadLabel}>{downloadingPdf ? '…' : nav.downloadResume}</span>
+              <IconDownload className={styles.headerIcon} />
             </button>
             <div className={styles.themeSwitchDesktop}>
               <button
                 type="button"
                 className={styles.themeToggleBtn}
                 onClick={() => setPreference(resolved === 'dark' ? 'light' : 'dark')}
-                aria-label={resolved === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+                aria-label={resolved === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'}
               >
                 {resolved === 'dark' ? (
                   <IconMoon className={styles.themeIcon} />
@@ -220,7 +207,7 @@ export function Header() {
           <button
             type="button"
             className={styles.photoModalBackdrop}
-            aria-label="Close"
+            aria-label="Fechar"
             onClick={() => setPhotoModalOpen(false)}
           />
           <div className={styles.photoModalSheet}>
@@ -230,7 +217,7 @@ export function Header() {
             <button
               type="button"
               className={styles.photoModalClose}
-              aria-label="Close"
+              aria-label="Fechar"
               onClick={() => setPhotoModalOpen(false)}
             >
               ×

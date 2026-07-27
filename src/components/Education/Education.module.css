@@ -1,0 +1,128 @@
+.section {
+  padding: 4rem 1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.container {
+  width: min(760px, 100%);
+  margin-inline: auto;
+}
+
+.head {
+  max-width: 560px;
+  margin-bottom: 2rem;
+}
+
+.kicker {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  letter-spacing: -0.03em;
+}
+
+.sub {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.list {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.item {
+  padding: 1.1rem 1.15rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-card-solid);
+}
+
+.period {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.degree {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.institution {
+  margin: 0;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.details {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.credentials {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .credentials {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.credentialBlock {
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--surface-border-dashed);
+  background: var(--surface-chip-subtle);
+}
+
+.credentialTitle {
+  margin: 0 0 0.65rem;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}
+
+.credentialList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.credentialList strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.courseStatus {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}

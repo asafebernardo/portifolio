@@ -3,6 +3,7 @@ export const portfolioPaths = {
   projects: '/projects',
   skills: '/skills',
   experience: '/experience',
+  education: '/education',
   contact: '/contact',
 } as const
 
@@ -14,6 +15,7 @@ export const PORTFOLIO_SECTION_IDS: Record<PortfolioNavKey, string> = {
   projects: 'projects',
   skills: 'skills',
   experience: 'experience',
+  education: 'education',
   contact: 'contact',
 } as const
 
@@ -39,7 +41,7 @@ export const PORTFOLIO_NAV: readonly { key: PortfolioNavKey; path: (typeof portf
   { key: 'projects', path: portfolioPaths.projects },
   { key: 'skills', path: portfolioPaths.skills },
   { key: 'experience', path: portfolioPaths.experience },
-  { key: 'contact', path: portfolioPaths.contact },
+  { key: 'education', path: portfolioPaths.education },
 ] as const
 
 export function portfolioNavKeyFromSectionId(sectionId: string): PortfolioNavKey | undefined {

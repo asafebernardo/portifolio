@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Asafe Bernardo — Desenvolvedor Back-end">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#131c2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="80" width="1040" height="470" rx="24" fill="none" stroke="#2dd4bf" stroke-width="2" opacity="0.35"/>
+  <text x="120" y="220" fill="#f1f5f9" font-family="system-ui, sans-serif" font-size="64" font-weight="700">Asafe Bernardo</text>
+  <text x="120" y="290" fill="#2dd4bf" font-family="system-ui, sans-serif" font-size="36" font-weight="600">Desenvolvedor Back-end</text>
+  <text x="120" y="360" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="28">Node.js · TypeScript · REST APIs · MongoDB · Docker</text>
+  <text x="120" y="420" fill="#64748b" font-family="system-ui, sans-serif" font-size="24">Remoto BR · hibrido/presencial Sul, Sudeste e Centro-Oeste</text>
+</svg>

@@ -72,6 +72,14 @@
   box-shadow: 0 0 0 4px var(--accent-soft), 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
+.dotFeatured {
+  width: 14px;
+  height: 14px;
+  box-shadow:
+    0 0 0 4px var(--accent-soft),
+    0 0 24px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
 .line {
   flex: 1;
   width: 2px;
@@ -86,6 +94,15 @@
 
 .card {
   padding: 0 0 2rem;
+}
+
+.cardFeatured {
+  padding: 1rem 1.1rem 2rem;
+  margin-left: -1.1rem;
+  margin-right: -0.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border-subtle));
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface-card));
 }
 
 .entry:last-child .card {
@@ -119,6 +136,17 @@
   color: var(--text-muted);
 }
 
+.relevance {
+  margin: 0 0 0.65rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border-subtle));
+  background: var(--accent-soft);
+}
+
 .description {
   margin: 0 0 0.85rem;
   color: var(--text-secondary);
@@ -126,22 +154,51 @@
   line-height: 1.65;
 }
 
-.highlights {
+.skillTags {
   list-style: none;
-  margin: 0;
+  margin: 0 0 0.85rem;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
 }
 
-.highlights li {
+.skillTags li {
   padding: 0.28rem 0.65rem;
   border-radius: 999px;
   font-size: 0.78rem;
+  font-family: var(--font-mono);
   color: var(--text-secondary);
   border: 1px solid var(--surface-tag-border);
   background: var(--surface-tag-bg);
+}
+
+.highlights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 /* Windows XP */

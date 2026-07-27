@@ -6,6 +6,8 @@ import config from './config.json'
 import contentEn from './content.en.json'
 import projectsEn from './projects.en.json'
 
+export { getSkillsCatalog, getSkillGroupsForDisplay, getSkillNames } from './skillsCatalog'
+
 export const SITE_LOCALE = 'en' as const
 
 const defaultConfig = config as SiteConfig
